@@ -1,0 +1,12 @@
+.toast-header {
+  padding: 16px 12px;
+}
+
+.toast-icon {
+  font-size: 32px;
+  color: green;
+}
+
+.toast-message {
+  margin-left: 12px;
+}

@@ -1,0 +1,46 @@
+.header {
+  height: var(--header);
+  width: calc(100% - var(--navbar));
+
+  float: right;
+}
+
+.header-left .title {
+  text-transform: uppercase;
+  padding-left: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 600;
+  max-width: 600px;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  color: #111;
+}
+
+.header-right .bell-icon {
+  background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat;
+  background-position: -788px -30px;
+  cursor: pointer;
+}
+.header-right .admin {
+  margin: 0 20px;
+}
+.header-right .admin .icon {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+.header-right .name {
+  margin: 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.header-right .icon-down {
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -1076px -32px;
+  cursor: pointer;
+}

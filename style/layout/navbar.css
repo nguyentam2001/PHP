@@ -1,0 +1,61 @@
+.navbar {
+  width: var(--navbar);
+  background-color: var(--black);
+  height: 100vh;
+  float: left;
+  display: inherit;
+  color: #ebedf0;
+}
+.navbar-icon {
+}
+.navbar-list .item {
+  font-size: 400;
+  height: 48px;
+  display: flex;
+  cursor: pointer;
+}
+.navbar-list .item:hover {
+  background-color: var(--hover-black);
+  color: var(--white);
+}
+.over-view-icon {
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -1376px -200px;
+  cursor: pointer;
+}
+
+.product-icon {
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -1152px -200px;
+  cursor: pointer;
+}
+.category-icon {
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -1208px -255px;
+  cursor: pointer;
+}
+.bill-icon {
+  background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat;
+  background-position: -1264px -256px;
+  cursor: pointer;
+}
+.employee-icon {
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -984px -200px;
+  cursor: pointer;
+}
+.customer-icon {
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -872px -200px;
+  cursor: pointer;
+}
+.manufacture-icon {
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -928px -200px;
+  cursor: pointer;
+}
+.report-icon {
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -1432px -200px;
+  cursor: pointer;
+}

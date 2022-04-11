@@ -1,0 +1,14 @@
+.btn-warning {
+  height: 40px;
+  padding: 0 24px;
+}
+.btn-warning .fa-user-plus {
+  color: var(--black);
+  margin-right: 6px;
+}
+
+.btn.btn-light {
+  height: 40px;
+  padding: 0 24px;
+  border: 1px solid #ccc;
+}
