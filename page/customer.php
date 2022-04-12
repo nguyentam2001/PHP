@@ -119,16 +119,10 @@
   <?php
   require_once "./customer-detail.php"
   ?>
-<<<<<<< HEAD
-  <script src="../script/common/enum.js"></script>
-  <script type="text/javascript" src="../script/customer.js"></script>
-
-=======
 <script src="../script/common/enum.js"></script>
 <script src="../script/common/common.js"></script>
 <script type="text/javascript" src="../script/customer.js"></script>
  
->>>>>>> 03ad2f9a9df4ea5ebec4a1c643f5fbd3a96f763c
 </body>
 <style>
   @import url(../style/components/input.css);
@@ -150,14 +144,8 @@
     color: var(--black);
     font-size: 24px;
     font-weight: 700;
-<<<<<<< HEAD
-  }
-
-  .content-header .right {}
-=======
 }
 
->>>>>>> 03ad2f9a9df4ea5ebec4a1c643f5fbd3a96f763c
 </style>
 
 </html>
