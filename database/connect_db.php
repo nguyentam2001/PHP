@@ -11,7 +11,7 @@ class Database {
   {
       $this->servername="localhost";
       $this ->username="root";
-      $this -> password="tam060601";
+      $this -> password="ngocnam02";
       $this->databaseName="ntstore";
   }
 
@@ -36,4 +36,3 @@ class Database {
     $this->conn->close();
   }
 }
-?>

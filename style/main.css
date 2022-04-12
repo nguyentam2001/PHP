@@ -4,107 +4,119 @@
 @import url(./components/table.css);
 @import url(./page/customer-detail.css);
 * {
-  font-family: GoogleSans-Regular, GoogleSans-Italic, GoogleSans-Bold,
-    GoogleSans-BoldItalic, GoogleSans-MediumItalic, GoogleSans-Regular,
-    sans-serif;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    font-family: GoogleSans-Regular, GoogleSans-Italic, GoogleSans-Bold, GoogleSans-BoldItalic, GoogleSans-MediumItalic, GoogleSans-Regular, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
 :root {
-  --black: #393a3d;
-  --white: #ebedf0;
-  --navbar: 212px;
-  --header: 48px;
-  --hover-black: #5d5d61;
-  --background: #f4f5f8;
-  --input-height: 40px;
+    --black: #393a3d;
+    --white: #ebedf0;
+    --navbar: 212px;
+    --header: 48px;
+    --hover-black: #5d5d61;
+    --background: #f4f5f8;
+    --input-height: 40px;
 }
+
 .flex-center {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .justify-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
 .icon-base {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  min-height: 24px;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
 }
+
 .icon-14 {
-  width: 14px;
-  height: 14px;
-  min-width: 14px;
-  min-height: 14px;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
 }
 
 .justify-around {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
 .p-l-12 {
-  padding-left: 12px;
+    padding-left: 12px;
 }
+
 .p-l-24 {
-  padding-left: 24px;
+    padding-left: 24px;
 }
 
 .p-r-24 {
-  padding-right: 24px;
+    padding-right: 24px;
 }
+
 .p-b-24 {
-  padding-bottom: 24px;
+    padding-bottom: 24px;
 }
+
 .p-t-24 {
-  padding-top: 24px;
+    padding-top: 24px;
 }
+
 .p-t-24 {
-  padding-top: 24px;
+    padding-top: 24px;
 }
+
 .m-l-8 {
-  margin-left: 8px;
+    margin-left: 8px;
 }
 
 .m-l-24 {
-  margin-left: 24px;
+    margin-left: 24px;
 }
+
 .m-l-12 {
-  margin-left: 12px;
+    margin-left: 12px;
 }
+
 .m-r-24 {
-  margin-right: 24px;
+    margin-right: 24px;
 }
 
 @font-face {
-  font-family: GoogleSans-Bold;
-  src: url("../assets/font/GoogleSans/GoogleSans-Bold.woff2");
+    font-family: GoogleSans-Bold;
+    src: url("../assets/font/GoogleSans/GoogleSans-Bold.woff2");
 }
 
 @font-face {
-  font-family: GoogleSans-BoldItalic;
-  src: url("../assets/font/GoogleSans/GoogleSans-BoldItalic.woff2");
+    font-family: GoogleSans-BoldItalic;
+    src: url("../assets/font/GoogleSans/GoogleSans-BoldItalic.woff2");
 }
 
 @font-face {
-  font-family: GoogleSans-Italic;
-  src: url("../assets/font/GoogleSans/GoogleSans-Italic.woff2");
+    font-family: GoogleSans-Italic;
+    src: url("../assets/font/GoogleSans/GoogleSans-Italic.woff2");
 }
 
 @font-face {
-  font-family: GoogleSans-Medium;
-  src: url("../assets/font/GoogleSans/GoogleSans-Medium.woff2");
+    font-family: GoogleSans-Medium;
+    src: url("../assets/font/GoogleSans/GoogleSans-Medium.woff2");
 }
+
 @font-face {
-  font-family: GoogleSans-MediumItalic;
-  src: url("../assets/font/GoogleSans/GoogleSans-MediumItalic.woff2");
+    font-family: GoogleSans-MediumItalic;
+    src: url("../assets/font/GoogleSans/GoogleSans-MediumItalic.woff2");
 }
+
 @font-face {
-  font-family: GoogleSans-Regular;
-  src: url("../assets/font/GoogleSans/GoogleSans-Regular.woff2");
+    font-family: GoogleSans-Regular;
+    src: url("../assets/font/GoogleSans/GoogleSans-Regular.woff2");
 }
