@@ -32,8 +32,8 @@
                     <div class="form-check">
                           <div class="title">Giới tính</div>  
                             <div class="form-check-wraper">
-                                <input type="radio" name="Gender" id="male"  value=0> <label for="male">Nam</label> 
-                                <input type="radio" name="Gender" id="female" value=1><label for="female">Nữ</label>
+                                <input type="radio" name="Gender" id="male"  value=1> <label for="male">Nam</label> 
+                                <input type="radio" name="Gender" id="female" value=0><label for="female">Nữ</label>
                             </div>
                     </div>
                 </div>

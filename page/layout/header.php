@@ -21,7 +21,4 @@
         </div>
     </div>
 </body>
-<style>
- @import url(../../style/layout/header.css);
-</style>
 </html>

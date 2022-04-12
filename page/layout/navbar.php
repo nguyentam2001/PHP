@@ -60,7 +60,4 @@
         </div>
     </div>
 </body>
-<style>
-@import url(../../style/layout/navbar.css);
-</style>
 </html>

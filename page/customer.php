@@ -120,6 +120,7 @@
   require_once "./customer-detail.php"
   ?>
 <script src="../script/common/enum.js"></script>
+<script src="../script/common/common.js"></script>
 <script type="text/javascript" src="../script/customer.js"></script>
  
 </body>
@@ -142,8 +143,6 @@
     font-size: 24px;
     font-weight: 700;
 }
-.content-header .right{
-   
-}
+
 </style>
 </html>
