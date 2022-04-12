@@ -14,4 +14,6 @@
         echo json_encode("KH$total");//trả về mã nhân viên mới
     }
   $database->close_db();//ngắt kết nối database
+
+  
 ?>
