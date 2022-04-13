@@ -11,7 +11,6 @@ class Customer {
   UrlNewCTMCode =
     "http://localhost/ntstore/function/customer/new-customer-code.php";
   UrlUpdate = "http://localhost/ntstore/function/customer/update-customer.php";
-  CustomerID = "";
   FormMode = "";
   constructor() {
     //load data
@@ -26,7 +25,6 @@ class Customer {
     //sửa thông tin nhân viên
     $("#CustomerTable .btn-update").click(this.showFormUpdate.bind(this));
   }
-
   showFormUpdate(sender) {
     console.log("Hello");
     let me = this;
