@@ -24,6 +24,7 @@ class Customer {
     $("#btnDelCustomer").click(this.delCustomer.bind(this));
     //sửa thông tin nhân viên
     $("#CustomerTable .btn-update").click(this.showFormUpdate.bind(this));
+    //end
   }
   showFormUpdate(sender) {
     console.log("Hello");
