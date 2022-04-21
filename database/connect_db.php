@@ -11,7 +11,7 @@ class Database {
   {
       $this->servername="localhost";
       $this ->username="root";
-      $this -> password="ngocnam02";
+      $this -> password="tam060601";
       $this->databaseName="ntstore";
   }
 

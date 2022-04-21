@@ -22,17 +22,17 @@
   <div class="content p-l-24 p-r-24 p-t-24 ">
     <div class="content-header p-b-24 justify-between">
       <div class="left">
-        Khách hàng
+       Nhà cung cấp
       </div>
       <div class="right flex-center">
         <div class="search m-r-24">
-          <form action="customer.php" method="GET">
+          <form action="manufacture.php" method="GET">
              <button class="icon-search icon-24" type="submit"></button>
-            <input type="text" class="input-search" name="search" id="searchText" placeholder="Tên khách hàng...">
+            <input type="text" class="input-search" name="search" id="searchText" placeholder="Tên nhà cung cấp...">
           </form>
         </div>
         <div class="t-btn-wrapper">
-          <button type="button" id="addCustomer" class="btn btn-warning"> <i class="fa-solid fa-user-plus"></i>Thêm</button>
+          <button type="button" id="addManufacture" class="btn btn-warning"> <i class="fa-solid fa-user-plus"></i>Thêm</button>
         </div>
       </div>
     </div>
@@ -44,23 +44,20 @@
           require_once "../utilities/gender.php";
           $db = new Database();
           $db->connect_db(); //kết nối database
-          $query = "SELECT * from customer WHERE '$search' IS NOT NULL AND CustomerName  LIKE CONCAT ('%$search%') OR '$search' IS NULL";
+          $query = "SELECT * from manufacture WHERE '$search' IS NOT NULL AND ManufactureName  LIKE CONCAT ('%$search%') OR '$search' IS NULL";
           $data = $db->getData($query);
           $db->close_db();
           //bind dữ liệu ra bảng
           if (count($data) > 0) {
             echo'
-            <table id="CustomerTable" class="table table-hover">
+            <table id="ManufactureTable" class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Mã KH</th>
-                <th scope="col">Họ và tên</th>
-                <th scope="col">Email</th>
-                <th scope="col">Giới Tính</th>
+                <th scope="col">Mã NCC</th>
+                <th scope="col">Tên Nhà cung cấp</th>
+                <th scope="col">Địa chỉ</th>
                 <th scope="col">Số điện thoại</th>
-                <th scope="col">Ngày Sinh</th>
-                <th scope="col">Địa chỉ khách hàng</th>
                 <th scope="col " class="max-w-100">Chức năng</th>
               </tr>
             </thead>
@@ -71,17 +68,14 @@
               echo '
          <tr>
          <th scope="row">' . ($i + 1) . '</th>
-         <td>' . $data[$i]['CustomerCode'] . '</td>
-         <td>' . $data[$i]['CustomerName'] . '</td>
-         <td>' . $data[$i]['Email'] . '</td>
-         <td>' . gender($data[$i]['Gender']) . '</td>
-         <td>' . $data[$i]['PhoneNumber'] . '</td>
-          <td>' . date("d/m/Y", strtotime($data[$i]['DateOfBirth'])) . '</td>
+         <td>' . $data[$i]['ManufactureCode'] . '</td>
+         <td>' . $data[$i]['ManufactureName'] . '</td>
          <td>' . $data[$i]['Address'] . '</td>
+         <td>' . $data[$i]['PhoneNumber'] . '</td>
          <td>
              <div class="table-function">
-             <div class="btn-update" value ="' . $data[$i]['CustomerID'] . '">Sửa</div>
-              <div class="btn-delete" name="' . $data[$i]['CustomerName'] . '" value ="' . $data[$i]['CustomerID'] . '">Xóa</div>
+             <div class="btn-update" value ="' . $data[$i]['ManufactureID'] . '">Sửa</div>
+              <div class="btn-delete" name="' . $data[$i]['ManufactureName'] . '" value ="' . $data[$i]['ManufactureID'] . '">Xóa</div>
              </div>
          </td>
         </tr>
@@ -114,7 +108,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="modalDelCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalDel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -126,20 +120,24 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-            <button type="button" class="btn btn-primary" id="btnDelCustomer">Đồng ý</button>
+            <button type="button" class="btn btn-primary" id="btnDel">Đồng ý</button>
           </div>
         </div>
       </div>
     </div>
   </div>
   <?php
-  require_once "./customer-detail.php"
+  require_once "./manufacture-detail.php"
   ?>
 <script type="text/javascript" src="../script/components/navbar.js"></script>
 <script src="../script/common/enum.js"></script>
 <script src="../script/common/common.js"></script>
 <script src="../script/common/toast.js"></script>
-<script type="text/javascript" src="../script/customer.js"></script>
+<script src="../script/common/modal.js"></script>
+<script src="../script/function/add.js"></script>
+<script src="../script/function/update.js"></script>
+<script src="../script/function/delete.js"></script>
+<script type="text/javascript" src="../script/manufacture.js"></script>
 </body>
 <style>
   @import url(../style/components/input.css);

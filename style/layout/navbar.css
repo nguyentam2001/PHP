@@ -6,6 +6,10 @@
   display: inherit;
   color: #ebedf0;
 }
+
+.navbar .link-active {
+  background-color: var(--hover-black);
+}
 .navbar-icon {
 }
 .navbar-list .item {
@@ -13,6 +17,8 @@
   height: 48px;
   display: flex;
   cursor: pointer;
+  text-decoration: none;
+  color: #fff;
 }
 .navbar-list .item:hover {
   background-color: var(--hover-black);

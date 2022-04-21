@@ -3,7 +3,7 @@
   $database=new Database();
   $database->connect_db();//kết nối database
   //Thực hiện câu lệnh truy vấn
-  $query="SELECT Max(CustomerID) as max FROM customer";
+  $query="SELECT Max(ManufactureID) as max FROM manufacture";
   $data=$database->getData($query);
     if($data==TRUE){
         //lấy tổng số bản ghi
@@ -14,5 +14,4 @@
         echo json_encode("KH$total");//trả về mã nhân viên mới
     }
   $database->close_db();//ngắt kết nối database
-
 ?>

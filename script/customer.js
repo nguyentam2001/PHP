@@ -13,7 +13,6 @@ class Customer {
   UrlUpdate = "http://localhost/ntstore/function/customer/update-customer.php";
   FormMode = "";
   constructor() {
-    //load data
     this.initEvent();
   }
   initEvent() {
@@ -24,7 +23,6 @@ class Customer {
     $("#btnDelCustomer").click(this.delCustomer.bind(this));
     //sửa thông tin nhân viên
     $("#CustomerTable .btn-update").click(this.showFormUpdate.bind(this));
-    
   }
   showFormUpdate(sender) {
     console.log("Hello");
@@ -88,7 +86,7 @@ class Customer {
       data: { id },
       dataType: "JSON",
       success: function () {
-        me.showToastMessage("toastSuccess", "Xóa khách hang thành công");
+        Toast.show("toastSuccess", "Xóa khách hang thành công");
         location.reload();
       },
     });
@@ -164,7 +162,7 @@ class Customer {
           console.log(response);
           $(".display-form").hide();
           //Hiển thị toast mesage
-          me.showToastMessage("toastSuccess", "Thêm mới thành công");
+          Toast.show("toastSuccess", "Thêm mới thành công");
           location.reload();
         },
       });
@@ -190,7 +188,7 @@ class Customer {
           console.log(response);
           $(".display-form").hide();
           //Hiển thị toast mesage
-          me.showToastMessage("toastSuccess", "Sửa Thông tin thành công");
+          Toast.show("toastSuccess", "Sửa Thông tin thành công");
           location.reload();
         },
       });
