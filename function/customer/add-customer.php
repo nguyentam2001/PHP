@@ -35,7 +35,5 @@ if(!empty($_POST["Address"])){
                 echo json_encode(array("data"=>"Success"));
             }
           $database->close_db();//ngắt kết nối database
-        
     }
-
 ?>

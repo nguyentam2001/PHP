@@ -10,7 +10,10 @@ class Add {
       success: function () {
         $(".display-form").hide();
         Toast.show("toastSuccess", "Thêm mới thành công");
-        location.reload();
+        
+        setTimeout(() => {
+          location.reload();
+        }, 500);
       },
     });
   }

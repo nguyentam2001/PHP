@@ -41,32 +41,31 @@
             <div class="row">
                 <div class="col">
                 <div class="form-input">
-                          <div class="title">Số điện thoại</div>  
-                          <input type="text" name="PhoneNumber" id="">    
+                          <div class="title">Chức vụ</div>  
+                          <input type="text" name="Position" id="">
+                    </div>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col">
+                <div class="form-input">
+                          <div class="title">Tên tài khoản</div>  
+                          <input type="text" name="AccoutName" id="">    
                     </div>
                 </div>
                 <div class="col">
                 <div class="form-input">
-                          <div class="title">Ngày sinh</div>  
-                          <input type="date" name="DateOfBirth" id="">
+                          <div class="title">Mật khẩu</div>  
+                          <input type="password" name="Password" id="">
                     </div>
                 </div>
-               
             </div>
             <div class="row">
                 <div class="col">
                 <div class="form-input">
                           <div class="title">Email</div>  
                           <input type="text" name="Email" id="">    
-                    </div>
-                </div>
-               
-            </div>
-            <div class="row">
-                <div class="col">
-                <div class="form-input">
-                          <div class="title">Địa chỉ</div>  
-                          <input type="text" name="Address" id="">    
                     </div>
                 </div>
                
@@ -81,10 +80,8 @@
         </div> 
     </div>
     </div>
-   
 </body>
 <style>
-    @import url(../style/page/customer-detail.css);
 .form-wraper {
   position: fixed;
   top: 0;
@@ -102,25 +99,25 @@
     display: none;
 }
 
-#customerForm {
+#employeeForm {
   border-radius: 8px;
   width: 800px;
   background-color: white;
   padding: 24px;
 }
 
-#customerForm .form-header{
+#employeeForm .form-header{
     margin-top: 12px;
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 24px;
 }
-#customerForm .form-input{
+#employeeForm .form-input{
     width: 100%;
     margin-top: 12px;
 }
 
-#customerForm .form-input input{
+#employeeForm .form-input input{
     width: 100%;
     height: 34px;
     border-radius: 4px;
@@ -130,30 +127,30 @@
     outline-color: red;
 }
 
-#customerForm .form-check{
+#employeeForm .form-check{
     width: 100%;
     margin-top: 12px;
 }
 
-#customerForm .form-input .title{
+#employeeForm .form-input .title{
     margin-bottom: 8px;
 }
 
-#customerForm .form-check .title{
+#employeeForm .form-check .title{
     margin-bottom: 8px;
 }
-#customerForm .form-check .form-check-wraper{
+#employeeForm .form-check .form-check-wraper{
     height: 34px;
     display: flex;
     align-items: center;
 }
 
-#customerForm .form-check-wraper label{
+#employeeForm .form-check-wraper label{
     margin-right: 12px;
     margin-left: 6px;
 }
 
-#customerForm .form-footer{
+#employeeForm .form-footer{
     margin-top: 40px;
     display: flex;
     justify-content: space-between;

@@ -1,0 +1,15 @@
+<?php
+if($_POST["ManufactureID"]==true){
+    $ManufactureID=$_POST["ManufactureID"];
+    require '../../database/connect_db.php'; //kết nối cơ sở dữ liệu
+    $database=new Database();
+    $database->connect_db();//kết nối database
+    //Thực hiện câu lệnh truy vấn
+    $query="SELECT * FROM manufacture WHERE ManufactureID=$ManufactureID";
+    $data=$database->getData($query);
+    if($data==TRUE){
+        echo json_encode($data);
+    }
+    $database->close_db();//ngắt kết nối database
+}
+?>

@@ -8,8 +8,11 @@ class Delete {
       data: { id },
       dataType: "JSON",
       success: function () {
+        $("#modalDel").modal("toggle");
         Toast.show("toastSuccess", "Xóa thành công");
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 500);
       },
     });
   }

@@ -1,7 +1,6 @@
 $(document).ready(function () {
   new Manufacture();
 });
-
 class Manufacture {
   ManufactureID = null;
   FormMode = null;
@@ -11,6 +10,8 @@ class Manufacture {
     "http://localhost/ntstore/function/manufacture/get-manufacture-by-id.php";
   UrlUpdate =
     "http://localhost/ntstore/function/manufacture/update-manufacture.php";
+  UrlNewCode =
+    "http://localhost/ntstore/function/manufacture/new-manufacture-code.php";
   constructor() {
     this.initEvent();
   }
@@ -32,6 +33,7 @@ class Manufacture {
     let trCurr = $(sender.target);
     let id = trCurr.attr("value");
     this.ManufactureID = id;
+    console.log("Hello");
     $.ajax({
       type: "method",
       method: "POST",
@@ -66,6 +68,7 @@ class Manufacture {
       },
     });
   }
+
   showModalDel(sender) {
     let trCurr = $(sender.target);
     let currID = trCurr.attr("value");
@@ -95,6 +98,7 @@ class Manufacture {
   }
   showFormAdd() {
     this.FormMode = Enum.FormMode.Add;
+    Code.getNew(this.UrlNewCode, "ManufactureCode");
     //Hiển thị form nhập liệu
     $(".display-form").show();
   }

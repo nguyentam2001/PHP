@@ -3,7 +3,7 @@
   $database=new Database();
   $database->connect_db();//kết nối database
   //Thực hiện câu lệnh truy vấn
-  $query="SELECT Max(ManufactureID) as max FROM manufacture";
+  $query="SELECT Max(EmployeeID) as max FROM employee";
   $data=$database->getData($query);
     if($data==TRUE){
         //lấy tổng số bản ghi
@@ -11,7 +11,7 @@
         if((int)$total<10){
             $total="0$total";
         }
-        echo json_encode("NC$total");//trả về mã nhân viên mới
+        echo json_encode("NV$total");//trả về mã nhân viên mới
     }
   $database->close_db();//ngắt kết nối database
 ?>

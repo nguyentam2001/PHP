@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../style/main.css">
-  <title>Document</title>
+  <link rel="shortcut icon" href="../assets/img/logo-tab.jpg" />
+  <title>ntstore</title>
 </head>
 
 <body>
@@ -44,44 +41,43 @@
           require_once "../utilities/gender.php";
           $db = new Database();
           $db->connect_db(); //kết nối database
-          $query = "SELECT * from customer WHERE '$search' IS NOT NULL AND CustomerName  LIKE CONCAT ('%$search%') OR '$search' IS NULL";
+          $query = "SELECT * from employee WHERE '$search' IS NOT NULL AND EmployeeName  LIKE CONCAT ('%$search%') OR '$search' IS NULL";
           $data = $db->getData($query);
           $db->close_db();
           //bind dữ liệu ra bảng
           if (count($data) > 0) {
             echo'
-            <table id="CustomerTable" class="table table-hover">
+            <table id="EmployeeTable" class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Mã KH</th>
+                <th scope="col">Mã nhân viên</th>
                 <th scope="col">Họ và tên</th>
                 <th scope="col">Email</th>
                 <th scope="col">Giới Tính</th>
-                <th scope="col">Số điện thoại</th>
-                <th scope="col">Ngày Sinh</th>
-                <th scope="col">Địa chỉ khách hàng</th>
+                <th scope="col">Tên tài khoản</th>
+                <th scope="col">Mật khẩu</th>
+                <th scope="col">Chức vụ</th>
                 <th scope="col " class="max-w-100">Chức năng</th>
               </tr>
             </thead>
             <tbody>
             ';
-
             for ($i = 0; $i < count($data); $i++) {
               echo '
          <tr>
          <th scope="row">' . ($i + 1) . '</th>
-         <td>' . $data[$i]['CustomerCode'] . '</td>
-         <td>' . $data[$i]['CustomerName'] . '</td>
+         <td>' . $data[$i]['EmployeeCode'] . '</td>
+         <td>' . $data[$i]['EmployeeName'] . '</td>
          <td>' . $data[$i]['Email'] . '</td>
          <td>' . gender($data[$i]['Gender']) . '</td>
-         <td>' . $data[$i]['PhoneNumber'] . '</td>
-          <td>' . date("d/m/Y", strtotime($data[$i]['DateOfBirth'])) . '</td>
-         <td>' . $data[$i]['Address'] . '</td>
+         <td>' . $data[$i]['AccoutName'] . '</td>
+         <td>' . $data[$i]['Password'] . '</td>
+         <td>' . $data[$i]['Position'] . '</td>
          <td>
              <div class="table-function">
-             <div class="btn-update" value ="' . $data[$i]['CustomerID'] . '">Sửa</div>
-              <div class="btn-delete" name="' . $data[$i]['CustomerName'] . '" value ="' . $data[$i]['CustomerID'] . '">Xóa</div>
+             <div class="btn-update" value ="' . $data[$i]['EmployeeID'] . '">Sửa</div>
+              <div class="btn-delete" name="' . $data[$i]['EmployeeName'] . '" value ="' . $data[$i]['EmployeeID'] . '">Xóa</div>
              </div>
          </td>
         </tr>
@@ -114,7 +110,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="modalDelCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalDel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -126,19 +122,27 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-            <button type="button" class="btn btn-primary" id="btnDelCustomer">Đồng ý</button>
+            <button type="button" class="btn btn-primary" id="btnDel">Đồng ý</button>
           </div>
         </div>
       </div>
     </div>
   </div>
   <?php
-  require_once "./customer-detail.php"
+  require_once "./employee-detail.php"
   ?>
+  <script src="../lib/bootstrap/js/bootstrap.js"></script>
+  <script src="../lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="../script/components/navbar.js"></script>
 <script src="../script/common/enum.js"></script>
 <script src="../script/common/common.js"></script>
-<script type="text/javascript" src="../script/customer.js"></script>
+<script src="../script/common/toast.js"></script>
+<script src="../script/common/modal.js"></script>
+<script src="../script/function/add.js"></script>
+<script src="../script/function/update.js"></script>
+<script src="../script/function/delete.js"></script>
+<script src="../script/function/new-code.js"></script>
+<script type="text/javascript" src="../script/employee.js"></script>
 </body>
 <style>
   @import url(../style/components/input.css);

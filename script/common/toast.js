@@ -6,5 +6,8 @@ class Toast {
     textMessage.textContent = message;
     var toast = new bootstrap.Toast(toastLiveExample);
     toast.show();
+    setTimeout(() => {
+      $("#toastSuccess").toast("toggle");
+    }, 200);
   }
 }

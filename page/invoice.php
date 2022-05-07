@@ -20,62 +20,69 @@
         <div class="content p-l-24 p-r-24 p-t-24 ">
             <div class="content-header p-b-24 justify-between">
                 <div class="left">
-                    Nhà cung cấp
+                    Hóa đơn
                 </div>
                 <div class="right flex-center">
-                    <div class="search m-r-24">
-                        <form action="manufacture.php" method="GET">
-                            <button class="icon-search icon-24" type="submit"></button>
-                            <input type="text" class="input-search" name="search" id="searchText"
-                                placeholder="Tên nhà cung cấp...">
-                        </form>
-                    </div>
                     <div class="t-btn-wrapper">
-                        <button type="button" id="addManufacture" class="btn btn-warning"> <i
-                                class="fa-solid fa-user-plus"></i>Thêm</button>
+                        <a href="./invoice-import-detail.php">
+                            <button type="button" class="btn btn-warning"> <i class="fa-solid fa-receipt"></i> Nhập hóa
+                                đơn </button>
+                        </a>
                     </div>
                 </div>
             </div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Hóa đơn nhập linh kiện</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hóa đơn bán linh kiện</a>
+                </li>
+
+            </ul>
             <div class="table-wraper p-l-24 p-r-24 ">
                 <?php
-          $search = $_GET['search'];
+          
           require '../utilities/check-error.php';
           require '../database/connect_db.php';
           require_once "../utilities/gender.php";
           $db = new Database();
           $db->connect_db(); //kết nối database
-          $query = "SELECT * from manufacture WHERE '$search' IS NOT NULL AND ManufactureName  LIKE CONCAT ('%$search%') OR '$search' IS NULL";
+          $query = "SELECT InvoiceID,InvoiceName ,m.ManufactureName,e.EmployeeName,ii.DateCreate,m.PhoneNumber FROM manufacture m INNER JOIN import_invoice ii ON m.ManufactureID = ii.ManufactureID INNER JOIN employee e ON ii.EmployeeID = e.EmployeeID";
           $data = $db->getData($query);
           $db->close_db();
           //bind dữ liệu ra bảng
           if (count($data) > 0) {
             echo'
-            <table id="ManufactureTable" class="table table-hover">
+            <table id="EmployeeTable" class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Mã NCC</th>
-                <th scope="col">Tên Nhà cung cấp</th>
-                <th scope="col">Địa chỉ</th>
-                <th scope="col">Số điện thoại</th>
+                <th scope="col">Số hóa đơn</th>
+                <th scope="col">Tên hóa đơn</th>
+                <th scope="col">Nhà cung cấp</th>
+                <th scope="col">Người tạo</th>
+                <th scope="col">Ngày tạo</th>
+                <th scope="col">Điện thoại khách hàng</th>
                 <th scope="col " class="max-w-100">Chức năng</th>
               </tr>
             </thead>
             <tbody>
             ';
-
             for ($i = 0; $i < count($data); $i++) {
               echo '
          <tr>
          <th scope="row">' . ($i + 1) . '</th>
-         <td>' . $data[$i]['ManufactureCode'] . '</td>
+         <td>' . $data[$i]['InvoiceID'] . '</td>
+         <td>' . $data[$i]['InvoiceName'] . '</td>
          <td>' . $data[$i]['ManufactureName'] . '</td>
-         <td>' . $data[$i]['Address'] . '</td>
+         <td>' . $data[$i]['EmployeeName'] . '</td>
+         <td>' . date("d/m/Y", strtotime($data[$i]['DateCreate'])) . '</td>
          <td>' . $data[$i]['PhoneNumber'] . '</td>
          <td>
              <div class="table-function">
-             <div class="btn-update" value ="' . $data[$i]['ManufactureID'] . '">Sửa</div>
-              <div class="btn-delete" name="' . $data[$i]['ManufactureName'] . '" value ="' . $data[$i]['ManufactureID'] . '">Xóa</div>
+             <div class="btn-update" value ="' . $data[$i]['InvoiceID'] . '">Chi tiết</div>
+            
              </div>
          </td>
         </tr>
@@ -94,7 +101,6 @@
             ';
           }
           ?>
-
             </div>
             <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
                 <div id="toastSuccess" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -126,9 +132,6 @@
                 </div>
             </div>
         </div>
-        <?php
-  require_once "./manufacture-detail.php"
-  ?>
         <script src="../lib/bootstrap/js/bootstrap.js"></script>
         <script src="../lib/jquery/jquery.js"></script>
         <script type="text/javascript" src="../script/components/navbar.js"></script>
@@ -140,7 +143,7 @@
         <script src="../script/function/update.js"></script>
         <script src="../script/function/delete.js"></script>
         <script src="../script/function/new-code.js"></script>
-        <script type="text/javascript" src="../script/manufacture.js"></script>
+        <script type="text/javascript" src="../script/employee.js"></script>
     </body>
     <style>
     @import url(../style/components/input.css);
@@ -159,10 +162,21 @@
         flex-direction: column;
     }
 
+    .content-header {
+        padding-bottom: 0px;
+    }
+
     .content-header .left {
         color: var(--black);
         font-size: 24px;
         font-weight: 700;
+
+    }
+
+    .table-wraper {
+        border: 1px solid #ccc;
+        border-top: none;
+        border-radius: 0px;
     }
     </style>
 
