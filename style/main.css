@@ -68,7 +68,12 @@
   justify-content: space-around;
   align-items: center;
 }
-
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
 .p-l-12 {
   padding-left: 12px;
 }

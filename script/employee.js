@@ -5,13 +5,11 @@ $(document).ready(function () {
 class Employee {
   EmployeeID = null;
   FormMode = null;
-  UrlAdd = "http://localhost/ntstore/function/employee/add-employee.php";
-  UrlDel = "http://localhost/ntstore/function/employee/del-employee.php";
-  UrlGetById =
-    "http://localhost/ntstore/function/employee/get-employee-by-id.php";
-  UrlUpdate = "http://localhost/ntstore/function/employee/update-employee.php";
-  UrlNewCode =
-    "http://localhost/ntstore/function/employee/new-employee-code.php";
+  UrlAdd = "/ntstore/function/employee/add-employee.php";
+  UrlDel = "/ntstore/function/employee/del-employee.php";
+  UrlGetById = "/ntstore/function/employee/get-employee-by-id.php";
+  UrlUpdate = "/ntstore/function/employee/update-employee.php";
+  UrlNewCode = "/ntstore/function/employee/new-employee-code.php";
   constructor() {
     this.initEvent();
   }

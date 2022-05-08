@@ -4,14 +4,11 @@ $(document).ready(function () {
 class Manufacture {
   ManufactureID = null;
   FormMode = null;
-  UrlAdd = "http://localhost/ntstore/function/manufacture/add-manufacture.php";
-  UrlDel = "http://localhost/ntstore/function/manufacture/del-manufacture.php";
-  UrlGetById =
-    "http://localhost/ntstore/function/manufacture/get-manufacture-by-id.php";
-  UrlUpdate =
-    "http://localhost/ntstore/function/manufacture/update-manufacture.php";
-  UrlNewCode =
-    "http://localhost/ntstore/function/manufacture/new-manufacture-code.php";
+  UrlAdd = "/ntstore/function/manufacture/add-manufacture.php";
+  UrlDel = "/ntstore/function/manufacture/del-manufacture.php";
+  UrlGetById = "/ntstore/function/manufacture/get-manufacture-by-id.php";
+  UrlUpdate = "/ntstore/function/manufacture/update-manufacture.php";
+  UrlNewCode = "/ntstore/function/manufacture/new-manufacture-code.php";
   constructor() {
     this.initEvent();
   }

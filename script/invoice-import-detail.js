@@ -16,7 +16,7 @@ class InvoiceImport {
       type: "method",
       method: "POST",
       async: false,
-      url: "http://localhost/ntstore/function/invoice/get-value-manufature.php",
+      url: "/ntstore/function/invoice/get-value-manufature.php",
       data: {
         ManufactureID,
       },
@@ -34,7 +34,7 @@ class InvoiceImport {
       type: "method",
       method: "POST",
       async: false,
-      url: "http://localhost/ntstore/function/invoice/get-product-by-category.php",
+      url: "/ntstore/function/invoice/get-product-by-category.php",
       data: {
         CategoryID,
       },

@@ -3,14 +3,11 @@ $(document).ready(function () {
 });
 
 class Customer {
-  UrlAdd = "http://localhost/ntstore/function/customer/add-customer.php";
-  UrlDel = "http://localhost/ntstore/function/customer/del-customer.php";
-  UrlGetById =
-    "http://localhost/ntstore/function/customer/get-customer-by-id.php";
-
-  UrlNewCTMCode =
-    "http://localhost/ntstore/function/customer/new-customer-code.php";
-  UrlUpdate = "http://localhost/ntstore/function/customer/update-customer.php";
+  UrlAdd = "/ntstore/function/customer/add-customer.php";
+  UrlDel = "/ntstore/function/customer/del-customer.php";
+  UrlGetById = "/ntstore/function/customer/get-customer-by-id.php";
+  UrlNewCTMCode = "/ntstore/function/customer/new-customer-code.php";
+  UrlUpdate = "/ntstore/function/customer/update-customer.php";
   FormMode = "";
   constructor() {
     this.initEvent();
