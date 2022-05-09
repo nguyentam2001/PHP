@@ -24,7 +24,7 @@
                 </div>
                 <div class="right flex-center">
                     <div class="t-btn-wrapper">
-                        <a href="./invoice-import-detail.php">
+                        <a href="./invoice-import-detail.php?invoice-import=add">
                             <button type="button" class="btn btn-warning"> <i class="fa-solid fa-receipt"></i> Nhập hóa
                                 đơn </button>
                         </a>
@@ -81,8 +81,9 @@
          <td>' . $data[$i]['PhoneNumber'] . '</td>
          <td>
              <div class="table-function">
-             <div class="btn-update" value ="' . $data[$i]['InvoiceID'] . '">Chi tiết</div>
-            
+             <a href="../function/invoice/show-product-detail.php?get-invoice-import='.$data[$i]['InvoiceID'].'">
+          Chi tiết
+          </a>
              </div>
          </td>
         </tr>
@@ -109,6 +110,8 @@
                         <strong class="me-auto toast-message"></strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
+
+
                 </div>
             </div>
 
@@ -171,6 +174,10 @@
         font-size: 24px;
         font-weight: 700;
 
+    }
+
+    td a {
+        text-decoration: none;
     }
 
     .table-wraper {

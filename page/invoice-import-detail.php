@@ -4,6 +4,7 @@ session_start();
  require '../function/invoice/invoice-func.php';
  require '../lib/lib.php';
  $query = "SELECT ManufactureID, ManufactureName from manufacture";
+ 
 function fillOptionSelect($query,$value,$name,$valueSession){
     $db = new Database();
     $db->connect_db(); //kết nối database
@@ -43,8 +44,6 @@ function productsFirstCategoryID(){
 
 function showProductInvoice(){
     if(isset($_SESSION["invoice_import_product"])&&(is_array($_SESSION["invoice_import_product"]))){
-        $db = new Database();
-        $db->connect_db(); //kết nối database
         for($i=0;$i<sizeof($_SESSION["invoice_import_product"]);$i++){
           $intoMoney=(int)$_SESSION["invoice_import_product"][$i]["TotalImport"]*(int)$_SESSION["invoice_import_product"][$i]["PriceImport"];
                 echo'
@@ -55,11 +54,10 @@ function showProductInvoice(){
                         <td scope="col"  class="text-right">'.$_SESSION["invoice_import_product"][$i]["TotalImport"].'</td>
                         <td scope="col"  class="text-right">'.number_format($_SESSION["invoice_import_product"][$i]["PriceImport"]).' VND</td>
                         <td scope="col"  class="text-right">'.number_format($intoMoney, 0, '', ',').' VND</td>
-                        <td scope="col" ><a href="http://localhost/ntstore/function/invoice/delete_import_product.php?delProduct='.$i.'">Xóa</a> </td>
+                        <td scope="col"'.($_GET["invoice-import"]=="add"?"":"style='display:none'").' ><a href="/ntstore/function/invoice/delete_import_product.php?delProduct='.$i.'">Xóa</a> </td>
                     </tr>
                 ';
         }
-        $db->close_db();
     }
 }
 
@@ -84,7 +82,7 @@ function showProductInvoice(){
             <div class="form-wraper">
                 <div id="invoiceImport">
                     <!-- form here -->
-                    <form action="http://localhost/ntstore/function/invoice/add-product-invoice.php" method="POST">
+                    <form action="/ntstore/function/invoice/add-product-invoice.php" method="POST">
                         <div class="container">
                             <div class="form-header justify-center">
                                 <div class="text">Hóa đơn nhập hàng</div>
@@ -101,8 +99,17 @@ function showProductInvoice(){
                                         </div>
                                         <div class="form-input flex-center justify-end">
                                             <div class="title m-r-24">Số hóa đơn: </div>
-                                            <input class="flex-1 m-w-200" type="text" name="InvoiceID"
-                                                value=<?php echo getInvoiceNumber(); ?>>
+                                            <input class="flex-1 m-w-200" type="text" name="InvoiceID" value=<?php
+                                            //Nếu khác trạng thái add thì lấy số hóa đơn của hóa đơn hiện tại
+                                                 if(!isset($_GET["invoice-import"])&&!($_GET["invoice-import"]=="add")){
+                                                    echo $_SESSION["CurrentInvoiceID"];
+                                                }else{
+
+                                            //Lấy số hóa đơn mới
+                                                     echo getInvoiceNumber();
+                                                }
+                                               
+                                                ?>>
                                         </div>
                                     </div>
 
@@ -186,7 +193,12 @@ function showProductInvoice(){
                                                 <th scope="col" class="text-center">Số lượng</th>
                                                 <th scope="col" class="text-center">Đơn giá nhập</th>
                                                 <th scope="col" class="text-center">Thành tiền</th>
-                                                <th scope="col" class="text-center">Xóa</th>
+                                                <th scope="col" class="text-center" <?php  
+                                               if(!isset($_GET["invoice-import"])&&!($_GET["invoice-import"]=="add")){
+                                                   echo 'style="display:none"';
+                                               }
+                                               
+                                                ?>>Xóa</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -210,7 +222,15 @@ function showProductInvoice(){
                                     
                                         ?>
 
-                                            <tr>
+
+
+                                            <tr <?php  
+                                            //Nếu khác method get = add thì ẩn element
+                                               if(!isset($_GET["invoice-import"])&&!($_GET["invoice-import"]=="add")){
+                                                   echo 'style="display:none"';
+                                               }
+                                               
+                                            ?>>
                                                 <td scope="col">
                                                     <input type="submit" class="btn btn-warning" id="btnAdd"
                                                         value="Thêm" name="addProductInvoice" />
@@ -248,7 +268,7 @@ function showProductInvoice(){
 
 
                                                 <td colspan="2">
-                                                    <!-- <strong style="text-align: ;">Tổng Tiền:<span id="sumPrice"></span> </strong> -->
+
                                                 </td>
                                             </tr>
 
@@ -259,11 +279,23 @@ function showProductInvoice(){
                                 </div>
 
                             </div>
-                            <div class="form-footer">
+                            <div class="form-footer" <?php  
+                            //Nếu khác method get = add thì ẩn element
+                                               if(!isset($_GET["invoice-import"])&&!($_GET["invoice-import"]=="add")){
+                                                   echo 'style="display: flex;justify-content: right;"';
+                                               }
+                                               
+                                            ?>>
                                 <input type="submit" name="cancelInvoiceImport" class="btn btn-light" id="btnCancel"
                                     value="Hủy bỏ" />
-                                <input type="submit" name="addInvoiceImport" class="btn btn-warning" id="btnConfirm"
-                                    value="Thêm hóa đơn" />
+                                <input <?php  
+                                //Nếu khác method get = add thì ẩn element
+                                               if(!isset($_GET["invoice-import"])&&!($_GET["invoice-import"]=="add")){
+                                                   echo 'style="display:none"';
+                                               }
+                                               
+                                            ?> type="submit" name="addInvoiceImport" class="btn btn-warning"
+                                    id="btnConfirm" value="Thêm hóa đơn" />
                             </div>
                         </div>
                     </form>
@@ -302,7 +334,9 @@ function showProductInvoice(){
         margin-top: 24px;
     }
 
-
+    td a {
+        text-decoration: none;
+    }
 
     #invoiceImport .title {
         min-width: 120px;
@@ -382,6 +416,19 @@ function showProductInvoice(){
         display: flex;
         justify-content: space-between;
         margin-bottom: 24px;
+    }
+
+    tbody,
+    td,
+    tfoot,
+    th,
+    tr {
+        border-color: inherit;
+        border-style: solid;
+        border-width: 0;
+        border-top: none !important;
+        border-right: 1px dotted #ccc;
+        border-left: 1px dotted #ccc;
     }
     </style>
 
