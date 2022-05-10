@@ -94,6 +94,14 @@
   padding-top: 24px;
 }
 
+.height-20vh {
+  box-sizing: border-box;
+  height: 20vh;
+}
+
+.b-rd-4 {
+  border-radius: 4px;
+}
 .p-t-24 {
   padding-top: 24px;
 }
