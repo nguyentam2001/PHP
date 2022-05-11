@@ -22,6 +22,17 @@ function fillOptionSelect($query,$value,$name,$valueSession){
 }
 
 
+function getPropertiesByID($tableName,$propName,$propID,$propIDName){
+    $database=new Database();
+    $database->connect_db();//kết nối database
+    $query=" SELECT $propName FROM $tableName where $propIDName=$propID";
+    $result=mysqli_query($database->conn,$query);
+    $row = mysqli_fetch_assoc($result);
+     $output=$row[$propName] ;
+    $database->close_db();//ngắt kết nối database
+    return  $output;
+}
+
 function productsFirstCategoryID(){
     $output="";
     $db = new Database();
@@ -124,30 +135,49 @@ function showProductInvoice(){
                                             <select id="manufactureSelect" name="ManufactureSelelted"
                                                 class="flex-1 max-w-220" id="cars">
                                                 <?php
-                                             $db = new Database();
-                                             $db->connect_db(); //kết nối database
-                                             $query = "SELECT ManufactureID, ManufactureName from manufacture";
-                                             $data = $db->getData($query);
-                                             $db->close_db();
-                                             if(count($data)>0){
-                                                for($i=0;$i<count($data);$i++){
-                                                    $selected=$data[$i]['ManufactureID']==$_SESSION['invoiceImportManufacture']?' selected':'';
-                                                    echo'
-                                                    <option value='.$data[$i]['ManufactureID'].''.$selected.'>'.$data[$i]['ManufactureName'].' </option>
-                                                    ';
+                                                $db = new Database();
+                                                $db->connect_db(); //kết nối database
+                                                $query = "SELECT ManufactureID, ManufactureName from manufacture";
+                                                $data = $db->getData($query);
+                                                $db->close_db();
+                                                if(count($data)>0){
+                                                    for($i=0;$i<count($data);$i++){
+                                                        $selected=$data[$i]['ManufactureID']==$_SESSION['invoiceImportManufacture']?' selected':'';
+                                                        echo'
+                                                        <option value='.$data[$i]['ManufactureID'].''.$selected.'>'.$data[$i]['ManufactureName'].' </option>
+                                                        ';
+                                                    }
                                                 }
-                                             }
                                             ?>
                                             </select>
                                         </div>
                                         <div class="form-input flex-center  ">
                                             <div class="title">Địa chỉ: </div>
-                                            <div class="address">Tu Hoàng, Phường Phương Canh, Quận Nam từ liêm, Hà Nội
+                                            <div class="address">
+                                                <?php
+                                                //Nếu có session id được chọn thì lấy địa chỉ tương ứng
+                                                    if($_SESSION["invoiceImportManufacture"]){
+                                                        echo getPropertiesByID("manufacture","Address","ManufactureID",$_SESSION["invoiceImportManufacture"]);
+                                                    }else{
+                                                        echo "Tu Hoàng, Phường Phương Canh, Quận Nam từ liêm, Hà Nội.";
+                                                    }
+                                                    ?>
+
                                             </div>
                                         </div>
                                         <div class="form-input flex-center ">
                                             <div class="title">Số điện thoai:</div>
-                                            <div class="phone">0337900678</div>
+                                            <div class="phone">
+                                                <?php
+                                                    //Nếu có session id được chọn thì lấy số điện thoại tương ứng
+                                                    if($_SESSION["invoiceImportManufacture"]){
+                                                        echo getPropertiesByID("manufacture","PhoneNumber","ManufactureID",$_SESSION["invoiceImportManufacture"]);
+                                                    }else{
+                                                        echo "9999999999.";
+                                                    }
+                                                    ?>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -232,8 +262,7 @@ function showProductInvoice(){
                                                
                                             ?>>
                                                 <td scope="col">
-                                                    <input type="submit" class="btn btn-warning" id="btnAdd"
-                                                        value="Thêm" name="addProductInvoice" />
+
                                                 </td>
                                                 <td scope="col">
                                                     <select id="categorySelect" class="flex-1 max-w-220"
@@ -267,8 +296,9 @@ function showProductInvoice(){
                                                 </td>
 
 
-                                                <td colspan="2">
-
+                                                <td colspan="2" style="text-align: center;">
+                                                    <input type="submit" class="btn btn-warning" id="btnAdd"
+                                                        value="Thêm sản phẩm" name="addProductInvoice" />
                                                 </td>
                                             </tr>
 
@@ -336,6 +366,11 @@ function showProductInvoice(){
 
     td a {
         text-decoration: none;
+    }
+
+    #btnAdd {
+        height: 36px;
+        padding: 0 12px;
     }
 
     #invoiceImport .title {

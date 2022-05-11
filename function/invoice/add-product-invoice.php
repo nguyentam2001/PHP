@@ -45,7 +45,7 @@ session_start();
             $ProductOder=["CategoryName"=>$CategoryName, "CategoryID"=>$CategoryID,"ProductName"=> $ProductName, "ProductID"=>$ProductID, "TotalImport"=>$TotalImport, "PriceImport"=>$PriceImport];
             $_SESSION["invoice_import_product"][]=$ProductOder;
         }
-        header('Location: /ntstore/page/invoice-import-detail.php');
+        header('Location: /ntstore/page/invoice-import-detail.php?invoice-import=add');
     }
     if(isset($_POST["addInvoiceImport"])&&$_POST["addInvoiceImport"]){
        
