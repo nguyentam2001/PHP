@@ -1,5 +1,5 @@
 <?php
-require "./database/connect_db.php";
+require "../database/connect_db.php";
 
 function getTotalPrice($sessionName)
 {
@@ -12,16 +12,26 @@ function getTotalPrice($sessionName)
     }
 }
 
-
-function getTotal($tableName,$propName)
+//Đếm tổng số bản ghi theo id
+function getTotal($propName,$tableName,$key)
 {
    
     $database=new Database();
     $database->connect_db();//kết nối database
-    $query=" SELECT MAX(InvoiceID) as MaxID FROM import_invoice";
+    $query="";
+    switch ($key) {
+        case 'count':
+            $query=" SELECT COUNT($propName) as 'quality' FROM $tableName";
+            break;
+            case 'sum':
+            $query=" SELECT SUM($propName) as 'quality' FROM $tableName";
+            break;
+        default:
+           return 0;
+    }
     $result=mysqli_query($database->conn,$query);
     $row = mysqli_fetch_assoc($result);
-    $InvoiceID=$row["MaxID"] +1;
+    $InvoiceID=$row["quality"];
     $database->close_db();//ngắt kết nối database
     return $InvoiceID;
 }

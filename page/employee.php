@@ -14,7 +14,7 @@
     <body>
         <?php
   require_once "./layout/navbar.php";
-  require_once "./layout/header.php"
+  require_once "./layout/header.php";
   ?>
         <div class="content p-l-24 p-r-24 p-t-24 ">
             <div class="content-header p-b-24 justify-between">
