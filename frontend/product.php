@@ -13,7 +13,6 @@
         <title>ntstore</title>
         <link rel="stylesheet" href="./assest/css/base.css" />
         <link rel="stylesheet" href="./assest/css/product.css" />
-
         <link rel="stylesheet" href="./assest/css/grid.css" />
     </head>
 
