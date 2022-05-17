@@ -16,7 +16,6 @@
   require_once "./layout/navbar.php";
   require_once "./layout/header.php"
   ?>
-
         <div class="content p-l-24 p-r-24 p-t-24 ">
             <div class="content-header p-b-24 justify-between">
                 <div class="left">
@@ -24,7 +23,11 @@
                 </div>
                 <div class="right flex-center">
                     <div class="t-btn-wrapper">
-                        <a href="./invoice-import-detail.php?invoice-import=add">
+                        <a <?php
+                        if($_GET["invoice"]=="export"){
+                             echo  'style="display:none"';
+                        }
+                ?> href="./invoice-import-detail.php?invoice-import=add">
                             <button type="button" class="btn btn-warning"> <i class="fa-solid fa-receipt"></i> Nhập hóa
                                 đơn </button>
                         </a>
@@ -33,16 +36,35 @@
             </div>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Hóa đơn nhập linh kiện</a>
+
+                    <a <?php
+                if($_GET["invoice"]=="export"){
+                    echo  'class="nav-link "';
+                }else{
+                    echo  'class="nav-link active"';
+                }
+                ?> href="/ntstore/page/invoice.php">
+                        Hóa đơn nhập linh kiện
+                    </a>
+
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Hóa đơn bán linh kiện</a>
+
+                    <a <?php
+                 if($_GET["invoice"]=="export"){
+                    echo  'class="nav-link  active"';
+                }else{
+                    echo  'class="nav-link"';
+                }
+                ?> href="/ntstore/page/invoice.php?invoice=export">
+                        Hóa đơn bán linh kiện
+                    </a>
                 </li>
 
             </ul>
             <div class="table-wraper p-l-24 p-r-24 ">
                 <?php
-          
+            if(!isset($_GET["invoice"])&&!$_GET["invoice"]=="export"){
           require '../utilities/check-error.php';
           require '../database/connect_db.php';
           require_once "../utilities/gender.php";
@@ -101,38 +123,16 @@
             </div>
             ';
           }
+
+        }else{
+            echo'
+            <div class="empty_state">
+              <h1 class="">Dữ liệu trống</h1>
+              <p>Không có dữ liệu liên hệ admin để biết thêm chi tiết</p>
+            </div>
+            ';
+        }
           ?>
-            </div>
-            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-                <div id="toastSuccess" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <i class="fa-solid fa-circle-check toast-icon"></i>
-                        <strong class="me-auto toast-message"></strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-
-
-                </div>
-            </div>
-
-
-            <!-- Modal -->
-            <div class="modal fade" id="modalDel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Xóa Khách hàng</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body modal-messenger">
-                            Bạn có muốn xóa Khách hàng này không?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                            <button type="button" class="btn btn-primary" id="btnDel">Đồng ý</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <script src="../lib/bootstrap/js/bootstrap.js"></script>
@@ -142,11 +142,7 @@
         <script src="../script/common/common.js"></script>
         <script src="../script/common/toast.js"></script>
         <script src="../script/common/modal.js"></script>
-        <script src="../script/function/add.js"></script>
-        <script src="../script/function/update.js"></script>
-        <script src="../script/function/delete.js"></script>
-        <script src="../script/function/new-code.js"></script>
-        <script type="text/javascript" src="../script/employee.js"></script>
+
     </body>
     <style>
     @import url(../style/components/input.css);
@@ -174,6 +170,10 @@
         font-size: 24px;
         font-weight: 700;
 
+    }
+
+    .nav-tabs .active {
+        border-bottom: none;
     }
 
     td a {

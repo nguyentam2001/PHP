@@ -167,65 +167,17 @@
                                         </div>
 
                                         <div class="item-body__oder">
+
                                             <span class="item-body__btn-add-cart btn-border">
                                                 <i class="fas fa-cart-plus"></i>
                                                 Thêm vào giỏ hàng
                                             </span>
-                                            <button class="btn-primary btn-oder">Mua Ngay</button>
+                                            <a href="/ntstore/frontend/cart.php">
+                                                <button class="btn-primary btn-oder">Mua Ngay</button>
+                                            </a>
+
                                         </div>
                                         <hr>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-shop row">
-                        <div class="col l-5">
-                            <div class="sell-info ">
-                                <a href="#"><img src="./assest/img/img_vartar/sell-user.png" alt=""
-                                        class="sell-info-img"></a>
-                                <div class="sell-info-content">
-                                    <div class="sell-info-name">khanhkhanh78910</div>
-                                    <div class="sell-info-status">
-                                        <i class="fas fa-clock sell-info-status-clock"></i>Đang nghỉ bán
-                                    </div>
-                                    <div class="sell-info-btn-container">
-                                        <div class="sell-info-chat btn-border ">
-                                            <i class="far fa-comment-dots sell-info-chat-icon"></i>Chát ngay
-                                        </div>
-                                        <div class="sell-info-check-shop btn-border">
-                                            <i class="fas fa-store-alt"></i>
-                                            Xem shop
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" l-7">
-                            <div class="sell-ratio row">
-                                <div class="sell-ratio-content col l-4">
-                                    <div class="sell-ratio-vote">
-                                        Đánh giá <span class="sell-ratio-vote_amount">36</span>
-                                    </div>
-                                    <div class="sell-ratio-vote">
-                                        Sản Phẩm <span class="sell-ratio-vote_amount">12</span>
-                                    </div>
-                                </div>
-                                <div class="sell-ratio-content col l-4">
-                                    <div class="sell-ratio-vote">
-                                        Tỷ lệ phản hồi <span class="sell-ratio-vote_amount">24%</span>
-                                    </div>
-                                    <div class="sell-ratio-vote">
-                                        Thời gian phản hồi <span class="sell-ratio-vote_amount">Trong vài giờ</span>
-                                    </div>
-                                </div>
-                                <div class="sell-ratio-content col l-4">
-                                    <div class="sell-ratio-vote">
-                                        Tham gia <span class="sell-ratio-vote_amount">8 tháng trước</span>
-                                    </div>
-                                    <div class="sell-ratio-vote">
-                                        Người Theo dõi <span class="sell-ratio-vote_amount">10</span>
                                     </div>
                                 </div>
                             </div>
