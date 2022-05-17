@@ -24,25 +24,54 @@
                    </a>
                </div>
                <div class="navbar-list">
+<<<<<<< HEAD
+                   <a <?php  
+                   
+                            if($_SERVER['SCRIPT_NAME']=="/ntstore/page/overview.php") { 
+                                
+                                
+                    ?>
+                       class="link-active item p-l-12 flex-center" 
+                       
+                       
+                       <?php  
+                    
+                    } 
+                    
+                    
+                    ?> 
+                    
+                    class="item p-l-12 flex-center"
+                      
+                      
+=======
 
                    <a <?php  if($_SERVER['SCRIPT_NAME']=="/ntstore/page/overview.php") {  ?>
                        class="link-active item p-l-12 flex-center" <?php   }  ?> class="item p-l-12 flex-center"
+>>>>>>> d44b68bd652bcd4bf7ff5cd0189cfc6600e794bd
                        href="overview.php">
+
+
+                       
                        <div class="over-view-icon icon-base"></div>
                        <div class="over-view m-l-8 text">Tổng quan</div>
                    </a>
-                   <div class="item p-l-12 flex-center">
-                       <div class="product-icon icon-base"></div>
-                       <div class=" product m-l-8 text">
+                   <a <?php  if($_SERVER['SCRIPT_NAME']=="/ntstore/page/product.php") {?>
+                       class="link-active item p-l-12 flex-center" <?php } ?> class="item p-l-12 flex-center"
+                       href="product.php">
+                       <div class="category-icon icon-base"></div>
+                       <div class="category m-l-8 text">
                            Sản phẩm
                        </div>
-                   </div>
-                   <div class="item p-l-12 flex-center">
+                   </a>
+                   <a <?php  if($_SERVER['SCRIPT_NAME']=="/ntstore/page/category.php") {?>
+                       class="link-active item p-l-12 flex-center" <?php } ?> class="item p-l-12 flex-center"
+                       href="category.php">
                        <div class="category-icon icon-base"></div>
                        <div class="category m-l-8 text">
                            Danh mục sản phẩm
                        </div>
-                   </div>
+                   </a>
                    <a <?php  if($_SERVER['SCRIPT_NAME']=="/ntstore/page/invoice.php") {?>
                        class="link-active item p-l-12 flex-center" <?php } ?> class="item p-l-12 flex-center"
                        href="invoice.php">
