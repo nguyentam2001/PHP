@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +25,7 @@
       <div class="right flex-center">
         <div class="search m-r-24">
           <form action="customer.php" method="GET">
-             <button class="icon-search icon-24" type="submit"></button>
+            <button class="icon-search icon-24" type="submit"></button>
             <input type="text" class="input-search" name="search" id="searchText" placeholder="Tên khách hàng...">
           </form>
         </div>
@@ -34,19 +35,19 @@
       </div>
     </div>
     <div class="table-wraper p-l-24 p-r-24 ">
-          <?php
-          $search = $_GET['search'];
-          require '../utilities/check-error.php';
-          require '../database/connect_db.php';
-          require_once "../utilities/gender.php";
-          $db = new Database();
-          $db->connect_db(); //kết nối database
-          $query = "SELECT * from customer WHERE '$search' IS NOT NULL AND CustomerName  LIKE CONCAT ('%$search%') OR '$search' IS NULL";
-          $data = $db->getData($query);
-          $db->close_db();
-          //bind dữ liệu ra bảng
-          if (count($data) > 0) {
-            echo'
+      <?php
+      $search = $_GET['search'];
+      require '../utilities/check-error.php';
+      require '../database/connect_db.php';
+      require_once "../utilities/gender.php";
+      $db = new Database();
+      $db->connect_db(); //kết nối database
+      $query = "SELECT * from customer WHERE '$search' IS NOT NULL AND CustomerName  LIKE CONCAT ('%$search%') OR '$search' IS NULL";
+      $data = $db->getData($query);
+      $db->close_db();
+      //bind dữ liệu ra bảng
+      if (count($data) > 0) {
+        echo '
             <table id="CustomerTable" class="table table-hover">
             <thead>
               <tr>
@@ -64,8 +65,8 @@
             <tbody>
             ';
 
-            for ($i = 0; $i < count($data); $i++) {
-              echo '
+        for ($i = 0; $i < count($data); $i++) {
+          echo '
          <tr>
          <th scope="row">' . ($i + 1) . '</th>
          <td>' . $data[$i]['CustomerCode'] . '</td>
@@ -83,21 +84,21 @@
          </td>
         </tr>
          ';
-            }
-            echo'
+        }
+        echo '
             </tbody>
             </table>
             ';
-          }else{
-            echo'
+      } else {
+        echo '
             <div class="empty_state">
               <h1 class="">Dữ liệu trống</h1>
               <p>Không có dữ liệu liên hệ admin để biết thêm chi tiết</p>
             </div>
             ';
-          }
-          ?>
-       
+      }
+      ?>
+
     </div>
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
       <div id="toastSuccess" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -132,13 +133,13 @@
   <?php
   require_once "./customer-detail.php"
   ?>
-   <script src="../lib/bootstrap/js/bootstrap.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.js"></script>
   <script src="../lib/jquery/jquery.js"></script>
-<script type="text/javascript" src="../script/components/navbar.js"></script>
-<script src="../script/common/enum.js"></script>
-<script src="../script/common/common.js"></script>
-<script src="../script/common/toast.js"></script>
-<script type="text/javascript" src="../script/customer.js"></script>
+  <script type="text/javascript" src="../script/components/navbar.js"></script>
+  <script src="../script/common/enum.js"></script>
+  <script src="../script/common/common.js"></script>
+  <script src="../script/common/toast.js"></script>
+  <script type="text/javascript" src="../script/customer.js"></script>
 </body>
 <style>
   @import url(../style/components/input.css);
@@ -147,6 +148,7 @@
   @import url(../style/components/toast.css);
   @import url(../style/components/modal.css);
   @import url(../style/components/empty-state.css);
+
   .content {
     height: calc(100vh - var(--header));
     width: calc(100% - var(--navbar));
@@ -155,12 +157,12 @@
     display: flex;
     flex-direction: column;
   }
+
   .content-header .left {
     color: var(--black);
     font-size: 24px;
     font-weight: 700;
-}
-
+  }
 </style>
 
 </html>

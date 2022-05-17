@@ -65,7 +65,7 @@
                     </div>
                     <div class="col">
                         <div class=" height-20vh card-item b-rd-4 border ">
-                            <div class="title">Tổng tri</div>
+                            <div class="title">Tổng chi</div>
                             <div class="number">30000 <span class="text">Đồng</span> </div>
                             <div class="sum-text text">TỔNG</div>
                         </div>
