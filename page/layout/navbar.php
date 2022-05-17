@@ -16,9 +16,15 @@
 
        <body>
            <div class="navbar">
-               <div class="navbar-icon">
+
+               <div class="navbar-icon-logo">
+                   <a href="http:/ntstore/page/overview.php">
+                       <img src="../assets/img/ntstore_v2.jpg" alt="" srcset="">
+
+                   </a>
                </div>
                <div class="navbar-list">
+<<<<<<< HEAD
                    <a <?php  
                    
                             if($_SERVER['SCRIPT_NAME']=="/ntstore/page/overview.php") { 
@@ -38,6 +44,11 @@
                     class="item p-l-12 flex-center"
                       
                       
+=======
+
+                   <a <?php  if($_SERVER['SCRIPT_NAME']=="/ntstore/page/overview.php") {  ?>
+                       class="link-active item p-l-12 flex-center" <?php   }  ?> class="item p-l-12 flex-center"
+>>>>>>> d44b68bd652bcd4bf7ff5cd0189cfc6600e794bd
                        href="overview.php">
 
 
@@ -99,9 +110,33 @@
                            Báo cáo
                        </div>
                    </div>
+                   <a class="item p-l-12 flex-center " href="/ntstore/frontend">
+                       <div class="sell-interface icon-base"></div>
+                       <div class="report m-l-8 text">
+                           GD bán hàng
+                       </div>
+                   </a>
                </div>
            </div>
            <script type="text/javascript" src="../../script/components/navbar.js"></script>
        </body>
+       <style>
+       .navbar-icon-logo {
+           width: 184px;
+           height: 60px;
+           margin-left: 12px;
+           margin-top: 4px;
+           cursor: pointer;
+       }
+
+       .navbar-icon-logo img {
+           width: 100%;
+           height: 100%;
+       }
+
+       .navbar-list {
+           margin-top: 10px;
+       }
+       </style>
 
    </html>

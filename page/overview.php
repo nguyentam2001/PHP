@@ -1,3 +1,7 @@
+<?php
+  require_once "../lib/lib.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +18,8 @@
     <body>
         <?php
   require_once "./layout/navbar.php";
-  require_once "./layout/header.php"
+  require_once "./layout/header.php";
+
   ?>
 
         <div class="content p-l-24 p-r-24 p-t-24 ">
@@ -31,7 +36,9 @@
                     <div class="col">
                         <div class="  height-20vh card-item b-rd-4 border">
                             <div class="title">Sản phẩm</div>
-                            <div class="number">30000 <span class="text">sản phẩm</span> </div>
+                            <div class="number"><?php echo getTotal("ProductID","product","count")  ?> <span
+                                    class="text">sản
+                                    phẩm</span> </div>
                             <div class="sum-text text">TỔNG</div>
                         </div>
                     </div>
@@ -45,14 +52,16 @@
                     <div class="col">
                         <div class=" height-20vh card-item b-rd-4 border ">
                             <div class="title">Hóa đơn mua hàng</div>
-                            <div class="number">30000 <span class="text">Hóa đơn</span> </div>
+                            <div class="number"><?php echo getTotal("InvoiceID","import_invoice","count")?> <span
+                                    class="text">Hóa đơn</span> </div>
                             <div class="sum-text text">TỔNG</div>
                         </div>
                     </div>
                     <div class="col">
                         <div class=" height-20vh card-item b-rd-4 border ">
                             <div class="title">Hàng tồn kho</div>
-                            <div class="number">30000 <span class="text">sản phẩm</span> </div>
+                            <div class="number"><?php echo getTotal("Quality","product","sum")  ?> <span
+                                    class="text">sản phẩm</span> </div>
                             <div class="sum-text text">TỔNG</div>
                         </div>
                     </div>
@@ -73,14 +82,16 @@
                     <div class="col">
                         <div class=" height-20vh card-item b-rd-4 border ">
                             <div class="title">Nhà cung cấp</div>
-                            <div class="number">30000 <span class="text">đơn vị</span> </div>
+                            <div class="number"><?php echo getTotal("ManufactureID","manufacture","count")?> <span
+                                    class="text">đơn vị</span> </div>
                             <div class="sum-text text">TỔNG</div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="  height-20vh card-item b-rd-4 border ">
                             <div class="title">Khách hàng</div>
-                            <div class="number">30000 <span class="text">khách hàng</span> </div>
+                            <div class="number"><?php echo getTotal("customerID","customer","count")?> <span
+                                    class="text">khách hàng</span> </div>
                             <div class="sum-text text">TỔNG</div>
                         </div>
                     </div>

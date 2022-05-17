@@ -65,3 +65,8 @@
   background-position: -1432px -200px;
   cursor: pointer;
 }
+.sell-interface {
+  background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+  background-position: -1208px -200px;
+  cursor: pointer;
+}
