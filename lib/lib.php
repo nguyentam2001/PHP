@@ -15,7 +15,7 @@ function getTotalPrice($sessionName)
 //Đếm tổng số bản ghi theo id
 function getTotal($propName,$tableName,$key)
 {
-   
+
     $database=new Database();
     $database->connect_db();//kết nối database
     $query="";
