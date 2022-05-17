@@ -60,7 +60,7 @@
                 <th scope = "col">Giá nhập</th>
                 <th scope = "col">Mã danh mục</th>
                 <th scope = "col">Chi tiết</th>
-                <th scope = "col">Chất lượng</th>
+                <th scope = "col">Số lượng</th>
                 <th scope = "col">Ảnh sản phẩm</th>
                 <th scope="col " class="max-w-100">Chức năng</th>
                 </tr>
@@ -80,7 +80,7 @@
                     <td>' . $data[$i]['Quality'] . '</td>
                     <td>' . $data[$i]['Image'] . '</td>
                     <td>
-                        <div class = "table-funtion">
+                        <div class = "table-function">
                         <div class = "btn-update" value = "' . $data[$i]['ProductID'] . '">Sửa</div>
                         <div class = "btn-delete" name = "' . $data[$i]['ProductName'] . '" value ="' . $data[$i]["ProductID"] . '">Xóa</div>
                         </div>
@@ -125,7 +125,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-            <button type="button" class="btn btn-primary" id="btnDelCustomer">Đồng ý</button>
+            <button type="button" class="btn btn-primary" id="btnDelProduct">Đồng ý</button>
           </div>
         </div>
       </div>
@@ -140,6 +140,9 @@
 <script src="../script/common/enum.js"></script>
 <script src="../script/common/common.js"></script>
 <script src="../script/common/toast.js"></script>
+
+<script type="text/javascript" src="../script/product.js"></script>
+
 
 </body>
 <style>

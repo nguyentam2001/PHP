@@ -1,5 +1,5 @@
 <?php
-require "../database/connect_db.php";
+require_once "../database/connect_db.php";
 
 function getTotalPrice($sessionName)
 {
