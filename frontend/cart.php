@@ -146,7 +146,7 @@
                                                 <a href="">Tài khoản của tôi</a>
                                             </li>
                                             <li class="header__navbar-user-item">
-                                                <a href="">Địa chỉ của tôi</a>
+                                                <a href="/ntstore/page/login.php">Đăng nhập quyền Admin</a>
                                             </li>
                                             <li class="header__navbar-user-item">
                                                 <a href="">Đơn mua</a>
