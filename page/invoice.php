@@ -23,22 +23,11 @@
                 </div>
                 <div class="right flex-center">
                     <div class="t-btn-wrapper">
-<<<<<<< HEAD
                         <a <?php
                         if($_GET["invoice"]=="export"){
                              echo  'style="display:none"';
                         }
                 ?> href="./invoice-import-detail.php?invoice-import=add">
-=======
-                        <a 
-                        <?php
-                        if($_GET["invoice"]=="export"){
-                             echo  'style="display:none"';
-                        }
-                ?>
-               
-                          href="./invoice-import-detail.php?invoice-import=add">
->>>>>>> 7750b54a490d74252c40a310c2be4390b4b49c52
                             <button type="button" class="btn btn-warning"> <i class="fa-solid fa-receipt"></i> Nhập hóa
                                 đơn </button>
                         </a>
@@ -48,63 +37,33 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
 
-<<<<<<< HEAD
                     <a <?php
-=======
-                <a 
-                <?php
->>>>>>> 7750b54a490d74252c40a310c2be4390b4b49c52
                 if($_GET["invoice"]=="export"){
                     echo  'class="nav-link "';
                 }else{
                     echo  'class="nav-link active"';
                 }
-<<<<<<< HEAD
                 ?> href="/ntstore/page/invoice.php">
                         Hóa đơn nhập linh kiện
                     </a>
-=======
-                ?>
-                 href="/ntstore/page/invoice.php"
-                 >
-              Hóa đơn nhập linh kiện
-          </a>
->>>>>>> 7750b54a490d74252c40a310c2be4390b4b49c52
 
                 </li>
                 <li class="nav-item">
 
-<<<<<<< HEAD
                     <a <?php
-=======
-                <a 
-                <?php
->>>>>>> 7750b54a490d74252c40a310c2be4390b4b49c52
                  if($_GET["invoice"]=="export"){
                     echo  'class="nav-link  active"';
                 }else{
                     echo  'class="nav-link"';
                 }
-<<<<<<< HEAD
                 ?> href="/ntstore/page/invoice.php?invoice=export">
                         Hóa đơn bán linh kiện
                     </a>
-=======
-                ?>
-                 href="/ntstore/page/invoice.php?invoice=export"
-                >
-                       Hóa đơn bán linh kiện
-                   </a>
->>>>>>> 7750b54a490d74252c40a310c2be4390b4b49c52
                 </li>
 
             </ul>
             <div class="table-wraper p-l-24 p-r-24 ">
-<<<<<<< HEAD
                 <?php
-=======
-        <?php
->>>>>>> 7750b54a490d74252c40a310c2be4390b4b49c52
             if(!isset($_GET["invoice"])&&!$_GET["invoice"]=="export"){
           require '../utilities/check-error.php';
           require '../database/connect_db.php';
@@ -183,11 +142,7 @@
         <script src="../script/common/common.js"></script>
         <script src="../script/common/toast.js"></script>
         <script src="../script/common/modal.js"></script>
-<<<<<<< HEAD
-
-=======
-     
->>>>>>> 7750b54a490d74252c40a310c2be4390b4b49c52
+        <<<<<<< HEAD=======>>>>>>> 7750b54a490d74252c40a310c2be4390b4b49c52
     </body>
     <style>
     @import url(../style/components/input.css);
@@ -216,8 +171,9 @@
         font-weight: 700;
 
     }
-    .nav-tabs .active{
-        border-bottom:none;
+
+    .nav-tabs .active {
+        border-bottom: none;
     }
 
     .nav-tabs .active {

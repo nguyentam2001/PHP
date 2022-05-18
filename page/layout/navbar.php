@@ -24,35 +24,20 @@
                    </a>
                </div>
                <div class="navbar-list">
-<<<<<<< HEAD
                    <a <?php  
                    
                             if($_SERVER['SCRIPT_NAME']=="/ntstore/page/overview.php") { 
                                 
                                 
-                    ?>
-                       class="link-active item p-l-12 flex-center" 
-                       
-                       
-                       <?php  
+                    ?> class="link-active item p-l-12 flex-center" <?php  
                     
                     } 
                     
                     
-                    ?> 
-                    
-                    class="item p-l-12 flex-center"
-                      
-                      
-=======
-
-                   <a <?php  if($_SERVER['SCRIPT_NAME']=="/ntstore/page/overview.php") {  ?>
-                       class="link-active item p-l-12 flex-center" <?php   }  ?> class="item p-l-12 flex-center"
->>>>>>> d44b68bd652bcd4bf7ff5cd0189cfc6600e794bd
-                       href="overview.php">
+                    ?> class="item p-l-12 flex-center" href="overview.php">
 
 
-                       
+
                        <div class="over-view-icon icon-base"></div>
                        <div class="over-view m-l-8 text">Tổng quan</div>
                    </a>
