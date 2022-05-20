@@ -95,13 +95,14 @@
                            Báo cáo
                        </div>
                    </div>
-                   <a class="item p-l-12 flex-center " href="/ntstore/frontend">
-                       <div class="sell-interface icon-base"></div>
-                       <div class="report m-l-8 text">
-                           GD bán hàng
-                       </div>
-                   </a>
                </div>
+               <a class="item p-l-12 flex-center " href="/ntstore/frontend">
+                   <div class="sell-interface icon-base"></div>
+                   <div class="report m-l-8 text">
+                       GD bán hàng
+                   </div>
+               </a>
+           </div>
            </div>
            <script type="text/javascript" src="../../script/components/navbar.js"></script>
        </body>

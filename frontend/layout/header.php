@@ -169,8 +169,12 @@
             </div>
 
             <div class="header__cart">
+               
                 <div class="header__cart-group">
+                <a href="/ntstore/frontend/cart.php">
                     <i class="header__cart-icon fas fa-cart-plus"></i>
+                </a>
+
                     <span class="header__cart-notice">3</span>
                     <!--Nếu có sản phẩm thì thêm : header_cart-list--no-cart -->
                     <div class="header_cart-list">
@@ -222,73 +226,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <!-- item 3 -->
-                            <li class="header__cart-item">
-                                <img src="./assest/img/img_item/flycam_mavic_2_pro.png" alt=""
-                                    class="header__cart-item-img" />
-                                <div class="header__cart-item-infor">
-                                    <div class="header__cart-item-head">
-                                        <h5 class="header__cart-item-name">
-                                            Flycam E88 máy bay điều khiển từ xa camera 4k
-                                        </h5>
-                                        <div class="header__cart-item-total-money">
-                                            <span class="header__cart-item-price"><sup
-                                                    class="header__cart-item-price-vnd">đ</sup>29.000.000</span>
-                                            <span class="header__cart-item-multiply">x</span>
-                                            <span class="header__cart-item-quality">3</span>
-                                        </div>
-                                    </div>
-                                    <div class="header__cart-item-body">
-                                        <span class="header__cart-item-description">Phân loại: Bạc</span>
-                                        <span class="header__cart-item-remove"> xóa </span>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <!-- item 4 -->
-                            <li class="header__cart-item">
-                                <img src="./assest/img/img_item/flycam_mavic_2_pro.png" alt=""
-                                    class="header__cart-item-img" />
-                                <div class="header__cart-item-infor">
-                                    <div class="header__cart-item-head">
-                                        <h5 class="header__cart-item-name">
-                                            flycam phantom 3
-                                        </h5>
-                                        <div class="header__cart-item-total-money">
-                                            <span class="header__cart-item-price"><sup
-                                                    class="header__cart-item-price-vnd">đ</sup>29.000.000</span>
-                                            <span class="header__cart-item-multiply">x</span>
-                                            <span class="header__cart-item-quality">3</span>
-                                        </div>
-                                    </div>
-                                    <div class="header__cart-item-body">
-                                        <span class="header__cart-item-description">Phân loại: Bạc</span>
-                                        <span class="header__cart-item-remove"> xóa </span>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- item 5 -->
-                            <li class="header__cart-item">
-                                <img src="./assest/img/img_item/flycam_mavic_2_pro.png" alt=""
-                                    class="header__cart-item-img" />
-                                <div class="header__cart-item-infor">
-                                    <div class="header__cart-item-head">
-                                        <h5 class="header__cart-item-name">
-                                            flycam phantom 3
-                                        </h5>
-                                        <div class="header__cart-item-total-money">
-                                            <span class="header__cart-item-price"><sup
-                                                    class="header__cart-item-price-vnd">đ</sup>29.000.000</span>
-                                            <span class="header__cart-item-multiply">x</span>
-                                            <span class="header__cart-item-quality">3</span>
-                                        </div>
-                                    </div>
-                                    <div class="header__cart-item-body">
-                                        <span class="header__cart-item-description">Phân loại: Bạc</span>
-                                        <span class="header__cart-item-remove"> xóa </span>
-                                    </div>
-                                </div>
-                            </li>
+                            
                             <!-- item 6 -->
                             <li class="header__cart-item">
                                 <img src="./assest/img/img_item/flycam_mavic_2_pro.png" alt=""
@@ -339,7 +277,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                    </div>
             </div>
         </div>
     </div>

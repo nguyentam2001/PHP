@@ -142,7 +142,6 @@
         <script src="../script/common/common.js"></script>
         <script src="../script/common/toast.js"></script>
         <script src="../script/common/modal.js"></script>
-        <<<<<<< HEAD=======>>>>>>> 7750b54a490d74252c40a310c2be4390b4b49c52
     </body>
     <style>
     @import url(../style/components/input.css);
