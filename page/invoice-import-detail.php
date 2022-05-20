@@ -10,15 +10,16 @@ function fillOptionSelect($query,$value,$name,$valueSession){
     $db->connect_db(); //kết nối database
     $data = $db->getData($query);
     $db->close_db();
-    
+    $output="'<option value=''>-- Chọn danh mục --</option>'";
     if(count($data)>0){
         for($i=0;$i<count($data);$i++){
             $selected=$data[$i][$value]==$valueSession?' selected':'';
-            echo'
+            $output .='
             <option value='.$data[$i][$value].' '.$selected.'>'.$data[$i][$name].' </option>
             ';
         }
     }
+    echo $output;
 }
 
 
@@ -32,7 +33,7 @@ function getPropertiesByID($tableName,$propName,$propID,$propIDName){
     $database->close_db();//ngắt kết nối database
     return  $output;
 }
-
+/*
 function productsFirstCategoryID(){
     $output="";
     $db = new Database();
@@ -52,6 +53,7 @@ function productsFirstCategoryID(){
             echo $output;
     $db->close_db();
 }
+*/
 
 function showProductInvoice(){
     if(isset($_SESSION["invoice_import_product"])&&(is_array($_SESSION["invoice_import_product"]))){
@@ -267,6 +269,7 @@ function showProductInvoice(){
                                                 <td scope="col">
                                                     <select id="categorySelect" class="flex-1 max-w-220"
                                                         name="CategorySelected">
+
                                                         <?php
                                                         $query = "SELECT CategoryID, CategoryName from category";
                                                         fillOptionSelect( $query,"CategoryID","CategoryName","");
@@ -276,9 +279,7 @@ function showProductInvoice(){
                                                 <td scope="col">
 
                                                     <select id="productSelect" class="flex-1 " name="ProductSelected">
-                                                        <?php
-                                                    productsFirstCategoryID();
-                                                    ?>
+
                                                     </select>
 
                                                 </td>
@@ -290,8 +291,8 @@ function showProductInvoice(){
                                                 </td>
                                                 <td scope="col">
                                                     <div class="form-input m-t-0">
-                                                        <input class="flex-1 " type="number" name="PriceImport"
-                                                            placeholder="Nhập đơn giá">
+                                                        <input id="PriceImport" class="flex-1 " type="number"
+                                                            name="PriceImport" placeholder="Nhập đơn giá">
                                                     </div>
                                                 </td>
 

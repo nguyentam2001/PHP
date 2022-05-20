@@ -12,6 +12,9 @@ function getTotalPrice($sessionName)
     }
 }
 
+//lấy đơn giá by id sản phẩm.
+
+
 //Đếm tổng số bản ghi theo id
 function getTotal($propName,$tableName,$key)
 {

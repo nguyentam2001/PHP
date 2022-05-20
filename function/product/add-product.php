@@ -2,9 +2,6 @@
 require "../../database/connect_db.php";
 $ProductID = $ProductName = $ExportPrice = $ImportPrice = $CategoryID = $Description = $Quality = $Image = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST["ProductID"])) {
-        $ProductID = $_POST["ProductID"];
-    }
     if (!empty($_POST["ProductName"])) {
         $ProductName = $_POST["ProductName"];
     }
@@ -24,13 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Quality = $_POST["Quality"];
     }
     if (!empty($_POST["Image"])) {
+        //Lấy file ảnh
         $Image = $_POST["Image"];
     }
     $dataBase = new Database();
 
     $dataBase->connect_db();
 
-    $sql = "INSERT INTO product (ProductID, ProductName, ExportPrice, ImportPrice, CategoryID, Description, Quality, Image ) VALUES('" . $ProductID . "','" . $ProductName . "','" . $ExportPrice . "','" . $ImportPrice . "','" . $CategoryID . "','" . $Description . "','" . $Quality . "','" . $Image . "')";
+    $sql = "INSERT INTO product (ProductID, ProductName, ExportPrice, ImportPrice, CategoryID, Description, Quality, Image ) VALUES(0,'" . $ProductName . "','" . $ExportPrice . "','" . $ImportPrice . "','" . $CategoryID . "','" . $Description . "','" . $Quality . "','" . $Image . "')";
 
     $data = mysqli_query($dataBase->conn, $sql);
 

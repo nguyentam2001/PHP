@@ -3,7 +3,7 @@
    $database=new Database();
    $database->connect_db();//kết nối database
 if(isset($_POST["CategoryID"])){
-    $output="";
+    $output="'<option value=''>-- Chọn linh kiện --</option>'";
     $CategoryID=$_POST["CategoryID"];
     if($_POST["CategoryID"]!=""){
     //Thực hiện câu lệnh truy vấn

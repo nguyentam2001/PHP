@@ -9,6 +9,7 @@ class InvoiceImport {
   initEvent() {
     $("#manufactureSelect").change(this.renderValueCb);
     $("#categorySelect").change(this.renderCategory);
+    $("#productSelect").change(this.renderPrice);
   }
   renderValueCb() {
     let ManufactureID = $("#manufactureSelect").val();
@@ -28,7 +29,6 @@ class InvoiceImport {
     });
   }
   renderCategory() {
-    console.log("Hello");
     let CategoryID = $("#categorySelect").val();
     $.ajax({
       type: "method",
@@ -40,6 +40,21 @@ class InvoiceImport {
       },
       success: function (data) {
         $("#productSelect").html(data);
+      },
+    });
+  }
+  renderPrice() {
+    let ProductID = $("#productSelect").val();
+    $.ajax({
+      type: "method",
+      method: "POST",
+      async: false,
+      url: "/ntstore/function/invoice/get-price-by-propduct.php",
+      data: {
+        ProductID,
+      },
+      success: function (data) {
+        $("#PriceImport").val(data);
       },
     });
   }
