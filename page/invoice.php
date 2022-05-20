@@ -1,73 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../style/main.css">
-    <link rel="shortcut icon" href="../assets/img/logo-tab.jpg" />
-    <title>ntstore</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../style/main.css">
+        <link rel="shortcut icon" href="../assets/img/logo-tab.jpg" />
+        <title>ntstore</title>
+    </head>
 
-<body>
-    <?php
+    <body>
+        <?php
     require_once "./layout/navbar.php";
     require_once "./layout/header.php"
     ?>
-    <div class="content p-l-24 p-r-24 p-t-24 ">
-        <div class="content-header p-b-24 justify-between">
-            <div class="left">
-                Hóa đơn
-            </div>
-            <div class="right flex-center">
-                <div class="t-btn-wrapper">
-                    <a <?php
+        <div class="content p-l-24 p-r-24 p-t-24 ">
+            <div class="content-header p-b-24 justify-between">
+                <div class="left">
+                    Hóa đơn
+                </div>
+                <div class="right flex-center">
+                    <div class="t-btn-wrapper">
+                        <a <?php
                         if ($_GET["invoice"] == "export") {
                             echo  'style="display:none"';
                         }
                         ?> href="./invoice-import-detail.php?invoice-import=add">
-                        <button type="button" class="btn btn-warning"> <i class="fa-solid fa-receipt"></i> Nhập hóa
-                            đơn </button>
-                    </a>
+                            <button type="button" class="btn btn-warning"> <i class="fa-solid fa-receipt"></i> Nhập hóa
+                                đơn </button>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
 
-                <a <?php
+                    <a <?php
                     if ($_GET["invoice"] == "export") {
                         echo  'class="nav-link "';
                     } else {
                         echo  'class="nav-link active"';
                     }
                     ?> href="/ntstore/page/invoice.php">
-                    Hóa đơn nhập linh kiện
-                </a>
+                        Hóa đơn nhập linh kiện
+                    </a>
 
-            </li>
-            <li class="nav-item">
+                </li>
+                <li class="nav-item">
 
-                <a <?php
+                    <a <?php
                     if ($_GET["invoice"] == "export") {
                         echo  'class="nav-link  active"';
                     } else {
                         echo  'class="nav-link"';
                     }
                     ?> href="/ntstore/page/invoice.php?invoice=export">
-                    Hóa đơn bán linh kiện
-                </a>
-            </li>
+                        Hóa đơn bán linh kiện
+                    </a>
+                </li>
 
-        </ul>
-        <div class="table-wraper p-l-24 p-r-24 ">
-            <?php
-            if (!isset($_GET["invoice"]) && !$_GET["invoice"] == "export") {
-                require '../utilities/check-error.php';
-                require '../database/connect_db.php';
-                require_once "../utilities/gender.php";
+            </ul>
+            <div class="table-wraper p-l-24 p-r-24 ">
+                <?php
+                 require '../utilities/check-error.php';
+                 require '../database/connect_db.php';
+                 require_once "../utilities/gender.php";
+            if (!isset($_GET["invoice"]) ) {
                 $db = new Database();
                 $db->connect_db(); //kết nối database
                 $query = "SELECT InvoiceID,InvoiceName ,m.ManufactureName,e.EmployeeName,ii.DateCreate,m.PhoneNumber FROM manufacture m INNER JOIN import_invoice ii ON m.ManufactureID = ii.ManufactureID INNER JOIN employee e ON ii.EmployeeID = e.EmployeeID";
@@ -123,69 +123,75 @@
             </div>
             ';
                 }
-            } else if (!isset($_GET["invoice"]) && $_GET["invoice"] == "export") {
-                require '../utilities/check-error.php';
-                require '../database/connect_db.php';
-                require_once "../utilities/gender.php";
-                $dataBase = new Database();
-                $dataBase->connect_db(); //kết nối database
-                $sql = "SELECT InvoiceID,InvoiceName ,export_invoice.DateCreate, CustomerID, EmployeeID FROM export_invoice INNER JOIN customer ON customer.CustomerID = export_invoice.CustomerID INNER JOIN employee ON  = export_invoice.EmployeeID = emloyee.EmployeeID";
-                $data = $dataBase->getData($sql);
-                $dataBase->close_db();
+            } else if (isset($_GET["invoice"]) && $_GET["invoice"] == "export") {
+                $db = new Database();
+               $db->connect_db(); //kết nối  $db
+                $sql = "SELECT InvoiceID,InvoiceName,CustomerName,export_invoice.DateCreate, export_invoice.CustomerID, export_invoice.EmployeeID FROM export_invoice INNER JOIN customer ON customer.CustomerID = export_invoice.CustomerID INNER JOIN employee ON export_invoice.EmployeeID = employee.EmployeeID";
+                $data =$db->getData($sql);
+               $db->close_db();
                 //bind dữ liệu ra bảng
                 if (count($data) > 0) {
                     echo '
-            <table id="EmployeeTable" class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Số hóa đơn</th>
-                <th scope="col">Tên hóa đơn</th>
-                <th scope="col">Ngày tạo</th>
-                <th scope="col">Mã khách hàng</th>
-                <th scope="col">Mã nhân viên</th>
-                <th scope="col " class="max-w-100">Chức năng</th>
-              </tr>
-            </thead>
-            <tbody>
-            ';
+                        <table id="EmployeeTable" class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Số hóa đơn</th>
+                            <th scope="col">Tên hóa đơn</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Mã khách hàng</th>
+                            <th scope="col">Tên khách hàng</th>
+                            <th scope="col">Mã nhân viên</th>
+                            <th scope="col " class="max-w-100">Chức năng</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        ';
                     for ($i = 0; $i < count($data); $i++) {
                         echo '
-         <tr>
-         <th scope="row">' . ($i + 1) . '</th>
-         <td>' . $data[$i]['InvoiceID'] . '</td>
-         <td>' . $data[$i]['InvoiceName'] . '</td>
-         <td>' . date("d/m/Y", strtotime($data[$i]['DateCreate'])) . '</td>
-         <td>' . $data[$i]['CustomerID'] . '</td>
-         <td>' . $data[$i]['EmployeeID'] . '</td>
-        </tr>
-         ';
+                            <tr>
+                            <th scope="row">' . ($i + 1) . '</th>
+                            <td>' . $data[$i]['InvoiceID'] . '</td>
+                            <td>' . $data[$i]['InvoiceName'] . '</td>
+                            <td>' . date("d/m/Y", strtotime($data[$i]['DateCreate'])) . '</td>
+                            <td>' . $data[$i]['CustomerID'] . '</td>
+                            <td>' . $data[$i]['CustomerName'] . '</td>
+                            <td>' . $data[$i]['EmployeeID'] . '</td>
+                            <td>
+                                <div class="table-function">
+                                    <a href="../function/invoice/show-product-detail.php?get-invoice-import=' . $data[$i]['InvoiceID'] . '">
+                                        Chi tiết
+                                    </a>
+                                </div>
+                            </td>
+                            </tr>
+                            ';
                     }
                     echo '
-            </tbody>
-            </table>
-            ';
+                        </tbody>
+                        </table>
+                        ';
                 } else {
                     echo '
-            <div class="empty_state">
-              <h1 class="">Dữ liệu trống</h1>
-              <p>Không có dữ liệu liên hệ admin để biết thêm chi tiết</p>
-            </div>
-            ';
+                        <div class="empty_state">
+                        <h1 class="">Dữ liệu trống</h1>
+                        <p>Không có dữ liệu liên hệ admin để biết thêm chi tiết</p>
+                        </div>
+                        ';
                 }
             }
             ?>
+            </div>
         </div>
-    </div>
-    <script src="../lib/bootstrap/js/bootstrap.js"></script>
-    <script src="../lib/jquery/jquery.js"></script>
-    <script type="text/javascript" src="../script/components/navbar.js"></script>
-    <script src="../script/common/enum.js"></script>
-    <script src="../script/common/common.js"></script>
-    <script src="../script/common/toast.js"></script>
-    <script src="../script/common/modal.js"></script>
-</body>
-<style>
+        <script src="../lib/bootstrap/js/bootstrap.js"></script>
+        <script src="../lib/jquery/jquery.js"></script>
+        <script type="text/javascript" src="../script/components/navbar.js"></script>
+        <script src="../script/common/enum.js"></script>
+        <script src="../script/common/common.js"></script>
+        <script src="../script/common/toast.js"></script>
+        <script src="../script/common/modal.js"></script>
+    </body>
+    <style>
     @import url(../style/components/input.css);
     @import url(../style/components/button.css);
     @import url(../style/components/table.css);
@@ -230,6 +236,6 @@
         border-top: none;
         border-radius: 0px;
     }
-</style>
+    </style>
 
 </html>

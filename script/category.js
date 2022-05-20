@@ -62,6 +62,8 @@ class Category {
           //bind dữ liệu vào form sửa
           for (const key in category) {
             if (Object.hasOwnProperty.call(category, key)) {
+              //render dữ liệu vào form
+              $(`[name="${key}"]`).val(category[key]);
               //hiển thị form nhập thông tin
               $(".display-form").show();
             }

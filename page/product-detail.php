@@ -45,20 +45,20 @@
                                 <div class="col">
                                     <div class="input">
                                         <div class="title">Giá nhập</div>
-                                        <input type="text" name="ExportPrice">
+                                        <input type="text" name="ImportPrice">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="input">
                                         <div class="title">Giá xuất</div>
-                                        <input type="text" name="ImportPrice">
+                                        <input type="text" name="ExportPrice">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="input">
-                                        <div class="title">Mã danh mục</div>
+                                        <div class="title">Tên danh mục</div>
                                         <select id="categorySelected" name="CategoryID" class="flex-1 max-w-220"
                                             id="cars">
                                             <?php
