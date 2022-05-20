@@ -20,6 +20,17 @@
         <div class="main">
             <div class="grid wide">
                 <div class="content">
+                    <?php
+                    if(isset($_GET["productID"])&&$_GET["productID"]){
+                        $ProductID=$_GET['productID'];
+                        require_once '../utilities/check-error.php';
+                        require_once '../database/connect_db.php';
+                        $db = new Database();
+                        $db->connect_db(); //kết nối database
+                        $query=" SELECT * FROM product INNER JOIN category  ON product.CategoryID= category.CategoryID where  ProductID= $ProductID";
+                        $result=mysqli_query($db->conn,$query);
+                        $row = mysqli_fetch_assoc($result);
+                        echo'
                     <div class="row">
                         <div class="link-shop-background col l-12">
                             <ul class="link-shop">
@@ -32,18 +43,20 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </li>
                                 <li class="link-shop-item">
-                                    <a href="#" class="link-shop-item_link">Flycam Dji</a>
+                                    <a href="#" class="link-shop-item_link">'.$row["CategoryName"].'</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- container-product -->
-                    <div class="container-item row">
+                   
+
+                        <div class="container-item row">
                         <div class="product-item col l-5">
-                            <div class="product-item__img" style="
-                background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-              "></div>
+                            <div class="product-item__img"
+                                style="background-image:  url(../assets/img/items/'.$row['Image'].')">
+                            </div>
                             <div class="product-item-list">
 
                             </div>
@@ -73,8 +86,7 @@
                                             </span>
 
                                             <p class="item-body_des">
-                                                Flycam Q8 Gps cảm biến quang - động cơ không chổi than -
-                                                Hàng giá rẻ
+                                               '.$row["ProductName"].'
                                             </p>
                                         </div>
                                         <div class="item-body_status">
@@ -95,7 +107,7 @@
 
                                         <div class="item-body__price">
                                             <span class="product-item__price-old">980.000đ</span>
-                                            <span class="product-item__price-current">580.000đ</span>
+                                            <span class="product-item__price-current">'.number_format($row["ExportPrice"], 0, '', ',').'đ</span>
                                             <span class="product-item__price-percent"> 43% giảm</span>
                                         </div>
 
@@ -109,33 +121,7 @@
                                                 Mua kèm Deal Sốc
                                             </span>
                                         </div>
-                                        <div class="item-body__oder">
-                                            <span class="
-                        item-body__oder-title item-body__oder-title-address
-                      ">
-                                                Vận chuyển
-                                            </span>
-                                            <div class="
-                        item-body__oder-content item-body__oder-content-address
-                      ">
-                                                <div class="content__address">
-                                                    <i class="fas fa-car-side content__address-icon-car"></i>
-                                                    <span>Vận chuyển tới</span>
-                                                    <a href="#" class="content__address-home">Pường Minh Khai, Quận Bắc
-                                                        Từ Liêm
-                                                        <i class="fas fa-chevron-down"></i>
-                                                    </a>
-                                                </div>
-
-                                                <div class="content__transport">
-                                                    <span>Phí vận chuyển</span>
-                                                    <a href="#" class="content__transport-price">Không hỗ trợ
-
-                                                        <i class="fas fa-chevron-down"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="item-body__oder">
                                             <span class="
                         item-body__oder-title item-body__oder-title-classify
@@ -146,11 +132,9 @@
                         item-body__oder-content item-body__oder-content-classify
                       ">
                                                 <div class="content-classify__btn content-classify__btn-one">
-                                                    Flycam 1 Pin
+                                                    '.$row["CategoryName"].'
                                                 </div>
-                                                <div class="content-classify__btn content-classify__btn-two">
-                                                    Flycam 2 Pin
-                                                </div>
+                                              
                                             </div>
                                         </div>
                                         <div class="item-body__oder">
@@ -197,15 +181,15 @@
                                     <div class="col l-11">
                                         <ul class="link-shop">
                                             <li class="link-shop-item">
-                                                <a href="#" class="link-shop-item_link access">NTstore</a>
+                                            <a href="./index.php" class="link-shop-item_link access">NTstore</a>
                                                 <i class="fas fa-chevron-right"></i>
                                             </li>
                                             <li class="link-shop-item">
-                                                <a href="#" class="link-shop-item_link">Đồ công nghệ</a>
+                                                <a href="#" class="link-shop-item_link">'.$row["CategoryName"].'</a>
                                                 <i class="fas fa-chevron-right"></i>
                                             </li>
                                             <li class="link-shop-item">
-                                                <a href="#" class="link-shop-item_link">Flycam Dji</a>
+                                                <a href="#" class="link-shop-item_link">'.$row["ProductName"].'</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -216,7 +200,7 @@
                                         <span class="product-detail-store">Kho hàng</span>
                                     </div>
                                     <div class="col l-11">
-                                        <span class="product-detail-store__sum">95</span>
+                                        <span class="product-detail-store__sum">'.$row["Quality"].'</span>
                                     </div>
                                 </div>
 
@@ -225,7 +209,8 @@
                                         <span class="product-detail-from">Gửi từ</span>
                                     </div>
                                     <div class="col l-11">
-                                        <span class="product-detail-from__address">Thành Phố Nha Trang, Khánh Hòa</span>
+                                        <span class="product-detail-from__address">
+                                        CỬA HÀNG BÁN LINH KIỆN MÁY TÍNH NTSTORE</span>
                                     </div>
                                 </div>
                                 <span class="product-details-title product-description">
@@ -233,24 +218,19 @@
                                 </span>
 
                                 <p class="product-description-details">
-                                    _Trọng lượng máy bay: 94,8g (có pin)
-                                    _ Máy ảnh: 2MP góc rộng 720P, 0,3MP (Tùy chọn) <br>
-                                    _ Kích thước: 27x19,5x5cm (cánh máy bay không gập lại) và 12,5x7,5x5cm (cánh máy bay
-                                    gập lại)<br>
-                                    _ Trọng lượng gói hàng: 360g, có tay cầm có thể gập lại, kích thước nhỏ, dễ mang
-                                    theo. <br>
-                                    _ Chức năng: chế độ giữ độ cao giúp chuyến bay ổn định. Có wifi có thể kết nối app,
-                                    hệ thống apk để chụp ảnh, quay phim, truyền tải thời gian thực thông qua hình ảnh
-                                    camera điện thoại. Công nghệ 2.4GHz được sử dụng để chống nhiễu. Có thể bay lên,
-                                    xuống, tiến, lùi, bay sang trái, bay sang phải và xoay 360 °. Thân máy bay
-                                    quadcopter được làm bằng nhựa kỹ thuật chịu lực và chịu lực cao, khả năng chống chịu
-                                    nhẹ và bền.<br>
-                                    _ Bao gồm: 1 Eachine E58 RC Quadcopter, 1 Máy phát, 1 Pin Lipo 3.7V 500mAh, 1 Cáp
-                                    sạc USB, 4 Nắp bảo vệ , 4 Phụ tùng, 1 tua vít, 1 Hướng dẫn sử dụng<br>
+                                    '.$row["Description"].'
                                 </p>
                             </div>
                         </div>
                     </div>
+
+                    ';
+                    $db->close_db();//ngắt kết nối database
+                }
+                      
+
+                ?>
+
                 </div>
             </div>
     </body>

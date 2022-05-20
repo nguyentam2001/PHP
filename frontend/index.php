@@ -69,24 +69,22 @@
                                     <i class="category__heading-icon fas fa-list"></i>Danh mục
                                 </h3>
                                 <ul class="category-list">
-                                    <li class="category-item">
-                                        <a href="#" class="category-item__link category-item--active">Sản Phẩm</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <a href="#" class="category-item__link">Màn hình</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <a href="#" class="category-item__link">Bàn phím</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <a href="#" class="category-item__link">Ổ cứng</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <a href="#" class="category-item__link">Chuột</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <a href="#" class="category-item__link">CARD màn hình</a>
-                                    </li>
+                                    <?php
+                                    require_once '../utilities/check-error.php';
+                                    require_once '../database/connect_db.php';
+                                    $db = new Database();
+                                    $db->connect_db(); //kết nối database
+                                    $query = "SELECT * from category";
+                                    $data = $db->getData($query);
+                                    $db->close_db();
+                                    for ($i=0; $i < count($data) ; $i++) { 
+                                        echo '
+                                            <li class="category-item">
+                                            <a href="/ntstore/frontend/?categoryID='.$data[$i]["CategoryID"].'" class="category-item__link">'.$data[$i]["CategoryName"].'</a>
+                                            </li>
+                                        ';
+                                    }
+                                    ?>
                                 </ul>
                             </nav>
                         </div>
@@ -116,20 +114,27 @@
                                 <!-- <div class="grid"> -->
                                 <div class="row">
                                     <!-- item 1 -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="product.php">
+
+                                    <!-- product-item -->
+                                    <?php
+                                        $db = new Database();
+                                        $db->connect_db(); //kết nối database
+                                        $query = "SELECT * from product";
+                                        $data = $db->getData($query);
+                                        $db->close_db();
+                                        for ($i=0; $i < count($data) ; $i++) { 
+                                            echo '
+                                            <div class="col l-2-4 nt-m-4 c-6">
+                                            <a class="home-product-item" href="product.php?productID='.$data[$i]["ProductID"].'">
                                             <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
+                          background-image: url(../assets/img/items/'.$data[$i]['Image'].');
                         "></div>
                                             <div class="home-product-item__body">
                                                 <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
+                                                    '.$data[$i]['ProductName'].'
                                                 </h4>
                                                 <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
+                                                    <span class="home-product-item__price-current">'.number_format($data[$i]["ExportPrice"], 0, '', ',').'đ</span>
                                                 </div>
                                                 <div class="home-product-item__action">
                                                     <span
@@ -146,15 +151,15 @@
                                                             <i class="fas fa-star"></i>
                                                         </div>
                                                         <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
+                                                            Số lượng
+                                                            <span class="home-product-item__sold--amount">'.$data[$i]['Quality'].'</span>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
+                                                    <span class="home-product-item__brand">NTstore</span>
+                                                    <span class="home-product-item__origin-name">Hà Nội</span>
                                                 </div>
                                             </div>
                                             <span class="home-product-item__favourite">
@@ -165,466 +170,10 @@
                                                 <span class="home-product-item__sale-off-label">GIẢM</span>
                                             </div>
                                         </a>
-                                    </div>
-                                    <!-- item 2 -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="product.php">
-                                            <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-                        "></div>
-                                            <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
-                                                </h4>
-                                                <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
-                                                </div>
-                                                <div class="home-product-item__action">
-                                                    <span
-                                                        class="home-product-item__like home-product-item__like--liked">
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
-                                                    <div class="home-product-item__sale-rate">
-                                                        <div class="home-product-item__rating">
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
-                                                </div>
-                                            </div>
-                                            <span class="home-product-item__favourite">
-                                                <span>Yêu thích</span>
-                                            </span>
-                                            <div class="home-product-item__sale-off">
-                                                <span class="home-product-item__sale-off-percent">40%</span>
-                                                <span class="home-product-item__sale-off-label">GIẢM</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- item 3 -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="product.php">
-                                            <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-                        "></div>
-                                            <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
-                                                </h4>
-                                                <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
-                                                </div>
-                                                <div class="home-product-item__action">
-                                                    <span
-                                                        class="home-product-item__like home-product-item__like--liked">
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
-                                                    <div class="home-product-item__sale-rate">
-                                                        <div class="home-product-item__rating">
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
-                                                </div>
-                                            </div>
-                                            <span class="home-product-item__favourite">
-                                                <span>Yêu thích</span>
-                                            </span>
-                                            <div class="home-product-item__sale-off">
-                                                <span class="home-product-item__sale-off-percent">40%</span>
-                                                <span class="home-product-item__sale-off-label">GIẢM</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- item 4 -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="product.php">
-                                            <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-                        "></div>
-                                            <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
-                                                </h4>
-                                                <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
-                                                </div>
-                                                <div class="home-product-item__action">
-                                                    <span
-                                                        class="home-product-item__like home-product-item__like--liked">
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
-                                                    <div class="home-product-item__sale-rate">
-                                                        <div class="home-product-item__rating">
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
-                                                </div>
-                                            </div>
-                                            <span class="home-product-item__favourite">
-                                                <span>Yêu thích</span>
-                                            </span>
-                                            <div class="home-product-item__sale-off">
-                                                <span class="home-product-item__sale-off-percent">40%</span>
-                                                <span class="home-product-item__sale-off-label">GIẢM</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- item 5 -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="product.php">
-                                            <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-                        "></div>
-                                            <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
-                                                </h4>
-                                                <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
-                                                </div>
-                                                <div class="home-product-item__action">
-                                                    <span
-                                                        class="home-product-item__like home-product-item__like--liked">
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
-                                                    <div class="home-product-item__sale-rate">
-                                                        <div class="home-product-item__rating">
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
-                                                </div>
-                                            </div>
-                                            <span class="home-product-item__favourite">
-                                                <span>Yêu thích</span>
-                                            </span>
-                                            <div class="home-product-item__sale-off">
-                                                <span class="home-product-item__sale-off-percent">40%</span>
-                                                <span class="home-product-item__sale-off-label">GIẢM</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- item 6 -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="product.php">
-                                            <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-                        "></div>
-                                            <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
-                                                </h4>
-                                                <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
-                                                </div>
-                                                <div class="home-product-item__action">
-                                                    <span
-                                                        class="home-product-item__like home-product-item__like--liked">
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
-                                                    <div class="home-product-item__sale-rate">
-                                                        <div class="home-product-item__rating">
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
-                                                </div>
-                                            </div>
-                                            <span class="home-product-item__favourite">
-                                                <span>Yêu thích</span>
-                                            </span>
-                                            <div class="home-product-item__sale-off">
-                                                <span class="home-product-item__sale-off-percent">40%</span>
-                                                <span class="home-product-item__sale-off-label">GIẢM</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- item 7  -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="#">
-                                            <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-                        "></div>
-                                            <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
-                                                </h4>
-                                                <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
-                                                </div>
-                                                <div class="home-product-item__action">
-                                                    <span
-                                                        class="home-product-item__like home-product-item__like--liked">
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
-                                                    <div class="home-product-item__sale-rate">
-                                                        <div class="home-product-item__rating">
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
-                                                </div>
-                                            </div>
-                                            <span class="home-product-item__favourite">
-                                                <span>Yêu thích</span>
-                                            </span>
-                                            <div class="home-product-item__sale-off">
-                                                <span class="home-product-item__sale-off-percent">40%</span>
-                                                <span class="home-product-item__sale-off-label">GIẢM</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- item 8  -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="#">
-                                            <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-                        "></div>
-                                            <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
-                                                </h4>
-                                                <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
-                                                </div>
-                                                <div class="home-product-item__action">
-                                                    <span
-                                                        class="home-product-item__like home-product-item__like--liked">
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
-                                                    <div class="home-product-item__sale-rate">
-                                                        <div class="home-product-item__rating">
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
-                                                </div>
-                                            </div>
-                                            <span class="home-product-item__favourite">
-                                                <span>Yêu thích</span>
-                                            </span>
-                                            <div class="home-product-item__sale-off">
-                                                <span class="home-product-item__sale-off-percent">40%</span>
-                                                <span class="home-product-item__sale-off-label">GIẢM</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- item 9  -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="#">
-                                            <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-                        "></div>
-                                            <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
-                                                </h4>
-                                                <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
-                                                </div>
-                                                <div class="home-product-item__action">
-                                                    <span
-                                                        class="home-product-item__like home-product-item__like--liked">
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
-                                                    <div class="home-product-item__sale-rate">
-                                                        <div class="home-product-item__rating">
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
-                                                </div>
-                                            </div>
-                                            <span class="home-product-item__favourite">
-                                                <span>Yêu thích</span>
-                                            </span>
-                                            <div class="home-product-item__sale-off">
-                                                <span class="home-product-item__sale-off-percent">40%</span>
-                                                <span class="home-product-item__sale-off-label">GIẢM</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- item 10  -->
-                                    <div class="col l-2-4 nt-m-4 c-6">
-                                        <!-- product-item -->
-                                        <a class="home-product-item" href="#">
-                                            <div class="home-product-item__img" style="
-                          background-image: url(https://cf.shopee.vn/file/68fff1255e2a9fa953384383ecfb937c_tn);
-                        "></div>
-                                            <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
-                                                    Flycam E88 pin 1800mAh, máy bay điều khiển từ xa
-                                                    camera 4k
-                                                </h4>
-                                                <div class="home-product-item__price">
-                                                    <span class="home-product-item__price-old">980.000đ</span>
-                                                    <span class="home-product-item__price-current">580.000đ</span>
-                                                </div>
-                                                <div class="home-product-item__action">
-                                                    <span
-                                                        class="home-product-item__like home-product-item__like--liked">
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                                    </span>
-                                                    <div class="home-product-item__sale-rate">
-                                                        <div class="home-product-item__rating">
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <div class="home-product-item__sold">
-                                                            Đã bán
-                                                            <span class="home-product-item__sold--amount">90</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="home-product-item__origin">
-                                                    <span class="home-product-item__brand">Dji</span>
-                                                    <span class="home-product-item__origin-name">Bắc Giang</span>
-                                                </div>
-                                            </div>
-                                            <span class="home-product-item__favourite">
-                                                <span>Yêu thích</span>
-                                            </span>
-                                            <div class="home-product-item__sale-off">
-                                                <span class="home-product-item__sale-off-percent">40%</span>
-                                                <span class="home-product-item__sale-off-label">GIẢM</span>
-                                            </div>
-                                        </a>
-                                    </div>
+                                        </div>
+                                            ';
+                                        }
+                                        ?>
                                 </div>
                                 <!-- </div> -->
                             </div>
