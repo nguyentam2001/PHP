@@ -39,7 +39,10 @@ class Product {
       data: form_data,
       type: "post",
       success: function (imgeSrc) {
-        $("#imageView").css("background-image", "url(" + imgeSrc + ")");
+        $("#imageView").css(
+          "background-image",
+          "url(../assets/img/items/" + imgeSrc + ")"
+        );
         me.ImgeSrc = imgeSrc;
       },
     });
@@ -120,7 +123,6 @@ class Product {
         success: function (response) {
           console.log(response);
           $(".display-form").hide();
-
           Toast.show("toastSuccess", "Thêm mới thành công");
           location.reload();
         },
@@ -178,7 +180,7 @@ class Product {
                   // console.log(product[key]);
                   $("#imageView").css(
                     "background-image",
-                    "url(" + product[key] + ")"
+                    "url(../assets/img/items/" + product[key] + ")"
                   );
                   ca.ImgeSrc = product[key];
                 } else {

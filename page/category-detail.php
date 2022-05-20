@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
 
-<body>
-    <div class="display-form">
-        <div class="form-wraper">
-            <div id="categoryForm">
-                <div class="continer">
-                    <div class="form-header">
-                        <div class="title-header">Thông tin danh mục</div>
-                    </div>
+    <body>
+        <div class="display-form">
+            <div class="form-wraper">
+                <div id="categoryForm">
+                    <div class="continer">
+                        <div class="form-header">
+                            <div class="title-header">Thông tin danh mục</div>
+                        </div>
 
-                    <div class="form-content">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-input">
-                                    <div class="title">Mã danh mục</div>
-                                    <input type="" name="CategoryID" id="">
+                        <div class="form-content">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-input">
+                                        <div class="title">Mã danh mục</div>
+                                        <input readonly type="" name="CategoryID" id="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-input">
+                                        <div class="title">Tên danh mục</div>
+                                        <input type="" name="CategoryName" id="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-input">
-                                    <div class="title">Tên danh mục</div>
-                                    <input type="" name="CategoryName" id="">
-                                </div>
-                            </div>
+                        <div class="form-footer">
+                            <button type="button" class="btn btn-light" id="btnCancel">Hủy bỏ</button>
+                            <button type="button" class="btn btn-warning" id="btnConfirm"> Đồng ý</button>
                         </div>
-                    </div>
-                    <div class="form-footer">
-                        <button type="button" class="btn btn-light" id="btnCancel">Hủy bỏ</button>
-                        <button type="button" class="btn btn-warning" id="btnConfirm"> Đồng ý</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
-<style>
+    </body>
+    <style>
     .form-wraper {
         position: fixed;
         top: 0;
@@ -58,11 +58,11 @@
         justify-content: center;
     }
 
-    .display-form{
+    .display-form {
         display: none;
     }
 
-    #categoryForm{
+    #categoryForm {
         border-radius: 8px;
         width: 800px;
         background-color: white;
@@ -94,13 +94,13 @@
     #categoryForm .form-input .title {
         margin-bottom: 8px;
     }
+
     #categoryForm .form-footer {
         margin-top: 40px;
         display: flex;
         justify-content: space-between;
         margin-bottom: 24px;
     }
-
-</style>
+    </style>
 
 </html>

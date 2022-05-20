@@ -5,7 +5,7 @@
     }
     else {
         move_uploaded_file($_FILES['file']['tmp_name'], '../../assets/img/items/' . $_FILES['file']['name']);
-        echo '../assets/img/items/' . $_FILES['file']['name'];
+        echo  $_FILES['file']['name'];
     }
 
 ?>

@@ -81,7 +81,7 @@
                     <td>' . $data[$i]['Description'] . '</td>
                     <td>' . $data[$i]['Quality'] . '</td>
                    
-                    <td>   <div class="image" style="background-image: url('. $data[$i]['Image'] .');"  ></div>  </td>
+                    <td>   <div class="image" style="background-image: url(../assets/img/items/'. $data[$i]['Image'] .');"  ></div>  </td>
                     <td>
                         <div class = "table-function">
                         <div class = "btn-update" value = "' . $data[$i]['ProductID'] . '">Sửa</div>
