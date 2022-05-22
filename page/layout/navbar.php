@@ -89,19 +89,22 @@
                            Nhà cung cấp
                        </div>
                    </a>
-                   <div class="item p-l-12 flex-center">
+                   <a <?php if($_SERVER['SCRIPT_NAME']=="/ntstore/page/report.php") { ?>
+                       class="link-active item p-l-12 flex-center" <?php   }  ?> class="item p-l-12 flex-center "
+                       href="report.php">
                        <div class="report-icon icon-base"></div>
                        <div class="report m-l-8 text">
                            Báo cáo
                        </div>
-                   </div>
+                   </a>
+                   <a class="item p-l-12 flex-center " href="/ntstore/frontend">
+                       <div class="sell-interface icon-base"></div>
+                       <div class="report m-l-8 text">
+                           GD bán hàng
+                       </div>
+                   </a>
                </div>
-               <a class="item p-l-12 flex-center " href="/ntstore/frontend">
-                   <div class="sell-interface icon-base"></div>
-                   <div class="report m-l-8 text">
-                       GD bán hàng
-                   </div>
-               </a>
+
            </div>
            </div>
            <script type="text/javascript" src="../../script/components/navbar.js"></script>
