@@ -141,7 +141,7 @@
             </div>
             <a href="/ntstore/frontend/">
                 <div class="header__logo">
-                    <img src="../assets/img/ntstore-fe.jpg" alt="">
+                    <img src="../assets/img/ntstore-fe1.jpg" alt="">
                 </div>
             </a>
             <div class="header__search">
@@ -169,11 +169,11 @@
             </div>
 
             <div class="header__cart">
-               
+
                 <div class="header__cart-group">
-                <a href="/ntstore/frontend/cart.php">
-                    <i class="header__cart-icon fas fa-cart-plus"></i>
-                </a>
+                    <a href="/ntstore/frontend/cart.php">
+                        <i class="header__cart-icon fas fa-cart-plus"></i>
+                    </a>
 
                     <span class="header__cart-notice">3</span>
                     <!--Nếu có sản phẩm thì thêm : header_cart-list--no-cart -->
@@ -226,7 +226,7 @@
                                     </div>
                                 </div>
                             </li>
-                            
+
                             <!-- item 6 -->
                             <li class="header__cart-item">
                                 <img src="./assest/img/img_item/flycam_mavic_2_pro.png" alt=""
@@ -277,7 +277,7 @@
                             </a>
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
     </div>

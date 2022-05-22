@@ -95,31 +95,42 @@
                                     Mới nhất
                                 </button>
                                 <button class="btn home-filter__btn">Bán chạy</button>
-                                <div class="select-input hide-on-mobile">
-                                    <span class="select-input__label">Giá</span>
-                                    <i class="select-input__icon fas fa-chevron-down"></i>
-                                    <!-- list options -->
-                                    <ul class="select-input__list">
-                                        <li class="select-input__item">
-                                            <a href="" class="select-input__link">Giá: Thấp đến cao</a>
-                                        </li>
-                                        <li class="select-input__item">
-                                            <a href="" class="select-input__link">Giá: Cao đến thấp</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
+                                <form method="POST" action="">
+                                    <select style="font-size: 1.4rem; outline: none; border: none;" name="price"
+                                        class="select-input hide-on-mobile" onchange="this.form.submit()">
+                                        <option value="" disabled selected>--Lọc sản phẩm--</option>
+                                        <option value="asc">Giá: Thấp đến cao</option>
+                                        <option value="desc">Giá: Cao đến thấp</option>
+                                    </select>
+                                </form>
                             </div>
                             <div class="home-product">
                                 <!-- <div class="grid"> -->
                                 <div class="row">
                                     <!-- item 1 -->
-
                                     <!-- product-item -->
                                     <?php
                                         $db = new Database();
                                         $db->connect_db(); //kết nối database
-                                        $query = "SELECT * from product";
+                                        //Lấy id để lọc category theo sản phẩm
+                                        $CategoryID='NULL';
+                                        if(isset( $_GET['categoryID']) && $_GET['categoryID']){
+                                            
+                                            $CategoryID = $_GET['categoryID'];
+                                        }
+                                        $query=" SELECT * From product WHERE $CategoryID IS NOT NULL AND CategoryID = $CategoryID OR $CategoryID IS NULL";
+
+                                        //Lọc theo giá thành
+                                        if(isset($_POST['price'])&& $_POST['price']){
+                                            if($_POST['price']=='asc'){
+                                                //sắp xếp tăng dần
+                                                $query=" SELECT * From product WHERE $CategoryID IS NOT NULL AND CategoryID = $CategoryID OR $CategoryID IS NULL ORDER BY ExportPrice ASC";
+                                            }else{
+                                                //sắp xếp giảm dần
+                                                $query=" SELECT * From product WHERE $CategoryID IS NOT NULL AND CategoryID = $CategoryID OR $CategoryID IS NULL ORDER BY ExportPrice DESC";
+                                            }
+                                        }
+
                                         $data = $db->getData($query);
                                         $db->close_db();
                                         for ($i=0; $i < count($data) ; $i++) { 
