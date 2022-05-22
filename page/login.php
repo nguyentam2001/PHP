@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,48 +9,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NTstore</title>
+    <title>NTStore</title>
 </head>
 
 <body>
-    <div class="all">
+
+    <div class="loginBox">
+        <img src="../assets/img/avt-user.png" class="avatar">
+        <h1>Đăng nhập</h1>
 
         <form action="login.php" method="post">
-            <div class="login-form">
-                <div class="title">
-                    <strong>Trang đăng nhập</strong>
-                </div>
-    
-                <div class="login-infor">
-                    <div class="login-body">
-                        <div class="form-group">
-                            <label for="email">Tài khoản:</label>
-                            <input type="text" class="form-control" name="user_name_lg" placeholder="Nhập tên đăng nhập...">
-                        </div>
-    
-                        <div class="form-group">
-                            <label for="pwd">Mật khẩu:</label>
-                            <input type="password" class="form-control" name="passlg" placeholder="Nhập mật khẩu..." required>
-                        </div>
-    
-                        <button type="submit" class="btn btn-default" name="dangnhap">Đăng nhập</button>
-                    </div>
-                </div>
-            </div>
+            <p>Tài khoản</p>
+            <input type="text" class="inp-accountName" name="userName" placeholder="Tài khoản...">
+            <p>Mật khẩu</p>
+            <input type="password" class="inp-password" name="passWord" placeholder="Mật khẩu...">
+            <button type="submit" class="btn-login" name="dangnhap">Đăng nhập</button>
         </form>
     </div>
-
     <?php
+
     require_once '../database/connect_db.php';
 
     if (isset($_POST["dangnhap"])) {
-        if (!empty($_POST["user_name_lg"])) {
-            $AccountName = $_POST["user_name_lg"];
+        if (!empty($_POST["userName"])) {
+            $AccountName = $_POST["userName"];
         } else {
             echo 'Vui lòng điền tài khoản <br/>';
         }
-        if (!empty($_POST["passlg"])) {
-            $PassWord = $_POST["passlg"];
+        if (!empty($_POST["passWord"])) {
+            $PassWord = $_POST["passWord"];
         } else {
             echo 'Vui lòng điền mật khẩu <br/>';
         }
@@ -61,39 +52,88 @@
                 echo 'Tài khoản hoặc mật khẩu không chính xác!';
             } else {
                 echo 'Đăng nhập thành công';
-                echo '<script type="text/javascript"> window.open("overview.php","_self");</script>';
+                header("Location:/ntstore/page/overview.php");
+                $row = mysqli_fetch_assoc($query);
+                $_SESSION["user_name"] =  $row["EmployeeName"];
             }
-           
         }
     }
     ?>
 </body>
 <style>
-    body{
-        background-color: blanchedalmond;
-    }
-    .all{
-        align-items: center;
-        width: 100%;
-        text-align: center;
-    }
-    .login-form {
-        padding-top: 30px;
-        align-items: center;
-        width: 100%;
-        height: 300px;
-    }
-    .title{
-        height: 50px;
-        width: 100%;
-        font-size: 50px;
-        color: blueviolet;
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url(../assets/img/backgroundLogin.jpg);
+        background-size: cover;
+        background-position: center;
+        font-family: sans-serif;
     }
 
-    .login-infor{
-        padding-top: 60px;
-        font-size: 20px;
-        
+    .loginBox {
+        width: 320px;
+        height: 420px;
+        background: #fff;
+        color: #000;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        padding: 70px 30px;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        top: -50px;
+        left: 110px;
+    }
+
+    h1 {
+        margin: 0;
+        padding: 0 0 20px;
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .loginBox p {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+    }
+
+    .loginBox input,
+    .btn-login {
+        width: 100%;
+        margin-bottom: 20px;
+
+
+    }
+
+    .inp-accountName,
+    .inp-password {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        background: transparent;
+        outline: none;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .btn-login{
+        border:  none;
+        outline: none;
+        height: 40px;
+        background: #ccc;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+    .btn-login:hover{
+        cursor: pointer;
+
     }
 </style>
 
