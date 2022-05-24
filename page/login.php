@@ -24,41 +24,43 @@ session_start();
             <p>Mật khẩu</p>
             <input type="password" class="inp-password" name="passWord" placeholder="Mật khẩu...">
             <button type="submit" class="btn-login" name="dangnhap">Đăng nhập</button>
+            <?php
+
+            require_once '../database/connect_db.php';
+
+            if (isset($_POST["dangnhap"])) {
+                if (!empty($_POST["userName"])) {
+                    $AccountName = $_POST["userName"];
+                } else {
+                    echo '<p class="show_warning">Vui lòng điền tài khoản</p>';
+                }
+                if (!empty($_POST["passWord"])) {
+                    $PassWord = $_POST["passWord"];
+                } else {
+                    echo '<p class="show_warning">Vui lòng điền mật khẩu</p>';
+                }
+
+                if (!empty($AccountName) && !empty($PassWord)) {
+                    $dataBase = new Database();
+                    $dataBase->connect_db();
+                    $sql = "SELECT * FROM employee WHERE AccoutName ='" . $AccountName . "' AND Password = '" . $PassWord . "'";
+                    $query = mysqli_query($dataBase->conn, $sql);
+
+                    if (mysqli_num_rows($query) == 0) {
+                        echo '<p class="show_warning">Tài khoản hoặc mật khẩu không chính xác!</p>';
+                    } else {
+                        echo 'Đăng nhập thành công';
+                        $row = mysqli_fetch_assoc($query);
+                        $_SESSION["id"] =  $row["EmployeeNameID"];
+                        header("Location:/ntstore/page/overview.php");
+                        $_SESSION["user_name"] =  $row["EmployeeName"];
+                    }
+                }
+            }
+            ?>
         </form>
     </div>
-    <?php
 
-    require_once '../database/connect_db.php';
-
-    if (isset($_POST["dangnhap"])) {
-        if (!empty($_POST["userName"])) {
-            $AccountName = $_POST["userName"];
-        } else {
-            echo 'Vui lòng điền tài khoản <br/>';
-        }
-        if (!empty($_POST["passWord"])) {
-            $PassWord = $_POST["passWord"];
-        } else {
-            echo 'Vui lòng điền mật khẩu <br/>';
-        }
-
-        if (!empty($AccountName) && !empty($PassWord)) {
-            $dataBase = new Database();
-            $dataBase->connect_db();
-            $sql = "SELECT * FROM employee WHERE AccoutName ='" . $AccountName . "' AND Password = '" . $PassWord . "'";
-            $query = mysqli_query($dataBase->conn, $sql);
-
-            if (mysqli_num_rows($query) == 0) {
-                echo 'Tài khoản hoặc mật khẩu không chính xác!';
-            } else {
-                echo 'Đăng nhập thành công';
-                header("Location:/ntstore/page/overview.php");
-                $row = mysqli_fetch_assoc($query);
-                $_SESSION["user_name"] =  $row["EmployeeName"];
-            }
-        }
-    }
-    ?>
 </body>
 <style>
     body {
@@ -71,6 +73,7 @@ session_start();
     }
 
     .loginBox {
+        border-radius: 5px;
         width: 320px;
         height: 420px;
         background: #fff;
@@ -123,17 +126,22 @@ session_start();
         font-size: 16px;
     }
 
-    .btn-login{
-        border:  none;
+    .btn-login {
+        border: none;
         outline: none;
         height: 40px;
         background: #ccc;
         font-size: 18px;
         border-radius: 20px;
     }
-    .btn-login:hover{
+
+    .btn-login:hover {
         cursor: pointer;
 
+    }
+
+    .show_warning {
+        color: red;
     }
 </style>
 
