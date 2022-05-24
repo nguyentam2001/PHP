@@ -27,9 +27,13 @@ class Database {
   function getData($query){
     $result=mysqli_query($this->conn,$query);
     $data=array();
-    while($row = mysqli_fetch_array($result,1)){
-      $data[]=$row;
-    };
+    if($result){
+      while($row = mysqli_fetch_array($result,1)){
+        $data[]=$row;
+      };
+    }
+  
+    
     return $data;
   }
   //ngắt kết lối db

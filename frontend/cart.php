@@ -125,36 +125,10 @@
                                             Trợ giúp
                                         </a>
                                     </li>
-                                    <!-- <li
-                class="
-                  header__navbar-item
-                  header__navbar-item--strong
-                  header__navbar-item--separate
-                "
-              >
-                Đăng nhập
-              </li>
-              <li class="header__navbar-item header__navbar-item--strong">
-                Đăng ký
-              </li> -->
+
                                     <li class="header__navbar-item header__navbar-user">
-                                        <img src="https://cf.shopee.vn/file/82144a6d662f92a6e6a8710a27e06420_tn" alt=""
-                                            class="header__navbar-user-img" />
-                                        <span class="header__navbar-user-name">Nguyễn Văn Tâm</span>
-                                        <ul class="header__navbar-user-menu">
-                                            <li class="header__navbar-user-item">
-                                                <a href="">Tài khoản của tôi</a>
-                                            </li>
-                                            <li class="header__navbar-user-item">
-                                                <a href="/ntstore/page/login.php">Đăng nhập quyền Admin</a>
-                                            </li>
-                                            <li class="header__navbar-user-item">
-                                                <a href="">Đơn mua</a>
-                                            </li>
-                                            <li class="header__navbar-user-item">
-                                                <a href="" class="header__navbar-user-item--logout">Đăng xuất</a>
-                                            </li>
-                                        </ul>
+                                        <a class="header__navbar-user-name" href="/ntstore/page/login.php">Đăng nhập
+                                            quyền Admin</a>
                                     </li>
                                 </ul>
                             </div>
@@ -166,7 +140,7 @@
                                 </div>
                                 <a href="/ntstore/frontend/">
                                     <div class="header__logo">
-                                        <img src="../assets/img/ntstore-fe.jpg" alt="">
+                                        <img src="../assets/img/ntstore-fe1.jpg" alt="">
                                     </div>
                                 </a>
                                 <div class="separate"></div>

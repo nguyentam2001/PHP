@@ -5,28 +5,28 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NTStore</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NTStore</title>
+    </head>
 
-<body>
+    <body>
 
-    <div class="loginBox">
-        <img src="../assets/img/avt-user.png" class="avatar">
-        <h1>Đăng nhập</h1>
+        <div class="loginBox">
+            <img src="../assets/img/avt-user.png" class="avatar">
+            <h1>Đăng nhập</h1>
 
-        <form action="login.php" method="post">
-            <p>Tài khoản</p>
-            <input type="text" class="inp-accountName" name="userName" placeholder="Tài khoản...">
-            <p>Mật khẩu</p>
-            <input type="password" class="inp-password" name="passWord" placeholder="Mật khẩu...">
-            <button type="submit" class="btn-login" name="dangnhap">Đăng nhập</button>
-        </form>
-    </div>
-    <?php
+            <form action="login.php" method="post">
+                <p>Tài khoản</p>
+                <input type="text" class="inp-accountName" name="userName" placeholder="Tài khoản...">
+                <p>Mật khẩu</p>
+                <input type="password" class="inp-password" name="passWord" placeholder="Mật khẩu...">
+                <button type="submit" class="btn-login" name="dangnhap">Đăng nhập</button>
+            </form>
+        </div>
+        <?php
 
     require_once '../database/connect_db.php';
 
@@ -59,8 +59,8 @@ session_start();
         }
     }
     ?>
-</body>
-<style>
+    </body>
+    <style>
     body {
         margin: 0;
         padding: 0;
@@ -71,6 +71,7 @@ session_start();
     }
 
     .loginBox {
+        border-radius: 4px;
         width: 320px;
         height: 420px;
         background: #fff;
@@ -123,18 +124,19 @@ session_start();
         font-size: 16px;
     }
 
-    .btn-login{
-        border:  none;
+    .btn-login {
+        border: none;
         outline: none;
         height: 40px;
         background: #ccc;
         font-size: 18px;
         border-radius: 20px;
     }
-    .btn-login:hover{
+
+    .btn-login:hover {
         cursor: pointer;
 
     }
-</style>
+    </style>
 
 </html>

@@ -3,6 +3,7 @@
    $database=new Database();
    $database->connect_db();//kết nối database
 if(isset($_POST["ProductID"])&&$_POST["ProductID"]){
+    //Lấy giá tiền bởi sản phẩm
     $output="";
     $ProductID=$_POST["ProductID"];
     $qr="SELECT ImportPrice FROM product where ProductID=$ProductID";

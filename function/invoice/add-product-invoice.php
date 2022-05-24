@@ -61,6 +61,7 @@ session_start();
             $ProductID=$_SESSION["invoice_import_product"][$i]["ProductID"];
             $TotalImport=$_SESSION["invoice_import_product"][$i]["TotalImport"];
             $PriceImport=$_SESSION["invoice_import_product"][$i]["PriceImport"];
+            //Thêm mới các hàng cho bảng import_invoice_product
             insertImportInvoiceProduct($InvoiceID,$ProductID, $TotalImport,$PriceImport);
         }
 

@@ -10,7 +10,7 @@ function fillOptionSelect($query,$value,$name,$valueSession){
     $db->connect_db(); //kết nối database
     $data = $db->getData($query);
     $db->close_db();
-    $output="'<option value=''>-- Chọn danh mục --</option>'";
+    $output="'<option value='' disabled selected>-- Chọn --</option>'";
     if(count($data)>0){
         for($i=0;$i<count($data);$i++){
             $selected=$data[$i][$value]==$valueSession?' selected':'';
@@ -33,28 +33,8 @@ function getPropertiesByID($tableName,$propName,$propID,$propIDName){
     $database->close_db();//ngắt kết nối database
     return  $output;
 }
-/*
-function productsFirstCategoryID(){
-    $output="";
-    $db = new Database();
-    $db->connect_db(); //kết nối database
-    $query = "SELECT CategoryID from category";
-    $data = $db->getData($query);
-    $firstCategoryID=0;
-    if(count($data)>0){
-        $firstCategoryID=$data[0]['CategoryID'];
-    }
-        //Thực hiện câu lệnh truy vấn lấy danh sách sản phẩm by category id
-            $query="SELECT * FROM product WHERE CategoryID=$firstCategoryID";
-            $data=mysqli_query( $db->conn,$query);
-            while($row=mysqli_fetch_array($data)){
-                $output .= '<option value='.$row['ProductID'].'>'.$row['ProductName'].' </option>';
-            }
-            echo $output;
-    $db->close_db();
-}
-*/
 
+//render ra danh sách sản phẩm
 function showProductInvoice(){
     if(isset($_SESSION["invoice_import_product"])&&(is_array($_SESSION["invoice_import_product"]))){
         for($i=0;$i<sizeof($_SESSION["invoice_import_product"]);$i++){
@@ -118,7 +98,7 @@ function showProductInvoice(){
                                                     echo $_SESSION["CurrentInvoiceID"];
                                                 }else{
 
-                                            //Lấy số hóa đơn mới
+                                                     //Lấy số hóa đơn mới
                                                      echo getInvoiceNumber();
                                                 }
                                                

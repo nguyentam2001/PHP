@@ -13,7 +13,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
             rel="stylesheet" />
-
+        <link rel="shortcut icon" href="../assets/img/logo-tab.jpg" />
         <title>ntstore</title>
         <link rel="stylesheet" href="./assest/css/base.css" />
         <link rel="stylesheet" href="./assest/css/main.css" />
@@ -69,6 +69,9 @@
                                     <i class="category__heading-icon fas fa-list"></i>Danh mục
                                 </h3>
                                 <ul class="category-list">
+                                    <li class="category-item">
+                                        <a href="/ntstore/frontend/" class="category-item__link">Tất cả sản phẩm</a>
+                                    </li>
                                     <?php
                                     require_once '../utilities/check-error.php';
                                     require_once '../database/connect_db.php';
@@ -78,11 +81,20 @@
                                     $data = $db->getData($query);
                                     $db->close_db();
                                     for ($i=0; $i < count($data) ; $i++) { 
-                                        echo '
+                                        if(isset($_GET["categoryID"]) && $_GET["categoryID"]==$data[$i]["CategoryID"]){
+                                            echo '
+                                            <li class="category-item">
+                                            <a href="/ntstore/frontend/?categoryID='.$data[$i]["CategoryID"].'" class="category-item__link category-item--active">'.$data[$i]["CategoryName"].'</a>
+                                            </li>
+                                        ';
+                                        }else{
+                                             echo '
                                             <li class="category-item">
                                             <a href="/ntstore/frontend/?categoryID='.$data[$i]["CategoryID"].'" class="category-item__link">'.$data[$i]["CategoryName"].'</a>
                                             </li>
                                         ';
+                                        }
+                                       
                                     }
                                     ?>
                                 </ul>
@@ -112,6 +124,8 @@
                                     <?php
                                         $db = new Database();
                                         $db->connect_db(); //kết nối database
+                                        
+
                                         //Lấy id để lọc category theo sản phẩm
                                         $CategoryID='NULL';
                                         if(isset( $_GET['categoryID']) && $_GET['categoryID']){
@@ -119,8 +133,15 @@
                                             $CategoryID = $_GET['categoryID'];
                                         }
                                         $query=" SELECT * From product WHERE $CategoryID IS NOT NULL AND CategoryID = $CategoryID OR $CategoryID IS NULL";
+                                        //Tìm kiếm sản phẩm
+                                        
+                                        if(isset($_GET["search"])&& $_GET["search"]){
+                                            $search = $_GET['search'];
+                                            $query = "SELECT * from product WHERE '$search' IS NOT NULL AND ProductName  LIKE CONCAT ('%$search%') OR '$search' IS NULL";
+                                        }
 
-                                        //Lọc theo giá thành
+
+                                        //Lọc theo tăng giảm giá thành 
                                         if(isset($_POST['price'])&& $_POST['price']){
                                             if($_POST['price']=='asc'){
                                                 //sắp xếp tăng dần
@@ -141,7 +162,7 @@
                           background-image: url(../assets/img/items/'.$data[$i]['Image'].');
                         "></div>
                                             <div class="home-product-item__body">
-                                                <h4 class="home-product-item__description">
+                                                <h4 class="home-product-item__description" title='.$data[$i]['ProductName'].'>
                                                     '.$data[$i]['ProductName'].'
                                                 </h4>
                                                 <div class="home-product-item__price">
@@ -188,7 +209,7 @@
                                 </div>
                                 <!-- </div> -->
                             </div>
-                            <ul class="pagination home-product__pagination">
+                            <!-- <ul class="pagination home-product__pagination">
                                 <li class="pagination-item">
                                     <a href="" class="pagination-item__link">
                                         <i class="fas fa-chevron-left"></i>
@@ -224,7 +245,7 @@
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </div>

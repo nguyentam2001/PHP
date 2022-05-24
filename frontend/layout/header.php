@@ -113,23 +113,7 @@
                 Đăng ký
               </li> -->
                 <li class="header__navbar-item header__navbar-user">
-                    <img src="https://cf.shopee.vn/file/82144a6d662f92a6e6a8710a27e06420_tn" alt=""
-                        class="header__navbar-user-img" />
-                    <span class="header__navbar-user-name">Nguyễn Văn Tâm</span>
-                    <ul class="header__navbar-user-menu">
-                        <li class="header__navbar-user-item">
-                            <a href="">Tài khoản của tôi</a>
-                        </li>
-                        <li class="header__navbar-user-item">
-                            <a href="/ntstore/page/login.php">Đăng nhập quyền Admin</a>
-                        </li>
-                        <li class="header__navbar-user-item">
-                            <a href="">Đơn mua</a>
-                        </li>
-                        <li class="header__navbar-user-item">
-                            <a href="" class="header__navbar-user-item--logout">Đăng xuất</a>
-                        </li>
-                    </ul>
+                    <a class="header__navbar-user-name" href="/ntstore/page/login.php">Đăng nhập quyền Admin</a>
                 </li>
             </ul>
         </div>
@@ -146,26 +130,18 @@
             </a>
             <div class="header__search">
                 <div class="header__search-input-warp">
-                    <input type="text" class="header__search-input" placeholder="Nhập từ khóa..." />
+                    <form class="form-search" action="/ntstore/frontend/" method="GET">
+                        <input type="text" class="header__search-input" placeholder="Nhập từ khóa..." name="search"
+                            id="searchText" placeholder="Tên nhân viên..." />
+                        <button class="header__search-btn" type="submit">
+                            <i class="header__search-btn-icon fas fa-search"></i>
+                        </button>
+                    </form>
+                    <!-- <input type="text" class="header__search-input" placeholder="Nhập từ khóa..." /> -->
                     <!-- search history -->
-                    <div class="header_search-history">
-                        <h3 class="header_search-history-heading">
-                            Lịch sử tìm kiếm
-                        </h3>
-                        <ul class="header_search-history-list">
-                            <li class="header_search-history-item">
-                                <a href="">flycam phantom 3</a>
-                            </li>
-                            <li class="header_search-history-item">
-                                <a href="">flycam dji</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
 
-                <button class="header__search-btn">
-                    <i class="header__search-btn-icon fas fa-search"></i>
-                </button>
+
             </div>
 
             <div class="header__cart">

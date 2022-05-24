@@ -4,7 +4,9 @@ session_start();
 if(isset($_GET["get-invoice-import"])&&$_GET["get-invoice-import"]){
     $InvoiceID=$_GET["get-invoice-import"];
     $_SESSION["CurrentInvoiceID"]= $InvoiceID;
+    //Lấy thông tin hóa đơn nhập
     getInvoiceImport($InvoiceID);
+    //lấy tất cả sản phẩm có liên kết với hóa đơn nhập
     getInforProductInvoiceImport($InvoiceID);
     header("Location:/ntstore/page/invoice-import-detail.php");
 }

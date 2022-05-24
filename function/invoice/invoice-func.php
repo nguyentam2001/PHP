@@ -1,5 +1,5 @@
 <?php
-
+//Lấy số hóa đơn mới
 function getInvoiceNumber(){
     $database=new Database();
     $database->connect_db();//kết nối database
@@ -10,11 +10,15 @@ function getInvoiceNumber(){
     $database->close_db();//ngắt kết nối database
     return $InvoiceID;
 }
+
+//Xóa sản phẩm trong hóa đơn by ID
 function deleteProducByIndex($index)
 {
     array_splice($_SESSION["invoice_import_product"],$index,1);
 }
 
+
+//Thêm mới hóa đơn nhập vào cơ sở dữ liệu
 function insertImportInvoice($InvoiceName,$DateCreate,$EmployeeID,$ManufactureID){
     $database=new Database();
     $database->connect_db();//kết nối database
