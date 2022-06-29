@@ -82,7 +82,6 @@ session_start();
          <td>
              <div class="table-function">
              <div class="btn-update" value ="' . $data[$i]['EmployeeID'] . '">Sửa</div>
-              <div class="btn-delete" name="' . $data[$i]['EmployeeName'] . '" value ="' . $data[$i]['EmployeeID'] . '">Xóa</div>
              </div>
          </td>
         </tr>
@@ -101,6 +100,7 @@ session_start();
             ';
           }
           ?>
+                <!-- <div class="btn-delete" name="' . $data[$i]['EmployeeName'] . '" value ="' . $data[$i]['EmployeeID'] . '">Xóa</div> -->
 
             </div>
             <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">

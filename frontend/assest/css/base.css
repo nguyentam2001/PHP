@@ -198,3 +198,11 @@ html {
 .home-product__pagination {
   margin: 32px 0 32px 0;
 }
+
+.text-a-right {
+  text-align: right;
+}
+
+.text-a-center {
+  text-align: center;
+}

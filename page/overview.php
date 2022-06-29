@@ -47,7 +47,8 @@ session_start();
                     <div class="col">
                         <div class="  height-20vh card-item b-rd-4  border ">
                             <div class="title">Hóa đơn bán hàng</div>
-                            <div class="number">30000 <span class="text">hóa đơn</span> </div>
+                            <div class="number"><?php echo getTotal("InvoiceID","export_invoice","count") ?> <span
+                                    class="text">hóa đơn</span> </div>
                             <div class="sum-text text">TỔNG</div>
                         </div>
                     </div>
@@ -61,7 +62,7 @@ session_start();
                     </div>
                     <div class="col">
                         <div class=" height-20vh card-item b-rd-4 border ">
-                            <div class="title">Hàng tồn kho</div>
+                            <div class="title">Tổng SL sản phẩm</div>
                             <div class="number"><?php echo getTotal("Quality","product","sum")  ?> <span
                                     class="text">sản phẩm</span> </div>
                             <div class="sum-text text">TỔNG</div>

@@ -71,6 +71,7 @@ class Employee {
     Delete.effect(this.EmployeeID, this.UrlDel);
   }
   handleFormEmployee() {
+    let data = {};
     let inputs = $("#employeeForm").find("input");
     for (const input of inputs) {
       let key = $(input).attr("name");

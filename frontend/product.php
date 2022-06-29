@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,14 +12,22 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
             integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+            rel="stylesheet" />
         <link rel="shortcut icon" href="../assets/img/logo-tab.jpg" />
         <title>ntstore</title>
         <link rel="stylesheet" href="./assest/css/base.css" />
-        <link rel="stylesheet" href="./assest/css/product.css" />
+        <link rel="stylesheet" href="./assest/css/main.css" />
         <link rel="stylesheet" href="./assest/css/grid.css" />
+        <link rel="stylesheet" href="./assest/css/responsive.css" />
+        <link rel="stylesheet" href="./assest/font/fontawesome-free-5.15.3-web/css/all.min.css" />
+        <link rel="stylesheet" href="./assest/css/product.css" />
     </head>
 
     <body>
+        <?php
+        require_once "layout/header.php"
+        ?>
         <div class="main">
             <div class="grid wide">
                 <div class="content">
@@ -79,6 +91,7 @@
                             <div class="row">
                                 <div class="col l-12">
                                     <div class="item-body">
+                                     <form method="POST" action="/ntstore/frontend/cart.php">
                                         <div class="item-body-header">
                                             <span class="home-product-item__favourite">
                                                 <span>Yêu thích</span>
@@ -144,23 +157,31 @@
                          item-body__oder-content item-body__content-amount
                       ">
                                                 <span class="item-body__oder-amount item-body__oder-minus">-</span>
-                                                <span class="item-body__oder-amount item-body__oder-current">1</span>
-                                                <span class="item-body__oder-amount item-body__oder-plus">+</span>
+                                                <input type="text" readonly name="quantityPick" value="1" class="item-body__oder-amount item-body__oder-current"/>
+                                                <input type="hidden"  name="ProductID" value='.$row["ProductID"].'>
+                                                <input type="hidden"  name="CategoryID" value='.$row["CategoryID"].'>
+                                                <input type="hidden"  name="CategoryName" value='.$row["CategoryName"].'>
+                                                <input type="hidden"  name="ProductName" value='.$row["ProductName"].'>
+                                                <input type="hidden"  name="ExportPrice" value='.$row["ExportPrice"].'>
+                                                <input type="hidden"  name="ProductImage" value='.$row["Image"].'>
+                                                <span value='.$row["Quality"].' class="item-body__oder-amount item-body__oder-plus">+</span>
                                             </div>
                                         </div>
 
                                         <div class="item-body__oder">
 
-                                            <span class="item-body__btn-add-cart btn-border">
+                                            <button type="submit" name="add-cart" value="add-cart" class="item-body__btn-add-cart btn-border">
                                                 <i class="fas fa-cart-plus"></i>
                                                 Thêm vào giỏ hàng
-                                            </span>
+                                            </button>
                                             <a href="/ntstore/frontend/cart.php">
                                                 <button class="btn-primary btn-oder">Mua Ngay</button>
                                             </a>
 
                                         </div>
                                         <hr>
+
+                                        </form >
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +193,6 @@
                                 <span class="product-details-title">
                                     Chi tiết sản phẩm
                                 </span>
-
                                 <div class="row product-details-container ">
                                     <div class="col l-1">
                                         <span class="product-details-cate">Danh mục</span>
@@ -226,12 +246,24 @@
                     ';
                     $db->close_db();//ngắt kết nối database
                 }
-                      
-
                 ?>
 
                 </div>
             </div>
+            <script src="../lib/jquery/jquery.js"></script>
+            <script type="text/javascript" src="./assest/js/product.js"></script>
     </body>
+    <style>
+    .item-body__oder-current {
+        max-width: 40px;
+        padding: 0px;
+        text-align: center;
+        outline: none;
+    }
+
+    .main {
+        margin-top: var(--height-header);
+    }
+    </style>
 
 </html>

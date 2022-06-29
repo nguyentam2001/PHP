@@ -151,7 +151,7 @@
                         <i class="header__cart-icon fas fa-cart-plus"></i>
                     </a>
 
-                    <span class="header__cart-notice">3</span>
+                    <span class="header__cart-notice"><?php echo(count($_SESSION["invoice_sell_product"]))?></span>
                     <!--Nếu có sản phẩm thì thêm : header_cart-list--no-cart -->
                     <div class="header_cart-list">
                         <img src="./assest/img/toast/no-cart.png" alt="" class="header_cart-no-cart-img" />
@@ -160,95 +160,43 @@
                         <!-- có sản phẩm -->
                         <h4 class="header__cart-heading">Sản phẩm mới thêm</h4>
                         <ul class="header__cart-list-items">
-                            <li class="header__cart-item">
-                                <img src="./assest/img/toast/flycam.jpeg" alt="" class="header__cart-item-img" />
-                                <div class="header__cart-item-infor">
-                                    <div class="header__cart-item-head">
-                                        <h5 class="header__cart-item-name">
-                                            flycam phantom 3
-                                        </h5>
-                                        <div class="header__cart-item-total-money">
-                                            <span class="header__cart-item-price"><sup
-                                                    class="header__cart-item-price-vnd">đ</sup>2.000.000</span>
-                                            <span class="header__cart-item-multiply">x</span>
-                                            <span class="header__cart-item-quality">3</span>
-                                        </div>
-                                    </div>
-                                    <div class="header__cart-item-body">
-                                        <span class="header__cart-item-description">Phân loại: Bạc</span>
-                                        <span class="header__cart-item-remove"> xóa </span>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- item 2 -->
-                            <li class="header__cart-item">
-                                <img src="./assest/img/img_item/flycam_mavic_2_pro.png" alt=""
-                                    class="header__cart-item-img" />
-                                <div class="header__cart-item-infor">
-                                    <div class="header__cart-item-head">
-                                        <h5 class="header__cart-item-name">
-                                            flycam phantom 3
-                                        </h5>
-                                        <div class="header__cart-item-total-money">
-                                            <span class="header__cart-item-price"><sup
-                                                    class="header__cart-item-price-vnd">đ</sup>29.000.000</span>
-                                            <span class="header__cart-item-multiply">x</span>
-                                            <span class="header__cart-item-quality">3</span>
-                                        </div>
-                                    </div>
-                                    <div class="header__cart-item-body">
-                                        <span class="header__cart-item-description">Phân loại: Bạc</span>
-                                        <span class="header__cart-item-remove"> xóa </span>
-                                    </div>
-                                </div>
-                            </li>
 
-                            <!-- item 6 -->
-                            <li class="header__cart-item">
-                                <img src="./assest/img/img_item/flycam_mavic_2_pro.png" alt=""
-                                    class="header__cart-item-img" />
-                                <div class="header__cart-item-infor">
-                                    <div class="header__cart-item-head">
-                                        <h5 class="header__cart-item-name">
-                                            flycam phantom 3
-                                        </h5>
-                                        <div class="header__cart-item-total-money">
-                                            <span class="header__cart-item-price"><sup
-                                                    class="header__cart-item-price-vnd">đ</sup>29.000.000</span>
-                                            <span class="header__cart-item-multiply">x</span>
-                                            <span class="header__cart-item-quality">3</span>
-                                        </div>
-                                    </div>
-                                    <div class="header__cart-item-body">
-                                        <span class="header__cart-item-description">Phân loại: Bạc</span>
-                                        <span class="header__cart-item-remove"> xóa </span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="header__cart-item">
-                                <img src="./assest/img/img_item/flycam_mavic_2_pro.png" alt=""
-                                    class="header__cart-item-img" />
-                                <div class="header__cart-item-infor">
-                                    <div class="header__cart-item-head">
-                                        <h5 class="header__cart-item-name">
-                                            flycam phantom 3
-                                        </h5>
-                                        <div class="header__cart-item-total-money">
-                                            <span class="header__cart-item-price"><sup
-                                                    class="header__cart-item-price-vnd">đ</sup>29.000.000</span>
-                                            <span class="header__cart-item-multiply">x</span>
-                                            <span class="header__cart-item-quality">3</span>
-                                        </div>
-                                    </div>
-                                    <div class="header__cart-item-body">
-                                        <span class="header__cart-item-description">Phân loại: Bạc</span>
-                                        <span class="header__cart-item-remove"> xóa </span>
-                                    </div>
-                                </div>
-                            </li>
+                            <?php
+ if(isset($_SESSION["invoice_sell_product"])&&(is_array($_SESSION["invoice_sell_product"]))){
+    for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
+        $intoMoney=(int)$_SESSION["invoice_sell_product"][$i]["quantityPick"] *(int)$_SESSION["invoice_sell_product"][$i]["ExportPrice"];
+         echo'
+
+
+         <li class="header__cart-item">
+         <img src="../assets/img/items/'.$_SESSION["invoice_sell_product"][$i]["ProductImage"].'" alt="" class="header__cart-item-img" />
+         <div class="header__cart-item-infor">
+             <div class="header__cart-item-head">
+                 <h5 class="header__cart-item-name">
+                     '.$_SESSION["invoice_sell_product"][$i]["ProductName"].'
+                 </h5>
+                 <div class="header__cart-item-total-money">
+                     <span class="header__cart-item-price"><sup
+                             class="header__cart-item-price-vnd">đ</sup>'.number_format($_SESSION["invoice_sell_product"][$i]["ExportPrice"]).'</span>
+                     <span class="header__cart-item-multiply">x</span>
+                     <span class="header__cart-item-quality">'.$_SESSION["invoice_sell_product"][$i]["quantityPick"].'</span>
+                 </div>
+             </div>
+             <div class="header__cart-item-body">
+                 <span class="header__cart-item-description">Phân loại: '.$_SESSION["invoice_sell_product"][$i]["CategoryName"].'</span>
+             </div>
+         </div>
+     </li>
+         ';
+    }
+}
+?>
+
+
                         </ul>
                         <div class="header__cart-item-footer">
-                            <a class="btn btn--primary header__cart-btn__check-product">
+                            <a class="btn btn--primary header__cart-btn__check-product"
+                                href="/ntstore/frontend/cart.php">
                                 Xem giỏ hàng
                             </a>
                         </div>
@@ -258,3 +206,18 @@
         </div>
     </div>
 </div>
+<style>
+.header__logo {
+    background-image: url("./assest/img/ntstore-fe.jpg");
+    height: 66px;
+    width: 196px;
+    padding-left: 6px;
+    padding-right: 6px;
+
+}
+
+.header__logo img {
+    width: 100%;
+    height: 100%;
+}
+</style>

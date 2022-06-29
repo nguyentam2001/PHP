@@ -10,6 +10,8 @@ $data = mysqli_query($dataBase->conn,$sql);
 
 if($data == TRUE){
     echo json_encode(array("data"=>"Success"));
+}else{
+    echo json_encode(array("data"=>"Error"));
 }
 
 $dataBase->connect_db();

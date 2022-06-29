@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -447,20 +451,6 @@
     .carousel-item-three {
         background-image: url("./assest/img/img_vartar/banner2.png");
 
-    }
-
-    .header__logo {
-        background-image: url("./assest/img/ntstore-fe.jpg");
-        height: 66px;
-        width: 196px;
-        padding-left: 6px;
-        padding-right: 6px;
-
-    }
-
-    .header__logo img {
-        width: 100%;
-        height: 100%;
     }
     </style>
 

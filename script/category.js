@@ -9,7 +9,7 @@ class Category {
   UrlNewCTCode = "/ntstore/function/category/new-category-id.php";
   UrlUpdate = "/ntstore/function/category/update-category.php";
   FormMode = "";
-
+  CategoryID = null;
   constructor() {
     this.iniEvent();
   }
@@ -25,8 +25,11 @@ class Category {
   }
 
   showFormAdd() {
+    //Gán trạng thái của form là trạng thái thêm mới
     this.FormMode = Enum.FormMode.Add;
+    //Lấy mã danh mục mới
     this.getNewCategoryID();
+    //Hiện thị form
     $(".display-form").show();
   }
 
@@ -57,6 +60,8 @@ class Category {
       data: { id },
       dataType: "JSON",
       success: function (data) {
+        console.log(data);
+
         if (Array.isArray(data) && data.length > 0) {
           let category = data[0];
           //bind dữ liệu vào form sửa
@@ -93,7 +98,7 @@ class Category {
   }
   delCategory() {
     let me = this;
-    let id = me.CategoryID;
+    let id = this.CategoryID;
     $.ajax({
       type: "method",
       method: "POST",
@@ -119,8 +124,10 @@ class Category {
 
   handleFormCategory() {
     let ca = this;
+    //Lấy ra dữ liệu các trường tương ứng
     let CategoryID = $('[name="CategoryID"]').val();
     let CategoryName = $('[name="CategoryName"]').val();
+
     if (ca.FormMode === Enum.FormMode.Add) {
       $.ajax({
         type: "method",
@@ -135,9 +142,7 @@ class Category {
         success: function (response) {
           console.log(response);
           $(".display-form").hide();
-
           // show thong bao
-
           Toast.show("toastSuccess", "Thêm mới thành công");
           location.reload();
         },

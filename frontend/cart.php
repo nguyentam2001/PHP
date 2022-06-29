@@ -1,3 +1,36 @@
+<?php
+session_start();
+if(!isset($_SESSION["invoice_sell_product"]))
+$_SESSION["invoice_sell_product"]=[];
+
+if(isset($_POST["add-cart"]) && $_POST["add-cart"]){
+    $ProductID=$_POST["ProductID"];
+    $Quantity=$_POST["quantityPick"];
+    $CategoryName=$_POST["CategoryName"];
+    $ProductName=$_POST["ProductName"];
+    $ExportPrice=$_POST["ExportPrice"];
+    $CategoryID=$_POST["CategoryID"];
+    $ProductImage=$_POST["ProductImage"];
+    //Thêm vào session
+    $flag=true;
+    for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
+        if($_SESSION["invoice_sell_product"][$i]["ProductID"]==$ProductID){
+            $_SESSION["invoice_sell_product"][$i]["quantityPick"]= (int)( $_SESSION["invoice_sell_product"][$i]["quantityPick"])+$Quantity;
+            $flag=false;
+        }
+    }
+    if($flag){
+        $productOder=["ProductImage"=>$ProductImage, "ProductID"=>$ProductID,"ExportPrice"=>$ExportPrice,"ProductName"=>$ProductName, "quantityPick"=>$Quantity,"CategoryName"=> $CategoryName, "CategoryID"=>$CategoryID];
+        $_SESSION["invoice_sell_product"][]=$productOder;
+    }
+    header("Location: /ntstore/frontend/product.php?productID=$ProductID");
+}
+
+//hàm kiểm tra xem có trùng sản phẩm không
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +45,7 @@
         <link rel="stylesheet" href="./assest/css/grid.css" />
         <link rel="stylesheet" href="./assest/css/responsive.css" />
         <link rel="stylesheet" href="./assest/font/fontawesome-free-5.15.3-web/css/all.min.css" />
+        <link rel="stylesheet" href="./assest/css/product.css" />
     </head>
 
     <body>
@@ -167,31 +201,47 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="text-center">STT</th>
-                                        <th scope="col" class="text-center">Danh mục</th>
-                                        <th scope="col" class="text-center">Linh kiện</th>
-                                        <th scope="col" class="text-center">Số lượng</th>
-                                        <th scope="col" class="text-center">Đơn giá nhập</th>
-                                        <th scope="col" class="text-center">Thành tiền</th>
-                                        <th scope="col" class="text-center">Xóa</th>
+                                        <th scope="col" class="text-center text-a-center">STT</th>
+                                        <th scope="col" class="text-center text-a-center">Hình ảnh</th>
+                                        <th scope="col" class="text-center text-a-center">Danh mục</th>
+                                        <th scope="col" class="text-center text-a-center">Linh kiện</th>
+                                        <th scope="col" class="text-center text-a-right ">Số lượng</th>
+                                        <th scope="col" class="text-center text-a-right ">Đơn giá </th>
+                                        <th scope="col" class="text-center text-a-right ">Thành tiền</th>
+                                        <th scope="col" class="text-center text-a-center">Xóa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                     </tr>
+                                    <?php
+
+                                if(isset($_SESSION["invoice_sell_product"])&&(is_array($_SESSION["invoice_sell_product"]))){
+                                    for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
+                                        $intoMoney=(int)$_SESSION["invoice_sell_product"][$i]["quantityPick"] *(int)$_SESSION["invoice_sell_product"][$i]["ExportPrice"];
+                                         echo'
+                                                <tr>
+                                                    <td scope="col" class="text-right text-a-center">'.($i+1).'</td>
+                                                    <td scope="col">
+                                                        <div class="product-item__img"
+                                                            style="background-image:url(../assets/img/items/'.$_SESSION["invoice_sell_product"][$i]["ProductImage"].')">
+                                                        </div>
+                                                    </td>
+                                                    <td scope="col" class="text-a-center">'.$_SESSION["invoice_sell_product"][$i]["CategoryName"].'</td>
+                                                    <td scope="col" class="text-a-center">'.$_SESSION["invoice_sell_product"][$i]["ProductName"].'</td>
+                                                    <td scope="col"  class="text-right text-a-right ">'.$_SESSION["invoice_sell_product"][$i]["quantityPick"].'</td>
+                                                    <td scope="col"  class="text-right text-a-right ">'.number_format($_SESSION["invoice_sell_product"][$i]["ExportPrice"]).' VND</td>
+                                                    <td scope="col"  class="text-right text-a-right ">'.number_format($intoMoney, 0, '', ',').' VND</td>
+                                                    <td scope="col" class="text-a-center"><a
+                                                    href="/ntstore/function/invoice/delete_import_product.php?delProduct=0">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                         ';
+                                    }
+                                }
+                                ?>
                                     <tr>
-                                        <td scope="col" class="text-right">1</td>
-                                        <td scope="col">Man hinh may tinh</td>
-                                        <td scope="col">Ban phim k200</td>
-                                        <td scope="col" class="text-right">30</td>
-                                        <td scope="col" class="text-right">1,000 VND</td>
-                                        <td scope="col" class="text-right">30,000 VND</td>
-                                        <td scope="col"><a
-                                                href="/ntstore/function/invoice/delete_import_product.php?delProduct=0">Xóa</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5">
+                                        <td colspan="6">
                                             <strong>Tổng Tiền</strong>
                                         </td>
                                         <td colspan="2" style="text-align: right ;">
@@ -301,10 +351,32 @@
 
     }
 
+    .product-item__img {
+        padding-top: 60%;
+    }
+
+    .item-body__oder-current {
+        max-width: 40px;
+        padding: 0px;
+        text-align: center;
+        outline: none;
+    }
+
+    .item-body__oder-amount {
+        cursor: pointer;
+        display: block;
+        padding: 5px 10px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        font-size: 1.2em;
+    }
 
     .header__logo img {
         width: 100%;
         height: 100%;
+    }
+
+    table tr td {
+        vertical-align: middle;
     }
 
     .separate {
