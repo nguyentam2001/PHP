@@ -287,73 +287,78 @@ if(isset($_POST["buy-now"]) ){
                                 <div class="form-header">
                                     <div class="text">Thông tin khách hàng</div>
                                 </div>
-                                <div class="form-content">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-input">
-                                                <div class="title">Tên khách hàng<span class="color-red">*</span>:
-                                                </div>
-                                                <input type="text" name="CustomerName" id="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-check">
-                                                <div class="title">Giới tính<span class="color-red">*</span>: </div>
-                                                <div class="form-check-wraper">
-                                                    <input type="radio" name="Gender" id="male" value=1 checked> <label
-                                                        for="male">Nam</label>
-                                                    <input type="radio" name="Gender" id="female" value=0><label
-                                                        for="female">Nữ</label>
+                                <form action="/ntstore/function/order/add-export-product.php" method="POST">
+                                    <div class="form-content">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-input">
+                                                    <div class="title">Tên khách hàng<span class="color-red">*</span>:
+                                                    </div>
+                                                    <input type="text" name="CustomerName" id="">
                                                 </div>
                                             </div>
+
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-input">
-                                                <div class="title">Số điện thoại<span class="color-red">*</span>:
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <div class="title">Giới tính<span class="color-red">*</span>: </div>
+                                                    <div class="form-check-wraper">
+                                                        <input type="radio" name="Gender" id="male" value=1 checked>
+                                                        <label for="male">Nam</label>
+                                                        <input type="radio" name="Gender" id="female" value=0><label
+                                                            for="female">Nữ</label>
+                                                    </div>
                                                 </div>
-                                                <input type="text" name="PhoneNumber" id="">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-input">
-                                                <div class="title">Ngày sinh: </div>
-                                                <input type="date" name="DateOfBirth" id="">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-input">
+                                                    <div class="title">Số điện thoại<span class="color-red">*</span>:
+                                                    </div>
+                                                    <input type="text" name="PhoneNumber" id="">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-input">
-                                                <div class="title">Email<span class="color-red">*</span>: </div>
-                                                <input type="text" name="Email" id="">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-input">
+                                                    <div class="title">Ngày sinh: </div>
+                                                    <input type="date" name="DateOfBirth" id="">
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-input">
+                                                    <div class="title">Email<span class="color-red">*</span>: </div>
+                                                    <input type="text" name="Email" id="">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-input">
+                                                    <div class="title">Địa chỉ<span class="color-red">*</span>: </div>
+                                                    <textarea name="Address" id="" cols="30" rows="6"></textarea>
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-input">
-                                                <div class="title">Địa chỉ<span class="color-red">*</span>: </div>
-                                                <textarea name="" id="" cols="30" rows="6"></textarea>
-                                            </div>
-                                        </div>
+                                    <div class="form-footer">
+                                        <button type="button" type="submit" name="cancel" value="cancel"
+                                            class="btn btn-light" id="btnCancel">Hủy bỏ đơn
+                                            hàng</button>
 
+                                        <button type="submit" class="btn btn-warning" name="order_confirm"
+                                            value="order_confirm">Xác nhận thanh
+                                            toán</button>
                                     </div>
-
-                                </div>
-                                <div class="form-footer">
-                                    <button type="button" class="btn btn-light" id="btnCancel">Hủy bỏ đơn
-                                        hàng</button>
-                                    <button type="button" class="btn btn-warning" id="btnConfirm"> Xác nhận thanh
-                                        toán</button>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
