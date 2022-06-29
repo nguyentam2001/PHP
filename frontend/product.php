@@ -1,5 +1,16 @@
 <?php
 session_start();
+function getQualityPickById($productId){
+    $totalPick=0;
+        for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
+            if($_SESSION["invoice_sell_product"][$i]["ProductID"]==$productId){
+                $totalPick= (int) $_SESSION["invoice_sell_product"][$i]["quantityPick"];
+            }
+        }
+    return $totalPick;    
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -156,7 +167,7 @@ session_start();
                                             <div class="
                          item-body__oder-content item-body__content-amount
                       ">
-                                                <span class="item-body__oder-amount item-body__oder-minus">-</span>
+                                                <span class="item-body__oder-amount item-body__oder-minus" onclick="minusProduct()" >-</span>
                                                 <input type="text" readonly name="quantityPick" value="1" class="item-body__oder-amount item-body__oder-current"/>
                                                 <input type="hidden"  name="ProductID" value='.$row["ProductID"].'>
                                                 <input type="hidden"  name="CategoryID" value='.$row["CategoryID"].'>
@@ -164,18 +175,17 @@ session_start();
                                                 <input type="hidden"  name="ProductName" value='.$row["ProductName"].'>
                                                 <input type="hidden"  name="ExportPrice" value='.$row["ExportPrice"].'>
                                                 <input type="hidden"  name="ProductImage" value='.$row["Image"].'>
-                                                <span value='.$row["Quality"].' class="item-body__oder-amount item-body__oder-plus">+</span>
+                                                <span value='.$row["Quality"].' class="item-body__oder-amount item-body__oder-plus"  onclick="addProduct()">+</span>
                                             </div>
                                         </div>
 
                                         <div class="item-body__oder">
-
-                                            <button type="submit" name="add-cart" value="add-cart" class="item-body__btn-add-cart btn-border">
+                                            <button onclick="return checkform()" type="submit" id="addCart" name="add-cart" value="add-cart" class="item-body__btn-add-cart btn-border">
                                                 <i class="fas fa-cart-plus"></i>
                                                 Thêm vào giỏ hàng
                                             </button>
                                             <a href="/ntstore/frontend/cart.php">
-                                                <button class="btn-primary btn-oder">Mua Ngay</button>
+                                                <button onclick="return checkform()" type="submit" id="buyNow"  name="buy-now" value="'.getQualityPickById($row["ProductID"]).'" class="btn-primary btn-oder">Mua Ngay</button>
                                             </a>
 
                                         </div>
@@ -242,7 +252,6 @@ session_start();
                             </div>
                         </div>
                     </div>
-
                     ';
                     $db->close_db();//ngắt kết nối database
                 }
@@ -251,7 +260,47 @@ session_start();
                 </div>
             </div>
             <script src="../lib/jquery/jquery.js"></script>
-            <script type="text/javascript" src="./assest/js/product.js"></script>
+            <!-- <script type="text/javascript" src="./assest/js/product.js"></script> -->
+            <script>
+            let currNum = 1;
+            let total = +$(".item-body__oder-plus").attr("value");
+            //JavaScript
+            function minusProduct() {
+                //lấy giá trị hiển thị hiện tại + thêm 1
+                currNum = +$(".item-body__oder-current").val();
+                if (currNum > 1) {
+                    currNum--;
+                    $(".item-body__oder-current").val(currNum);
+                }
+            }
+
+            function addProduct() {
+                //lấy tổng số lượng sp còn lại trong kho
+
+                //lấy giá trị hiển thị hiện tại + thêm 1
+                currNum = +$(".item-body__oder-current").val();
+                if (currNum < total) {
+                    currNum++;
+                    $(".item-body__oder-current").val(currNum);
+                }
+            }
+
+            function checkform() {
+                let eleCart = document.querySelector("#buyNow");
+                let qualityCart = eleCart.getAttribute("value");
+                let elePick = document.querySelector("[name='quantityPick']")
+                let qualityPick = elePick.getAttribute("value");
+                if (parseInt(qualityCart) + parseInt(currNum) <= total) {
+                    return true; //là cho phép
+                } else {
+                    alert(
+                        `Bạn đã có ${parseInt(qualityCart)} sản phẩm trong giỏ, trong tổng số ${total} sản phẩm, số lượng sản phẩm không đủ`
+                    );
+                    return false;
+                }
+
+            }
+            </script>
     </body>
     <style>
     .item-body__oder-current {

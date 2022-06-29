@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION["invoice_sell_product"]))
 $_SESSION["invoice_sell_product"]=[];
-
+//Nếu là thêm vào rỏ hàng
 if(isset($_POST["add-cart"]) && $_POST["add-cart"]){
     $ProductID=$_POST["ProductID"];
     $Quantity=$_POST["quantityPick"];
@@ -25,9 +25,31 @@ if(isset($_POST["add-cart"]) && $_POST["add-cart"]){
     }
     header("Location: /ntstore/frontend/product.php?productID=$ProductID");
 }
+//Nếu là mua ngay
+if(isset($_POST["buy-now"]) ){
+    $ProductID=$_POST["ProductID"];
+    $Quantity=$_POST["quantityPick"];
+    $CategoryName=$_POST["CategoryName"];
+    $ProductName=$_POST["ProductName"];
+    $ExportPrice=$_POST["ExportPrice"];
+    $CategoryID=$_POST["CategoryID"];
+    $ProductImage=$_POST["ProductImage"];
+    //Thêm vào session
+    $flag=true;
+    for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
+        if($_SESSION["invoice_sell_product"][$i]["ProductID"]==$ProductID){
+            $_SESSION["invoice_sell_product"][$i]["quantityPick"]= (int)( $_SESSION["invoice_sell_product"][$i]["quantityPick"])+$Quantity;
+            $flag=false;
+        }
+    }
+    if($flag){
+        $productOder=["ProductImage"=>$ProductImage, "ProductID"=>$ProductID,"ExportPrice"=>$ExportPrice,"ProductName"=>$ProductName, "quantityPick"=>$Quantity,"CategoryName"=> $CategoryName, "CategoryID"=>$CategoryID];
+        $_SESSION["invoice_sell_product"][]=$productOder;
+    }
+}
+
 
 //hàm kiểm tra xem có trùng sản phẩm không
-
 ?>
 
 
@@ -188,11 +210,9 @@ if(isset($_POST["add-cart"]) && $_POST["add-cart"]){
                 </div>
                 <div class="cart">
                     <div class="cart-content">
-
                     </div>
                 </div>
                 <div class="content">
-
                     <div class="container-item row">
                         <div class="title-product boder-r-4">
                             Sản phẩm
@@ -245,7 +265,18 @@ if(isset($_POST["add-cart"]) && $_POST["add-cart"]){
                                             <strong>Tổng Tiền</strong>
                                         </td>
                                         <td colspan="2" style="text-align: right ;">
-                                            <strong><span id="sumPrice">30,000</span> VND </strong>
+                                            <strong><span id="sumPrice">
+                                                    <?php
+                                                    if(isset($_SESSION["invoice_sell_product"])&&(is_array($_SESSION["invoice_sell_product"]))){
+                                                        $totalPrice=0;
+                                                        for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
+                                                            $intoMoney=(int)$_SESSION["invoice_sell_product"][$i]["quantityPick"] *(int)$_SESSION["invoice_sell_product"][$i]["ExportPrice"];
+                                                            $totalPrice+=$intoMoney;
+                                                        }
+                                                        echo number_format($totalPrice, 0, '', ',');
+                                                    }
+                                                    ?>
+                                                </span> VND </strong>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -288,8 +319,6 @@ if(isset($_POST["add-cart"]) && $_POST["add-cart"]){
                                                 <input type="text" name="PhoneNumber" id="">
                                             </div>
                                         </div>
-
-
                                     </div>
                                     <div class="row">
                                         <div class="col">

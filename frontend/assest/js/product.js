@@ -18,7 +18,6 @@ class ProductFE {
     let currNum = +$(".item-body__oder-current").val();
     if (currNum < total) {
       currNum++;
-      console.log(`currNum`, currNum);
       $(".item-body__oder-current").val(currNum);
     }
   }
