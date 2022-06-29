@@ -162,7 +162,7 @@ session_start();
                             <td>' . $data[$i]['PhoneNumber'] . '</td>
                             <td>
                                 <div class="table-function">
-                                    <a href="../function/invoice/show-product-detail.php?get-invoice-import=' . $data[$i]['InvoiceID'] . '">
+                                    <a href="/ntstore/page/invoice-export-detailt.php?InvoiceExportId=' . $data[$i]['InvoiceID'] . '">
                                         Chi tiết
                                     </a>
                                 </div>
