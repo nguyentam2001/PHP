@@ -8,7 +8,6 @@ if(isset($_POST["order_confirm"])&& $_POST["order_confirm"]){
     $DateOfBirth=$_POST["DateOfBirth"];
     $Email=$_POST["Email"];
     $Address=$_POST["Address"];
-
    
     $db=new Database();
     $db->connect_db();//kết nối database

@@ -253,7 +253,7 @@ if(isset($_POST["buy-now"]) ){
                                                     <td scope="col"  class="text-right text-a-right ">'.number_format($_SESSION["invoice_sell_product"][$i]["ExportPrice"]).' VND</td>
                                                     <td scope="col"  class="text-right text-a-right ">'.number_format($intoMoney, 0, '', ',').' VND</td>
                                                     <td scope="col" class="text-a-center"><a
-                                                    href="/ntstore/function/invoice/delete_import_product.php?delProduct=0">Xóa</a>
+                                                    href="/ntstore/function/order/delete-product.php?delProduct='.$i.'">Xóa</a>
                                                     </td>
                                                 </tr>
                                          ';
@@ -350,9 +350,9 @@ if(isset($_POST["buy-now"]) ){
 
                                     </div>
                                     <div class="form-footer">
-                                        <button type="button" type="submit" name="cancel" value="cancel"
-                                            class="btn btn-light" id="btnCancel">Hủy bỏ đơn
-                                            hàng</button>
+                                        <a href="/ntstore/function/order/destroy-product.php" type="submit"
+                                            name="cancel" value="cancel" class="btn btn-light" id="btnCancel">Hủy bỏ đơn
+                                            hàng</a>
 
                                         <button type="submit" class="btn btn-warning" name="order_confirm"
                                             value="order_confirm">Xác nhận thanh
