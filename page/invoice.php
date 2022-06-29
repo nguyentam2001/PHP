@@ -129,7 +129,7 @@ session_start();
             } else if (isset($_GET["invoice"]) && $_GET["invoice"] == "export") {
                 $db = new Database();
                $db->connect_db(); //kết nối  $db
-                $sql = "SELECT InvoiceID,InvoiceName,CustomerName,export_invoice.DateCreate, export_invoice.CustomerID, export_invoice.EmployeeID FROM export_invoice INNER JOIN customer ON customer.CustomerID = export_invoice.CustomerID INNER JOIN employee ON export_invoice.EmployeeID = employee.EmployeeID";
+                $sql = "SELECT InvoiceID,InvoiceName,CustomerName,export_invoice.DateCreate, export_invoice.CustomerID, export_invoice.EmployeeID,customer.PhoneNumber FROM export_invoice INNER JOIN customer ON customer.CustomerID = export_invoice.CustomerID INNER JOIN employee ON export_invoice.EmployeeID = employee.EmployeeID";
                 $data =$db->getData($sql);
                $db->close_db();
                 //bind dữ liệu ra bảng
@@ -144,7 +144,7 @@ session_start();
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Mã khách hàng</th>
                             <th scope="col">Tên khách hàng</th>
-                            <th scope="col">Mã nhân viên</th>
+                            <th scope="col">Số điện thoại</th>
                             <th scope="col " class="max-w-100">Chức năng</th>
                         </tr>
                         </thead>
@@ -159,7 +159,7 @@ session_start();
                             <td>' . date("d/m/Y", strtotime($data[$i]['DateCreate'])) . '</td>
                             <td>' . $data[$i]['CustomerID'] . '</td>
                             <td>' . $data[$i]['CustomerName'] . '</td>
-                            <td>' . $data[$i]['EmployeeID'] . '</td>
+                            <td>' . $data[$i]['PhoneNumber'] . '</td>
                             <td>
                                 <div class="table-function">
                                     <a href="../function/invoice/show-product-detail.php?get-invoice-import=' . $data[$i]['InvoiceID'] . '">
