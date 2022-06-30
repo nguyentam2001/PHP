@@ -1,14 +1,19 @@
 <?php
 session_start();
-function getQualityPickById($productId){
-    $totalPick=0;
-        for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
-            if($_SESSION["invoice_sell_product"][$i]["ProductID"]==$productId){
-                $totalPick= (int) $_SESSION["invoice_sell_product"][$i]["quantityPick"];
+
+        function getQualityPickById($productId){
+        $totalPick=0;
+        if(isset($_SESSION["invoice_sell_product"])){
+            for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
+                if($_SESSION["invoice_sell_product"][$i]["ProductID"]==$productId){
+                    $totalPick= (int) $_SESSION["invoice_sell_product"][$i]["quantityPick"];
+                }
             }
-        }
-    return $totalPick;    
 }
+
+        return $totalPick;    
+    }
+
 
 
 ?>
