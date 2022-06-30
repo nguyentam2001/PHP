@@ -11,7 +11,5 @@ if($data ==TRUE){
     echo json_encode(array("data"=>"Success"));
 
 }
-
 $dataBase->close_db();
-
 ?>

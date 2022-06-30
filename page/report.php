@@ -36,8 +36,6 @@
                 </div>
             </div>
             <div class="table-wraper p-l-24 p-r-24 ">
-
-
                 <!-- Biểu đồ thống kê năm-->
                 <div class="chart-wrapper">
                     <div class="chart-title">Biểu đồ thống kê theo tháng</div>
@@ -70,7 +68,6 @@
                         ?>
                     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                 </div>
-
                 <!-- Table thống kê chi tiết -->
                 <div class="table-report-wrapper">
                     <div class="chart-title">Bảng thống kê chi tiết</div>
