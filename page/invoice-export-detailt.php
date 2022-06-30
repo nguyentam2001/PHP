@@ -26,10 +26,11 @@
                             if(isset($_GET["InvoiceExportId"])&& $_GET["InvoiceExportId"]){
                                 require_once "../database/connect_db.php";
                                 require_once '../utilities/check-error.php';
+                                require_once "../utilities/gender.php";
                                 $db = new Database();
                                 $db->connect_db(); //kết nối database
                                 $invoiceID=$_GET["InvoiceExportId"];
-                                $query = " SELECT DateCreate,CustomerName,Address,PhoneNumber FROM export_invoice INNER JOIN customer on export_invoice.CustomerID=customer.CustomerID where export_invoice.InvoiceID =  $invoiceID";
+                                $query = " SELECT DateCreate,CustomerName,Gender,Address,PhoneNumber FROM export_invoice INNER JOIN customer on export_invoice.CustomerID=customer.CustomerID where export_invoice.InvoiceID =  $invoiceID";
                                $result =mysqli_query(  $db->conn,$query);
                                 $row = mysqli_fetch_assoc($result);
 
@@ -58,6 +59,12 @@
                                    <div class="form-input flex-center ">
                                        <div class="title">Khách hàng: </div>
                                        '.$row["CustomerName"].'
+                                   </div>
+                                   <div class="form-input flex-center  ">
+                                       <div class="title">Giới tính: </div>
+                                       <div class="address">
+                                       '. gender($row["Gender"]) .'
+                                       </div>
                                    </div>
                                    <div class="form-input flex-center  ">
                                        <div class="title">Địa chỉ: </div>
