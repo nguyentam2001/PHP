@@ -13,8 +13,8 @@
 
     <body>
         <?php
-  require_once "./layout/navbar.php";
-  require_once "./layout/header.php";
+    require_once "./layout/navbar.php";
+    require_once "./layout/header.php";
   ?>
         <div class="content p-l-24 p-r-24 p-t-24 ">
             <div class="content-header p-b-24 justify-between">
@@ -42,22 +42,32 @@
                 <div class="chart-wrapper">
                     <div class="chart-title">Biểu đồ thống kê theo tháng</div>
                     <?php
-                        $dataPoints = array(
-                            array("x"=> 1, "y"=> 41),
-                            array("x"=> 2, "y"=> 35, "indexLabel"=> "DT Thấp"),
-                            array("x"=> 3, "y"=> 50),
-                            array("x"=> 4, "y"=> 45),
-                            array("x"=> 5, "y"=> 52),
-                            array("x"=> 6, "y"=> 68),
-                            array("x"=>7, "y"=> 38),
-                            array("x"=> 8, "y"=> 100, "indexLabel"=> "DT Cao"),
-                            array("x"=> 9, "y"=> 52),
-                            array("x"=> 10, "y"=> 60),
-                            array("x"=> 11, "y"=> 36),
-                            array("x"=> 12, "y"=> 49),
 
-                        );
-                            
+                         require_once '../utilities/check-error.php';
+                         require_once '../database/connect_db.php';
+                         require_once "../utilities/gender.php";
+                         $db = new Database();
+                         $db->connect_db(); //kết nối database
+                         $query = "SELECT Month(DateCreate) as Month, SUM(TotalExport*PriceExport) as Turnover from export_invoice INNER JOIN export_invoice_product ON export_invoice_product.InvoiceID=export_invoice.InvoiceID GROUP BY Month";
+                         $data = $db->getData($query);
+                         $db->close_db();
+                         $dataPoints=array();
+                         for ($i=1; $i <=12 ; $i++) {
+                           $newArray= ["x"=> $i, "y"=> 1];
+                           $isFlag=true;
+                            for ($j=0; $j <count($data) ; $j++) { 
+                                if($i==$data[$j]["Month"]){
+                                    $newArray["y"]=(int)$data[$j]["Turnover"];
+                                    $dataPoints[]= $newArray;
+                                    $isFlag=false;
+                                    break;
+                                }
+                            }
+                            if($isFlag){
+                                $dataPoints[]= $newArray;
+                            }
+                         }
+                      
                         ?>
                     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                 </div>
@@ -66,15 +76,7 @@
                 <div class="table-report-wrapper">
                     <div class="chart-title">Bảng thống kê chi tiết</div>
                     <?php
-          $search = $_GET['search'];
-          require '../utilities/check-error.php';
-          require '../database/connect_db.php';
-          require_once "../utilities/gender.php";
-          $db = new Database();
-          $db->connect_db(); //kết nối database
-          $query = "SELECT * from employee WHERE '$search' IS NOT NULL AND EmployeeName  LIKE CONCAT ('%$search%') OR '$search' IS NULL";
-          $data = $db->getData($query);
-          $db->close_db();
+        
           //bind dữ liệu ra bảng
           if (count($data) > 0) {
             echo'
