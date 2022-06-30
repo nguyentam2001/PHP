@@ -47,7 +47,6 @@
                          $db->connect_db(); //kết nối database
                          $query = "SELECT Month(DateCreate) as Month, SUM(TotalExport*PriceExport) as Turnover from export_invoice INNER JOIN export_invoice_product ON export_invoice_product.InvoiceID=export_invoice.InvoiceID GROUP BY Month";
                          $data = $db->getData($query);
-                         $db->close_db();
                          $dataPoints=array();
                          for ($i=1; $i <=12 ; $i++) {
                            $newArray= ["x"=> $i, "y"=> 1];
@@ -72,37 +71,49 @@
                 <div class="table-report-wrapper">
                     <div class="chart-title">Bảng thống kê chi tiết</div>
                     <?php
-        
-          //bind dữ liệu ra bảng
-          if (count($data) > 0) {
-            echo'
-            <table id="EmployeeTable" class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Tên hàng</th>
-                <th scope="col">Số lượng bán</th>
-                <th scope="col">Số lượng nhập</th>
-                <th scope="col">Số lượng tồn</th>
-                <th scope="col">Doanh thu</th>
-              </tr>
-            </thead>
-            <tbody>
-            ';
-           //render tr ở đây
-            echo'
-            </tbody>
-            </table>
-            ';
-          }else{
-            echo'
-            <div class="empty_state">
-              <h1 class="">Dữ liệu trống</h1>
-              <p>Không có dữ liệu liên hệ admin để biết thêm chi tiết</p>
-            </div>
-            ';
-          }
-          ?>
+         $query1 = "SELECT * FROM product INNER JOIN import_invoice_product ON product.ProductID = import_invoice_product.ProductID INNER JOIN export_invoice_product ON product.ProductID = export_invoice_product.ProductID GROUP BY product.ProductName";
+         $data1 = $db->getData($query1);
+         $db->close_db();
+         //bind dữ liệu ra bảng
+         if (count($data1) > 0) {
+           echo'
+           <table id="EmployeeTable" class="table table-hover">
+           <thead>
+             <tr>
+               <th scope="col">STT</th>
+               <th scope="col">Tên hàng</th>
+               <th scope="col">Số lượng bán</th>
+               <th scope="col">Số lượng nhập</th>
+               <th scope="col">Số lượng tồn</th>
+               <th scope="col">Doanh thu</th>
+             </tr>
+           </thead>
+           <tbody>
+           ';
+           for ($i = 0; $i < count($data1); $i++) {
+               echo '
+           <tr>
+               <th scope="row">' . ($i + 1) . '</th>
+               <td>' . $data1[$i]['ProductName'] . '</td>
+               <td>' . $data1[$i]['TotalExport'] . '</td>
+               <td>' . $data1[$i]['TotalImport'] . '</td>
+               <td>' . $data1[$i]['Quality'] . '</td>
+               <td>' . number_format($data1[$i]['TotalExport'] * $data1[$i]['PriceExport'], 0, '', ',') . '</td>
+               </tr>
+               ';
+           }
+           echo'
+           </tbody>
+           </table>
+           ';
+         }else{
+           echo'
+           <div class="empty_state">
+             <h1 class="">Dữ liệu trống</h1>
+             <p>Không có dữ liệu liên hệ admin để biết thêm chi tiết</p>
+           </div>
+           ';
+         }?>
 
                 </div>
 
