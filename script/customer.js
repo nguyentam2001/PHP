@@ -9,6 +9,9 @@ class Customer {
   UrlNewCTMCode = "/ntstore/function/customer/new-customer-code.php";
   UrlUpdate = "/ntstore/function/customer/update-customer.php";
   FormMode = "";
+  customerCurrName = "";
+  modalLiveExample = null;
+  modal = null;
   constructor() {
     this.initEvent();
   }
@@ -68,6 +71,7 @@ class Customer {
     let currID = trCurr.attr("value");
     this.CustomerID = currID;
     let customerName = trCurr.attr("name");
+    this.customerCurrName = customerName;
     this.modalDel(
       "modalDelCustomer",
       `Bạn có muốn xóa khách hàng ${customerName} ?`
@@ -82,9 +86,17 @@ class Customer {
       url: me.UrlDel,
       data: { id },
       dataType: "JSON",
-      success: function () {
-        Toast.show("toastSuccess", "Xóa khách hang thành công");
-        location.reload();
+      success: function (data) {
+        if (data.data == "Success") {
+          Toast.show("toastSuccess", "Xóa khách hang thành công");
+          location.reload();
+        } else {
+          me.modalDel(
+            "modalDelCustomer",
+            `Khách hàng ${me.customerCurrName} này đã phát sinh giao dịch, không thể xóa khách hàng ! `,
+            true
+          );
+        }
       },
     });
   }
@@ -109,13 +121,21 @@ class Customer {
       },
     });
   }
-  modalDel(name, message) {
-    var modalLiveExample = document.getElementById(`${name}`);
+  modalDel(name, message, isBtnConfirm) {
+    if (isBtnConfirm) {
+      $("#btnDelCustomer").hide();
+      $(".modal-backdrop").hide();
+    } else {
+      $("#btnDelCustomer").show();
+    }
+    let me = this;
+    this.modalLiveExample = document.getElementById(`${name}`);
     var textMessage = document.querySelector(`#${name} .modal-messenger`);
     textMessage.textContent = message;
-    var modal = new bootstrap.Modal(modalLiveExample);
-    modal.show();
+    this.modal = new bootstrap.Modal(me.modalLiveExample);
+    this.modal.show();
   }
+
   resetFormCustomer() {
     $('[name="CustomerCode"]').val("");
     $('[name="CustomerName"]').val("");

@@ -5,9 +5,10 @@ $database=new Database();
 $database->connect_db();//kết nối database
 //Thực hiện câu lệnh truy vấn
 $query="DELETE FROM Manufacture WHERE ManufactureID=$ManufactureID ";
-$data= mysqli_query($database->conn,$query);
-  if($data==TRUE){
+  if(mysqli_query($database->conn,$query)){
       echo json_encode(array("data"=>"Success"));
+  }else{
+    echo json_encode(array("data"=>"Error"));
   }
 $database->close_db();//ngắt kết nối database
 ?>
