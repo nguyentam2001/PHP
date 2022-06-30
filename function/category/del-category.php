@@ -18,10 +18,10 @@ if ($CategoryID != 1) {
     $query = "DELETE FROM category WHERE CategoryID = $CategoryID";
     $data1 = mysqli_query($dataBase->conn, $query);
     if ($data1 == TRUE) {
-        echo json_encode(array("data1" => "Success"));
+        echo json_encode(array("data" => "Success"));
     }
 } else {
-    
+    echo json_encode(array("data"=>"other"));
 }
 $dataBase->close_db();
 ?>

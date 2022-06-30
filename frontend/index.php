@@ -1,14 +1,6 @@
 <?php
 session_start();
-function getQualityPickById($productId){
-    $totalPick=0;
-        for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
-            if($_SESSION["invoice_sell_product"][$i]["ProductID"]==$productId){
-                $totalPick= (int) $_SESSION["invoice_sell_product"][$i]["quantityPick"];
-            }
-        }
-    return $totalPick;    
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -215,7 +207,7 @@ function getQualityPickById($productId){
                                                     <input type="hidden"  name="ProductName" value='.$data[$i]["ProductName"].'>
                                                     <input type="hidden"  name="ExportPrice" value='.$data[$i]["ExportPrice"].'>
                                                     <input type="hidden"  name="ProductImage" value='.$data[$i]["Image"].'>
-                                                    <button  onclick="return checkform()"  style="border: none; background: #fff;" type="submit" valueProduct="'.getQualityPickById($data[$i]["ProductID"]).'" id="buyNow" name="add-cart" value="add-cart-index" >
+                                                    <button  onclick="return checkform()"  style="border: none; background: #fff;" type="submit"  id="buyNow" name="add-cart" value="add-cart-index" >
                                                         <span  class="home-product-item__origin-name"><i style="color: red;
                                                         font-size: 12px; cursor: pointer;" class="header__cart-icon fas fa-cart-plus"></i></span>
                                                     </button>

@@ -79,13 +79,22 @@ class Category {
       },
     });
   }
-  modalDel(name, message) {
-    var modalLiveExample = document.getElementById(`${name}`);
+
+  modalDel(name, message, isBtnConfirm) {
+    if (isBtnConfirm) {
+      $("#btnDelCategory").hide();
+      $(".modal-backdrop").hide();
+    } else {
+      $("#btnDelCategory").show();
+    }
+    let me = this;
+    this.modalLiveExample = document.getElementById(`${name}`);
     var textMessage = document.querySelector(`#${name} .modal-messenger`);
     textMessage.textContent = message;
-    var modal = new bootstrap.Modal(modalLiveExample);
-    modal.show();
+    this.modal = new bootstrap.Modal(me.modalLiveExample);
+    this.modal.show();
   }
+
   showModalDel(sender) {
     let trCurr = $(sender.target);
     let currID = trCurr.attr("value");
@@ -105,9 +114,20 @@ class Category {
       url: me.UrlDel,
       data: { id },
       dataType: "JSON",
-      success: function () {
-        Toast.show("toastSuccess", "Xóa danh mục thành công");
-        location.reload();
+      success: function (data) {
+        if (data.data == "Success") {
+          Toast.show(
+            "toastSuccess",
+            "Xóa danh mục thành công. Sản phẩm được chuyển vào danh mục khác"
+          );
+          location.reload();
+        } else {
+          me.modalDel(
+            "modalDelCategory",
+            `Bạn không được phép xóa danh mục này`,
+            true
+          );
+        }
       },
     });
   }

@@ -8,6 +8,6 @@ class Toast {
     toast.show();
     setTimeout(() => {
       $("#toastSuccess").toast("toggle");
-    }, 200);
+    }, 500);
   }
 }
