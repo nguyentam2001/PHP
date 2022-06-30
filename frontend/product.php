@@ -171,7 +171,6 @@ function getQualityPickById($productId){
                                                 <input type="text" readonly name="quantityPick" value="1" class="item-body__oder-amount item-body__oder-current"/>
                                                 <input type="hidden"  name="ProductID" value='.$row["ProductID"].'>
                                                 <input type="hidden"  name="CategoryID" value='.$row["CategoryID"].'>
-                                                <input type="hidden"  name="CategoryName" value='.$row["CategoryName"].'>
                                                 <input type="hidden"  name="ProductName" value='.$row["ProductName"].'>
                                                 <input type="hidden"  name="ExportPrice" value='.$row["ExportPrice"].'>
                                                 <input type="hidden"  name="ProductImage" value='.$row["Image"].'>
@@ -260,7 +259,6 @@ function getQualityPickById($productId){
                 </div>
             </div>
             <script src="../lib/jquery/jquery.js"></script>
-            <!-- <script type="text/javascript" src="./assest/js/product.js"></script> -->
             <script>
             let currNum = 1;
             let total = +$(".item-body__oder-plus").attr("value");

@@ -6,7 +6,6 @@ $_SESSION["invoice_sell_product"]=[];
 if(isset($_POST["add-cart"]) && $_POST["add-cart"]){
     $ProductID=$_POST["ProductID"];
     $Quantity=$_POST["quantityPick"];
-    $CategoryName=$_POST["CategoryName"];
     $ProductName=$_POST["ProductName"];
     $ExportPrice=$_POST["ExportPrice"];
     $CategoryID=$_POST["CategoryID"];
@@ -20,16 +19,19 @@ if(isset($_POST["add-cart"]) && $_POST["add-cart"]){
         }
     }
     if($flag){
-        $productOder=["ProductImage"=>$ProductImage, "ProductID"=>$ProductID,"ExportPrice"=>$ExportPrice,"ProductName"=>$ProductName, "quantityPick"=>$Quantity,"CategoryName"=> $CategoryName, "CategoryID"=>$CategoryID];
+        $productOder=["ProductImage"=>$ProductImage, "ProductID"=>$ProductID,"ExportPrice"=>$ExportPrice,"ProductName"=>$ProductName, "quantityPick"=>$Quantity, "CategoryID"=>$CategoryID];
         $_SESSION["invoice_sell_product"][]=$productOder;
     }
-    header("Location: /ntstore/frontend/product.php?productID=$ProductID");
+    if($_POST["add-cart"] == "add-cart-index"){
+        header("Location: /ntstore/frontend/");
+    }else{
+        header("Location: /ntstore/frontend/product.php?productID=$ProductID");
+    }
 }
 //Nếu là mua ngay
 if(isset($_POST["buy-now"]) ){
     $ProductID=$_POST["ProductID"];
     $Quantity=$_POST["quantityPick"];
-    $CategoryName=$_POST["CategoryName"];
     $ProductName=$_POST["ProductName"];
     $ExportPrice=$_POST["ExportPrice"];
     $CategoryID=$_POST["CategoryID"];
@@ -43,7 +45,7 @@ if(isset($_POST["buy-now"]) ){
         }
     }
     if($flag){
-        $productOder=["ProductImage"=>$ProductImage, "ProductID"=>$ProductID,"ExportPrice"=>$ExportPrice,"ProductName"=>$ProductName, "quantityPick"=>$Quantity,"CategoryName"=> $CategoryName, "CategoryID"=>$CategoryID];
+        $productOder=["ProductImage"=>$ProductImage, "ProductID"=>$ProductID,"ExportPrice"=>$ExportPrice,"ProductName"=>$ProductName, "quantityPick"=>$Quantity,"CategoryID"=>$CategoryID];
         $_SESSION["invoice_sell_product"][]=$productOder;
     }
 }
@@ -223,7 +225,6 @@ if(isset($_POST["buy-now"]) ){
                                     <tr>
                                         <th scope="col" class="text-center text-a-center">STT</th>
                                         <th scope="col" class="text-center text-a-center">Hình ảnh</th>
-                                        <th scope="col" class="text-center text-a-center">Danh mục</th>
                                         <th scope="col" class="text-center text-a-center">Linh kiện</th>
                                         <th scope="col" class="text-center text-a-right ">Số lượng</th>
                                         <th scope="col" class="text-center text-a-right ">Đơn giá </th>
@@ -247,7 +248,6 @@ if(isset($_POST["buy-now"]) ){
                                                             style="background-image:url(../assets/img/items/'.$_SESSION["invoice_sell_product"][$i]["ProductImage"].')">
                                                         </div>
                                                     </td>
-                                                    <td scope="col" class="text-a-center">'.$_SESSION["invoice_sell_product"][$i]["CategoryName"].'</td>
                                                     <td scope="col" class="text-a-center">'.$_SESSION["invoice_sell_product"][$i]["ProductName"].'</td>
                                                     <td scope="col"  class="text-right text-a-right ">'.$_SESSION["invoice_sell_product"][$i]["quantityPick"].'</td>
                                                     <td scope="col"  class="text-right text-a-right ">'.number_format($_SESSION["invoice_sell_product"][$i]["ExportPrice"]).' VND</td>

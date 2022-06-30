@@ -42,7 +42,6 @@
                 <div class="chart-wrapper">
                     <div class="chart-title">Biểu đồ thống kê theo tháng</div>
                     <?php
-
                          require_once '../utilities/check-error.php';
                          require_once '../database/connect_db.php';
                          require_once "../utilities/gender.php";
