@@ -81,12 +81,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="input">
-                                        <div class="title">Số lượng</div>
-                                        <input type="number" name="Quality">
-                                    </div>
-                                </div>
 
 
                             </div>

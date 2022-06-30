@@ -101,7 +101,6 @@ class Product {
     let ImportPrice = $('[name="ImportPrice"]').val();
     let CategoryID = $('[name="CategoryID"]').val();
     let Description = $('[name="Description"]').val();
-    let Quality = $('[name="Quality"]').val();
     let Image = ca.ImgeSrc;
     if (ca.FormMode === Enum.FormMode.Add) {
       $.ajax({
@@ -115,7 +114,6 @@ class Product {
           ImportPrice,
           CategoryID,
           Description,
-          Quality,
           Image,
         },
 
@@ -140,7 +138,6 @@ class Product {
           ImportPrice,
           CategoryID,
           Description,
-          Quality,
           Image,
         },
         dataType: "JSON",

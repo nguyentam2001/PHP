@@ -17,9 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["Description"])) {
         $Description = $_POST["Description"];
     }
-    if (!empty($_POST["Quality"])) {
-        $Quality = $_POST["Quality"];
-    }
     if (!empty($_POST["Image"])) {
         //Lấy file ảnh
         $Image = $_POST["Image"];
@@ -28,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $dataBase->connect_db();
 
-    $sql = "INSERT INTO product (ProductID, ProductName, ExportPrice, ImportPrice, CategoryID, Description, Quality, Image ) VALUES(0,'" . $ProductName . "','" . $ExportPrice . "','" . $ImportPrice . "','" . $CategoryID . "','" . $Description . "','" . $Quality . "','" . $Image . "')";
+    $sql = "INSERT INTO product (ProductID, ProductName, ExportPrice, ImportPrice, CategoryID, Description, Quality, Image ) VALUES(0,'" . $ProductName . "','" . $ExportPrice . "','" . $ImportPrice . "','" . $CategoryID . "','" . $Description . "',0,'" . $Image . "')";
 
     $data = mysqli_query($dataBase->conn, $sql);
 

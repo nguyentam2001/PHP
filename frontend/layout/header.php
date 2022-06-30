@@ -17,10 +17,10 @@
             </ul>
             <ul class="header__navbar-list">
                 <li class="header__navbar-item header__navbar-item--has-notify">
-                    <a href="" class="header__navbar-item-link">
+                    <!-- <a href="" class="header__navbar-item-link">
                         <i class="far fa-bell"></i>
                         Thông báo
-                    </a>
+                    </a> -->
                     <div class="header__navbar-toast">
                         <div class="header__toast--header">
                             <h3>Thông báo mới nhận</h3>

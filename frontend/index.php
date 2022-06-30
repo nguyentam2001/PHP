@@ -105,10 +105,10 @@ session_start();
                         <div class="col l-10 m-9 c-12">
                             <div class="home-filter">
                                 <span class="home-filter__label hide-on-mobile">Sắp xếp theo</span>
-                                <button class="btn home-filter__btn btn--primary">
+                                <!-- <button class="btn home-filter__btn btn--primary">
                                     Mới nhất
                                 </button>
-                                <button class="btn home-filter__btn">Bán chạy</button>
+                                <button class="btn home-filter__btn">Bán chạy</button> -->
                                 <form method="POST" action="">
                                     <select style="font-size: 1.4rem; outline: none; border: none;" name="price"
                                         class="select-input hide-on-mobile" onchange="this.form.submit()">
