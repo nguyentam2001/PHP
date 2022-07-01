@@ -1,14 +1,19 @@
 <?php
 session_start();
-function getQualityPickById($productId){
-    $totalPick=0;
-        for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
-            if($_SESSION["invoice_sell_product"][$i]["ProductID"]==$productId){
-                $totalPick= (int) $_SESSION["invoice_sell_product"][$i]["quantityPick"];
+
+        function getQualityPickById($productId){
+        $totalPick=0;
+        if(isset($_SESSION["invoice_sell_product"])){
+            for($i=0;$i<sizeof($_SESSION["invoice_sell_product"]);$i++){
+                if($_SESSION["invoice_sell_product"][$i]["ProductID"]==$productId){
+                    $totalPick= (int) $_SESSION["invoice_sell_product"][$i]["quantityPick"];
+                }
             }
-        }
-    return $totalPick;    
 }
+
+        return $totalPick;    
+    }
+
 
 
 ?>
@@ -171,7 +176,6 @@ function getQualityPickById($productId){
                                                 <input type="text" readonly name="quantityPick" value="1" class="item-body__oder-amount item-body__oder-current"/>
                                                 <input type="hidden"  name="ProductID" value='.$row["ProductID"].'>
                                                 <input type="hidden"  name="CategoryID" value='.$row["CategoryID"].'>
-                                                <input type="hidden"  name="CategoryName" value='.$row["CategoryName"].'>
                                                 <input type="hidden"  name="ProductName" value='.$row["ProductName"].'>
                                                 <input type="hidden"  name="ExportPrice" value='.$row["ExportPrice"].'>
                                                 <input type="hidden"  name="ProductImage" value='.$row["Image"].'>
@@ -260,7 +264,6 @@ function getQualityPickById($productId){
                 </div>
             </div>
             <script src="../lib/jquery/jquery.js"></script>
-            <!-- <script type="text/javascript" src="./assest/js/product.js"></script> -->
             <script>
             let currNum = 1;
             let total = +$(".item-body__oder-plus").attr("value");

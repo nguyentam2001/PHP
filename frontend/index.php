@@ -1,7 +1,7 @@
 <?php
 session_start();
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,8 +63,6 @@ session_start();
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-
-                        <!-- <img src="./assest/img/img_vartar/shopee.jpg" alt="shopee" class="slider__img" /> -->
                     </div>
                     <div class="row app__content">
                         <div class="col l-2 nt-m-3 nt-overflow-scroll c-12">
@@ -107,10 +105,10 @@ session_start();
                         <div class="col l-10 m-9 c-12">
                             <div class="home-filter">
                                 <span class="home-filter__label hide-on-mobile">Sắp xếp theo</span>
-                                <button class="btn home-filter__btn btn--primary">
+                                <!-- <button class="btn home-filter__btn btn--primary">
                                     Mới nhất
                                 </button>
-                                <button class="btn home-filter__btn">Bán chạy</button>
+                                <button class="btn home-filter__btn">Bán chạy</button> -->
                                 <form method="POST" action="">
                                     <select style="font-size: 1.4rem; outline: none; border: none;" name="price"
                                         class="select-input hide-on-mobile" onchange="this.form.submit()">
@@ -152,7 +150,7 @@ session_start();
                                                 $query=" SELECT * From product WHERE $CategoryID IS NOT NULL AND CategoryID = $CategoryID OR $CategoryID IS NULL ORDER BY ExportPrice ASC";
                                             }else{
                                                 //sắp xếp giảm dần
-                                                $query=" SELECT * From product WHERE $CategoryID IS NOT NULL AND CategoryID = $CategoryID OR $CategoryID IS NULL ORDER BY ExportPrice DESC";
+                                                $query=" SELECT * From product  WHERE $CategoryID IS NOT NULL AND CategoryID = $CategoryID OR $CategoryID IS NULL ORDER BY ExportPrice DESC";
                                             }
                                         }
 
@@ -161,10 +159,15 @@ session_start();
                                         for ($i=0; $i < count($data) ; $i++) { 
                                             echo '
                                             <div class="col l-2-4 nt-m-4 c-6">
-                                            <a class="home-product-item" href="product.php?productID='.$data[$i]["ProductID"].'">
+                                            <div class="home-product-item" >
+                                            
+                                            <a href="product.php?productID='.$data[$i]["ProductID"].'">
                                             <div class="home-product-item__img" style="
                           background-image: url(../assets/img/items/'.$data[$i]['Image'].');
+
+
                         "></div>
+                                                </a>
                                             <div class="home-product-item__body">
                                                 <h4 class="home-product-item__description" title='.$data[$i]['ProductName'].'>
                                                     '.$data[$i]['ProductName'].'
@@ -195,7 +198,20 @@ session_start();
 
                                                 <div class="home-product-item__origin">
                                                     <span class="home-product-item__brand">NTstore</span>
-                                                    <span class="home-product-item__origin-name">Hà Nội</span>
+
+                                                    <form method="POST" action="/ntstore/frontend/cart.php">
+
+                                                    <input type="hidden" type="text" readonly name="quantityPick" value="1" class="item-body__oder-amount item-body__oder-current"/>
+                                                    <input type="hidden"  name="ProductID" value='.$data[$i]["ProductID"].'>
+                                                    <input type="hidden"  name="CategoryID" value='.$data[$i]["CategoryID"].'>
+                                                    <input type="hidden"  name="ProductName" value='.$data[$i]["ProductName"].'>
+                                                    <input type="hidden"  name="ExportPrice" value='.$data[$i]["ExportPrice"].'>
+                                                    <input type="hidden"  name="ProductImage" value='.$data[$i]["Image"].'>
+                                                    <button  onclick="return checkform()"  style="border: none; background: #fff;" type="submit"  id="buyNow" name="add-cart" value="add-cart-index" >
+                                                        <span  class="home-product-item__origin-name"><i style="color: red;
+                                                        font-size: 12px; cursor: pointer;" class="header__cart-icon fas fa-cart-plus"></i></span>
+                                                    </button>
+                                                </form>
                                                 </div>
                                             </div>
                                             <span class="home-product-item__favourite">
@@ -205,7 +221,7 @@ session_start();
                                                 <span class="home-product-item__sale-off-percent">40%</span>
                                                 <span class="home-product-item__sale-off-label">GIẢM</span>
                                             </div>
-                                        </a>
+                                        </div>
                                         </div>
                                             ';
                                         }
@@ -298,137 +314,13 @@ session_start();
                         </li>
                     </ul>
                 </div>
-                <!-- --register form------->
-
-                <!-- <div class="auth-form">
-           main-form 
-          <div class="auth-form__container">
-            <!-- header-form 
-            <div class="auth-form__header">
-              <h3 class="auth-form__heading">Đăng ký</h3>
-              <span class="auth-form__switch-btn">Đăng nhập</span>
-            </div>
-            <!-- ---body form-- 
-            <div class="auth-form__form">
-              <div class="auth-form__group">
-                <input
-                  type="text"
-                  class="auth-form__input"
-                  placeholder="Nhập email/Số điện thoại"
-                />
-              </div>
-              <div class="auth-form__group">
-                <input
-                  type="password"
-                  class="auth-form__input"
-                  placeholder="Nhập mật khẩu của bạn"
-                />
-              </div>
-              <div class="auth-form__group">
-                <input
-                  type="password"
-                  class="auth-form__input"
-                  placeholder="Xác nhận mật khẩu"
-                />
-              </div>
-            </div>
-            <!-- ---policy-text--- 
-            <div class="auth-form__aside">
-              <p class="auth-form__policy-text">
-                Bằng việc đăng kí, bạn đã đồng ý với Shopee
-                <a href="" class="auth-form__text-link">Điều khoản dịch vụ</a>
-                &
-                <a href="" class="auth-form__text-link">Chính sách bảo mật</a>
-              </p>
-            </div>
-            <!-- ---form control---
-            <div class="auth-form__control">
-              <button class="btn auth-form__control-back btn--nomal">
-                TRỞ LẠI
-              </button>
-              <button class="btn btn--primary btn--primary">ĐĂNG KÝ</button>
-            </div>
-          </div>
-          <div class="auth-form__socicals">
-            <a href="" class="btn btn--with-icon btn--facebook">
-              <i
-                class="fab fa-facebook-square auth-form__socicals--facebook"
-              ></i>
-              <span class="auth-form__socical--text">
-                kết nối với Facebook</span
-              >
-            </a>
-            <a href="" class="btn btn--with-icon btn--google">
-              <i class="fab fa-google"></i>
-              <span class="auth-form__socical--text">kết nối với Google</span>
-            </a>
-          </div>
-        </div> -->
-                <!-- --login form------->
-                <!--<div class="auth-form">
-          <!-- main-form 
-          <div class="auth-form__container">
-            <!-- header-form 
-            <div class="auth-form__header">
-              <h3 class="auth-form__heading">Đăng nhập</h3>
-              <span class="auth-form__switch-btn">Đăng ký</span>
-            </div>
-            <!-- ---body form-- 
-            <div class="auth-form__form">
-              <div class="auth-form__group">
-                <input
-                  type="text"
-                  class="auth-form__input"
-                  placeholder="Nhập email/Số điện thoại"
-                />
-              </div>
-              <div class="auth-form__group">
-                <input
-                  type="password"
-                  class="auth-form__input"
-                  placeholder="Nhập mật khẩu của bạn"
-                />
-              </div>
-            </div>
-            <!-- ---policy-text--- 
-            <div class="auth-form__aside">
-              <div class="auth-form__help">
-                <a href="" class="auth-form__help-link auth-form__help-forgot"
-                  >Quên mật khẩu</a
-                >
-                <span class="auth-form__help--separate"></span>
-                <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
-              </div>
-            </div>
-            <!-- ---form control--- 
-            <div class="auth-form__control">
-              <button class="btn auth-form__control-back btn--nomal">
-                TRỞ LẠI
-              </button>
-              <button class="btn btn--primary btn--primary">ĐĂNG NHẬP</button>
-            </div>
-          </div>
-          <div class="auth-form__socicals">
-            <a href="" class="btn btn--with-icon btn--facebook">
-              <i
-                class="fab fa-facebook-square auth-form__socicals--facebook"
-              ></i>
-              <span class="auth-form__socical--text">
-                kết nối với Facebook</span
-              >
-            </a>
-            <a href="" class="btn btn--with-icon btn--google">
-              <i class="fab fa-google"></i>
-              <span class="auth-form__socical--text">kết nối với Google</span>
-            </a>
-          </div>
-        </div>
-        !-->
             </div>
         </div>
-        <script src=""></script>
         <script src="./assest/js/menu/menu_mobile.js"></script>
         <script src="../lib/bootstrap/js/bootstrap.js"></script>
+        <script src="../lib/jquery/jquery.js"></script>
+
+
     </body>
     <style>
     .carousel-item {

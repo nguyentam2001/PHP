@@ -43,6 +43,7 @@ session_start();
                     </form>
                 </div>
             </div>
+
         </div>
         <div class="table-wraper p-l-24 p-r-24 ">
 
@@ -95,6 +96,50 @@ session_start();
                 //bind dữ liệu ra bảng
                 if (count($data1) > 0) {
                     echo '
+
+            <div class="table-wraper p-l-24 p-r-24 ">
+                <!-- Biểu đồ thống kê năm-->
+                <div class="chart-wrapper">
+                    <div class="chart-title">Biểu đồ thống kê theo tháng</div>
+                    <?php
+                         require_once '../utilities/check-error.php';
+                         require_once '../database/connect_db.php';
+                         require_once "../utilities/gender.php";
+                         $db = new Database();
+                         $db->connect_db(); //kết nối database
+                         $query = "SELECT Month(DateCreate) as Month, SUM(TotalExport*PriceExport) as Turnover from export_invoice INNER JOIN export_invoice_product ON export_invoice_product.InvoiceID=export_invoice.InvoiceID GROUP BY Month";
+                         $data = $db->getData($query);
+                         $dataPoints=array();
+                         for ($i=1; $i <=12 ; $i++) {
+                           $newArray= ["x"=> $i, "y"=> 1];
+                           $isFlag=true;
+                            for ($j=0; $j <count($data) ; $j++) { 
+                                if($i==$data[$j]["Month"]){
+                                    $newArray["y"]=(int)$data[$j]["Turnover"];
+                                    $dataPoints[]= $newArray;
+                                    $isFlag=false;
+                                    break;
+                                }
+                            }
+                            if($isFlag){
+                                $dataPoints[]= $newArray;
+                            }
+                         }
+                      
+                        ?>
+                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                </div>
+                <!-- Table thống kê chi tiết -->
+                <div class="table-report-wrapper">
+                    <div class="chart-title">Bảng thống kê chi tiết</div>
+                    <?php
+         $query1 = "SELECT * FROM product INNER JOIN import_invoice_product ON product.ProductID = import_invoice_product.ProductID INNER JOIN export_invoice_product ON product.ProductID = export_invoice_product.ProductID GROUP BY product.ProductName";
+         $data1 = $db->getData($query1);
+         $db->close_db();
+         //bind dữ liệu ra bảng
+         if (count($data1) > 0) {
+           echo'
+
            <table id="EmployeeTable" class="table table-hover">
            <thead>
              <tr>

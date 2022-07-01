@@ -26,9 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["Description"])) {
         $Description = $_POST["Description"];
     }
-    if (!empty($_POST["Quality"])) {
-        $Quality = $_POST["Quality"];
-    }
+   
     if (!empty($_POST["Image"])) {
         $Image = $_POST["Image"];
     }
@@ -36,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dataBase = new Database();
     $dataBase->connect_db();
 
-    $sql = "UPDATE product SET ProductName = '".$ProductName."', ExportPrice = '".$ExportPrice."',ImportPrice = '".$ImportPrice."', CategoryID = '".$CategoryID."', Description = '".$Description."', Quality = '".$Quality."', Image = '".$Image."' WHERE ProductID = $ProductID";  
+    $sql = "UPDATE product SET ProductName = '".$ProductName."', ExportPrice = '".$ExportPrice."',ImportPrice = '".$ImportPrice."', CategoryID = '".$CategoryID."', Description = '".$Description."', Image = '".$Image."' WHERE ProductID = $ProductID";  
     $data = mysqli_query($dataBase->conn,$sql);
         if($data ==TRUE){
             echo json_encode((array("data"=>"Success")));
